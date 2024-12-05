@@ -1,11 +1,11 @@
-#PlannerCLI
+# PlannerCLI
 - A school project that allows managing events in a monthly calendar while in a CLI environment.
 
-##Git Semantics
+## Git Semantics
 - Always open a open request that merges into **dev** branch (if availabl0).
 - Refrain from directly making or merging changes into main branch.
 
-##Code Semantics
+## Code Semantics
 - Use namespace for each classes.
 Example:
 ```cpp
