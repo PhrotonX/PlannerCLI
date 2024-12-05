@@ -23,12 +23,12 @@ namespace PlannerCLI{
             Month();
             virtual ~Month();
 
-            int GetMonthId();
+            int GetMonthID();
 
             std::string GetMonthName();
 
             void SetMonth(eMonth month){
-                m_monthId = month;
+                m_month = month;
             }
 
         private:

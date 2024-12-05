@@ -11,7 +11,7 @@ namespace PlannerCLI{
         //dtor
     }
 
-    std::string Month::GetMonthID(){
+    int Month::GetMonthID(){
         switch(m_month){
         case eMonth::January:
             return 1;
