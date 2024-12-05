@@ -1,5 +1,6 @@
 #ifndef DAY_H
 #define DAY_H
+#include <string>
 
 namespace PlannerCLI{
     class Day
@@ -17,7 +18,17 @@ namespace PlannerCLI{
             Day();
             virtual ~Day();
 
-        protected:
+            int GetDay(){
+                return m_nDay;
+            }
+
+            void SetDay(int day){
+                m_nDay = day;
+            }
+
+            int GetDayOfTheWeekN();
+
+            std::string GetDayOfTheWeekStr();
 
         private:
             int m_nDay;
