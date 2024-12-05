@@ -1,3 +1,7 @@
+# Project Files
+*.cbp
+*.layout
+
 # Prerequisites
 *.d
 
