@@ -23,7 +23,8 @@ namespace PlannerCLI{
             Month();
             virtual ~Month();
 
-        protected:
+            int GetMonthId();
+
             std::string GetMonthName();
 
             void SetMonth(eMonth month){
@@ -31,8 +32,7 @@ namespace PlannerCLI{
             }
 
         private:
-            eMonth m_monthId;
-            std::string m_strMonthName;
+            eMonth m_month;
     };
 }
 
