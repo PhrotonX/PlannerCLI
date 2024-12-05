@@ -11,28 +11,28 @@ namespace PlannerCLI{
         //dtor
     }
 
-    int Day::GetDayOfTheWeekN(){
+    int Day::GetDayOfTheWeekID(){
         switch(m_nDayOfTheWeek){
         case DaysOfTheWeek.Sunday:
-            return 0;
-        case DaysOfTheWeek.Monday:
             return 1;
-        case DaysOfTheWeek.Tuesday:
+        case DaysOfTheWeek.Monday:
             return 2;
-        case DaysOfTheWeek.Wednesday:
+        case DaysOfTheWeek.Tuesday:
             return 3;
-        case DaysOfTheWeek.Thursday:
+        case DaysOfTheWeek.Wednesday:
             return 4;
-        case DaysOfTheWeek.Friday:
+        case DaysOfTheWeek.Thursday:
             return 5;
-        case DaysOfTheWeek.Saturday:
+        case DaysOfTheWeek.Friday:
             return 6;
+        case DaysOfTheWeek.Saturday:
+            return 7;
         default:
             break;
         }
     }
 
-    int Day::GetDayOfTheWeekStr(){
+    int Day::GetDayOfTheWeekName(){
         switch(m_nDayOfTheWeek){
         case DaysOfTheWeek.Sunday:
             return "Sunday";

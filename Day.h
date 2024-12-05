@@ -26,9 +26,9 @@ namespace PlannerCLI{
                 m_nDay = day;
             }
 
-            int GetDayOfTheWeekN();
+            int GetDayOfTheWeekID();
 
-            std::string GetDayOfTheWeekStr();
+            std::string GetDayOfTheWeekName();
 
         private:
             int m_nDay;
