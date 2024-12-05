@@ -13,40 +13,40 @@ namespace PlannerCLI{
 
     int Day::GetDayOfTheWeekID(){
         switch(m_nDayOfTheWeek){
-        case DaysOfTheWeek.Sunday:
+        case DaysOfTheWeek::Sunday:
             return 1;
-        case DaysOfTheWeek.Monday:
+        case DaysOfTheWeek::Monday:
             return 2;
-        case DaysOfTheWeek.Tuesday:
+        case DaysOfTheWeek::Tuesday:
             return 3;
-        case DaysOfTheWeek.Wednesday:
+        case DaysOfTheWeek::Wednesday:
             return 4;
-        case DaysOfTheWeek.Thursday:
+        case DaysOfTheWeek::Thursday:
             return 5;
-        case DaysOfTheWeek.Friday:
+        case DaysOfTheWeek::Friday:
             return 6;
-        case DaysOfTheWeek.Saturday:
+        case DaysOfTheWeek::Saturday:
             return 7;
         default:
             break;
         }
     }
 
-    int Day::GetDayOfTheWeekName(){
+    std::string Day::GetDayOfTheWeekName(){
         switch(m_nDayOfTheWeek){
-        case DaysOfTheWeek.Sunday:
+        case DaysOfTheWeek::Sunday:
             return "Sunday";
-        case DaysOfTheWeek.Monday:
+        case DaysOfTheWeek::Monday:
             return "Monday";
-        case DaysOfTheWeek.Tuesday:
-            return "Tuesday;
-        case DaysOfTheWeek.Wednesday:
+        case DaysOfTheWeek::Tuesday:
+            return "Tuesday";
+        case DaysOfTheWeek::Wednesday:
             return "Wednesday";
-        case DaysOfTheWeek.Thursday:
+        case DaysOfTheWeek::Thursday:
             return "Thursday";
-        case DaysOfTheWeek.Friday:
+        case DaysOfTheWeek::Friday:
             return "Friday";
-        case DaysOfTheWeek.Saturday:
+        case DaysOfTheWeek::Saturday:
             return "Saturday";
         default:
             break;
