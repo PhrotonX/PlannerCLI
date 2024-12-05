@@ -1,6 +1,7 @@
 # Project Files
 *.cbp
 *.layout
+*.depend
 
 # Prerequisites
 *.d
@@ -34,3 +35,7 @@
 *.exe
 *.out
 *.app
+
+# Files
+internal_version.txt
+PlannerCLI_build_log.html
