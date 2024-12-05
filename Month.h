@@ -5,35 +5,33 @@
 namespace PlannerCLI{
     class Month
     {
+        enum eMonth{
+            January,
+            February,
+            March,
+            April,
+            May,
+            June,
+            July,
+            August,
+            September,
+            October,
+            November,
+            December
+        };
         public:
-            inline static const std::string JANUARY = "January";
-            inline static const std::string FEBRUARY = "February";
-            inline static const std::string MARCH = "March";
-            inline static const std::string APRIL = "April";
-            inline static const std::string MAY = "May";
-            inline static const std::string JUNE = "June";
-            inline static const std::string JULY = "July";
-            inline static const std::string AUGUST = "August";
-            inline static const std::string SEPTEMBER = "September";
-            inline static const std::string OCTOBER = "October";
-            inline static const std::string NOVEMBER = "November";
-            inline static const std::string DECEMBER = "December";
-
             Month();
             virtual ~Month();
 
         protected:
+            std::string GetMonthName();
 
-            int GetMonthId(){
-                return m_nMonthId;
-            }
-
-            void SetMonthId(int month){
-                m_nMonthId = month;
+            void SetMonth(eMonth month){
+                m_monthId = month;
             }
 
         private:
-            int m_nMonthId;
+            eMonth m_monthId;
             std::string m_strMonthName;
     };
 }
