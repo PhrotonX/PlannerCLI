@@ -1,10 +1,11 @@
 #include "Year.h"
 
 namespace PlannerCLI{
-    Year::Year()
+    Year::Year(int year)
     {
         //ctor
         m_bLeapYear = false;
+        SetYear(year);
     }
 
     Year::~Year()

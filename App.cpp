@@ -1,4 +1,6 @@
 #include "App.h"
+#include <conio.h>
+#include "FORMAT.h"
 
 namespace PlannerCLI{
     App::App()
@@ -13,13 +15,13 @@ namespace PlannerCLI{
     }
 
     void App::Run(){
+        int choice = 0;
         do{
-             int choice = 0;
-
             //Replace with either Mouse click or Arrow keys
             std::cout << "ษอออออออออออออออออออออออออออป" << std::endl;
             std::cout << "บ                           บ" << std::endl;
             std::cout << "บ         PlannerCLI        บ" << std::endl;
+            std::cout << "บ          v1.0.0.1         บ" << std::endl;
             std::cout << "บ                           บ" << std::endl;
             std::cout << "บ   Choose an option:       บ" << std::endl;
             std::cout << "บ   ======================  บ" << std::endl;
@@ -30,7 +32,7 @@ namespace PlannerCLI{
             std::cout << "บ   5. Exit                 บ" << std::endl;
             std::cout << "บ                           บ" << std::endl;
             std::cout << "ศอออออออออออออออออออออออออออผ" << std::endl;
-            std::cout << "บ Choice:                   บ" << std::endl;
+            std::cout << "Choice: ";
 
             std::cin >> choice;
 
@@ -44,6 +46,8 @@ namespace PlannerCLI{
             default:
                 break;
             }
+
+            CLEAR_SCREEN;
         }while(choice != APP_EXIT);
     }
 

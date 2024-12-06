@@ -4,6 +4,8 @@ namespace PlannerCLI{
     CalendarController::CalendarController()
     {
         m_calendarView = new CalendarView();
+        m_calendar = new Calendar();
+        m_calendar->Seed();
     }
 
     CalendarController::~CalendarController()
