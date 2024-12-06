@@ -1,15 +1,36 @@
 #ifndef YEAR_H
 #define YEAR_H
+#include "Month.h"
 
 namespace PlannerCLI{
     class Year
     {
         public:
-            Year();
+            Year(int year);
             virtual ~Year();
 
-            int GetYear(){
+            /**
+                \param position The zero-based month value. E.g. 0 for January,
+                1 for February, and so on.
+            */
+            Month*& GetMonth(int month){
+                return m_month[month];
+            }
+
+            int GetYear() const{
                 return m_nYear;
+            }
+
+            bool IsLeapYear() const{
+                return m_bLeapYear;
+            }
+
+            /**
+                \param position The zero-based month value or ID.
+                \param month The month object.
+            */
+            void SetMonth(int position, Month*& month){
+                m_month[position] = month;
             }
 
             void SetYear(int year){
@@ -26,9 +47,13 @@ namespace PlannerCLI{
                 }
             }
 
+
+
         private:
             int m_nYear;
             bool m_bLeapYear;
+
+            Month* m_month[12];
     };
 
 }

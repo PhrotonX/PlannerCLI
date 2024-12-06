@@ -1,9 +1,13 @@
 #include "Month.h"
 
 namespace PlannerCLI{
-    Month::Month()
+    Month::Month(eMonth month)
     {
-        //ctor
+        SetMonth(month);
+    }
+
+    Month::Month(int month){
+        SetMonth(month);
     }
 
     Month::~Month()
@@ -11,38 +15,38 @@ namespace PlannerCLI{
         //dtor
     }
 
-    int Month::GetMonthID(){
+    int Month::GetMonthID() const{
         switch(m_month){
         case eMonth::January:
-            return 1;
+            return 0;
         case eMonth::February:
-            return 2;
+            return 1;
         case eMonth::March:
-            return 3;
+            return 2;
         case eMonth::April:
-            return 4;
+            return 3;
         case eMonth::May:
-            return 5;
+            return 4;
         case eMonth::June:
-            return 6;
+            return 5;
         case eMonth::July:
-            return 7;
+            return 6;
         case eMonth::August:
-            return 8;
+            return 7;
         case eMonth::September:
-            return 9;
+            return 8;
         case eMonth::October:
-            return 10;
+            return 9;
         case eMonth::November:
-            return 11;
+            return 10;
         case eMonth::December:
-            return 12;
+            return 11;
         default:
             break;
         }
     }
 
-    std::string Month::GetMonthName(){
+    std::string Month::GetMonthName() const{
         switch(m_month){
         case eMonth::January:
             return "January";
@@ -68,6 +72,37 @@ namespace PlannerCLI{
             return "November";
         case eMonth::December:
             return "December";
+        default:
+            break;
+        }
+    }
+
+    void Month::SetMonth(int month){
+        switch(month){
+        case 0:
+            m_month = January;
+        case 1:
+            m_month = February;
+        case 2:
+            m_month = March;
+        case 3:
+            m_month = April;
+        case 4:
+            m_month = May;
+        case 5:
+            m_month = June;
+        case 6:
+            m_month = July;
+        case 7:
+            m_month = August;
+        case 8:
+            m_month = September;
+        case 9:
+            m_month = October;
+        case 10:
+            m_month = November;
+        case 11:
+            m_month = December;
         default:
             break;
         }

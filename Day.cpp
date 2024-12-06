@@ -1,9 +1,18 @@
 #include "Day.h"
 
 namespace PlannerCLI{
-    Day::Day()
+    Day::Day(int day, DaysOfTheWeek dayOfTheWeek)
     {
         //ctor
+        SetValue(day);
+        SetDayOftheWeek(dayOfTheWeek);
+    }
+
+    Day::Day(int day, int dayOfTheWeek)
+    {
+        //ctor
+        SetValue(day);
+        SetDayOftheWeek(dayOfTheWeek);
     }
 
     Day::~Day()
@@ -48,6 +57,34 @@ namespace PlannerCLI{
             return "Friday";
         case DaysOfTheWeek::Saturday:
             return "Saturday";
+        default:
+            break;
+        }
+    }
+
+    void Day::SetDayOftheWeek(int dayOfTheWeek){
+        switch(dayOfTheWeek){
+        case 0:
+            m_nDayOfTheWeek = Sunday;
+            break;
+        case 1:
+            m_nDayOfTheWeek = Monday;
+            break;
+        case 2:
+            m_nDayOfTheWeek = Tuesday;
+            break;
+        case 3:
+            m_nDayOfTheWeek = Wednesday;
+            break;
+        case 4:
+            m_nDayOfTheWeek = Thursday;
+            break;
+        case 5:
+            m_nDayOfTheWeek = Friday;
+            break;
+        case 6:
+            m_nDayOfTheWeek = Saturday;
+            break;
         default:
             break;
         }

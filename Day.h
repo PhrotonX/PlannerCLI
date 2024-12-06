@@ -15,16 +15,28 @@ namespace PlannerCLI{
             Saturday
         };
         public:
-            Day();
+            Day(int day, DaysOfTheWeek dayOfTheWeek);
+            Day(int day, int weekday);
             virtual ~Day();
 
-            int GetDay(){
+            int GetValue(){
                 return m_nDay;
             }
 
-            void SetDay(int day){
+            /**
+                \brief Set the zero-based day value.
+
+                \param day The zero-based day value.
+            */
+            void SetValue(int day){
                 m_nDay = day;
             }
+
+            void SetDayOftheWeek(DaysOfTheWeek dayOfTheWeek){
+                m_nDayOfTheWeek = dayOfTheWeek;
+            }
+
+            void SetDayOftheWeek(int dayOfTheWeek);
 
             int GetDayOfTheWeekID();
 
