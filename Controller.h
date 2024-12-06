@@ -27,6 +27,7 @@ namespace PlannerCLI{
 
             /**
                 \brief Store general information from the View into the Model.
+
             */
             virtual void Store() = 0;
             virtual void Update() = 0;

@@ -36,7 +36,6 @@ namespace PlannerCLI{
 
             switch(choice){
             case APP_SHOW_CALENDAR:
-
                 m_calendarController->Index();
                 break;
             case APP_EXIT:
@@ -46,9 +45,6 @@ namespace PlannerCLI{
                 break;
             }
         }while(choice != APP_EXIT);
-
-
-
     }
 
     void App::Close(){
