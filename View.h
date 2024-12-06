@@ -3,6 +3,9 @@
 #include <iostream>
 
 namespace PlannerCLI{
+    /**
+        \brief Handles the command-line line logic.
+    */
     class View
     {
         public:

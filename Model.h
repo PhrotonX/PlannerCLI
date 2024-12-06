@@ -2,6 +2,9 @@
 #define MODEL_H
 
 namespace PlannerCLI{
+    /**
+        \brief Handles the data logic.
+    */
     class Model
     {
         public:
