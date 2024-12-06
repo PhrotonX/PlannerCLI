@@ -5,7 +5,6 @@
 #include "Month.h"
 #include "Day.h"
 #include "Date.h"
-#include <ctime>
 #include <iostream>
 
 namespace PlannerCLI{
@@ -18,18 +17,7 @@ namespace PlannerCLI{
             Calendar();
             virtual ~Calendar();
 
-            /**
-                \details Calculates the day of the week through Zeller's Congruence.
-                \param year 1-based year value.
-                \param year 1-based month value.
-                \param year 1-based day value.
-                \return The day of the week (0 = Saturday, 6 = Friday).
-            */
-            int CalculateDate(Date date);
 
-            static int CalculateDayLength(const Year& year, const Month& month);
-
-            Date GetCurrentDate();
 
             void Save() override;
 

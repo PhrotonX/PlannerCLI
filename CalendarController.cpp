@@ -5,12 +5,11 @@ namespace PlannerCLI{
     {
         m_calendarView = new CalendarView();
         m_calendar = new Calendar();
-        m_calendar->Seed();
     }
 
     CalendarController::~CalendarController()
     {
-        //dtor
+
     }
 
     void CalendarController::Create(){
@@ -18,7 +17,27 @@ namespace PlannerCLI{
     }
 
     void CalendarController::Index(){
+        Date* currentDate = Date::GetCurrentDate();
+
+        int currentDate_dayOfTheWeek = currentDate->CalculateDayOfTheWeek();
+
+        Year* currentYear = std::move(currentDate->GetYear());
+        Month* currentMonth = std::move(currentDate->GetMonth());
+
+        Date* firstDayOfTheMonth = new Date(currentYear->GetValue(), currentMonth->GetValueN(), 1);
+        int firstDayOfTheMonth_dayOfTheWeek = firstDayOfTheMonth->CalculateDayOfTheWeek();
+
+        Month* month = new Month(currentMonth->GetValueN() - 1);
+        month->Populate(firstDayOfTheMonth_dayOfTheWeek, firstDayOfTheMonth->GetYear()->IsLeapYear());
+
+        //@TODO: Add manual memory management.
+        //delete currentDate;
+        //delete firstDayOfTheMonth;
+        //currentDate = nullptr;
+        //firstDayOfTheMonth = nullptr;
+
         m_calendarView->Display();
+
     }
 
     void CalendarController::Store(){

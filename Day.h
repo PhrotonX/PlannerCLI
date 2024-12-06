@@ -5,16 +5,18 @@
 namespace PlannerCLI{
     class Day
     {
-        enum DaysOfTheWeek{
-            Sunday,
-            Monday,
-            Tuesday,
-            Wednesday,
-            Thursday,
-            Friday,
-            Saturday
-        };
         public:
+            enum DaysOfTheWeek{
+                Sunday,
+                Monday,
+                Tuesday,
+                Wednesday,
+                Thursday,
+                Friday,
+                Saturday
+            };
+
+            Day(int day);
             Day(int day, DaysOfTheWeek dayOfTheWeek);
             Day(int day, int weekday);
             virtual ~Day();
@@ -24,9 +26,9 @@ namespace PlannerCLI{
             }
 
             /**
-                \brief Set the zero-based day value.
+                \brief Set the 1-based day value.
 
-                \param day The zero-based day value.
+                \param day The 1-based day value.
             */
             void SetValue(int day){
                 m_nDay = day;
@@ -38,6 +40,9 @@ namespace PlannerCLI{
 
             void SetDayOftheWeek(int dayOfTheWeek);
 
+            /**
+                \return Returns 0 for Saturday, 6 for Friday, and -1 if not available.
+            */
             int GetDayOfTheWeekID();
 
             std::string GetDayOfTheWeekName();

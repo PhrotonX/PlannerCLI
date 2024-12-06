@@ -5,7 +5,7 @@ namespace PlannerCLI{
     {
         //ctor
         m_bLeapYear = false;
-        SetYear(year);
+        SetValue(year);
     }
 
     Year::~Year()
