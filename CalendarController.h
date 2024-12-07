@@ -12,6 +12,7 @@ namespace PlannerCLI{
             CalendarController();
             ~CalendarController() override;
 
+            void HandleInput() override;
             void Create() override;
             void Index() override;
             void Store() override;

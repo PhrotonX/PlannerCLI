@@ -17,6 +17,10 @@ namespace PlannerCLI{
             Controller();
             virtual ~Controller();
 
+            /**
+                \brief Handle code for user input.
+            */
+            virtual void HandleInput() = 0;
 
             virtual void Create() = 0;
 
