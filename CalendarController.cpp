@@ -50,6 +50,8 @@ namespace PlannerCLI{
 
         m_calendarView->Display(month);
 
+        //@TODO: Delete the month object after using. But the Month and other
+        //classes shall support the rule of five.
     }
 
     void CalendarController::Store(){

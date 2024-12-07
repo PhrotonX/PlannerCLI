@@ -7,7 +7,10 @@ namespace PlannerCLI{
     class CalendarView : View
     {
         public:
-            inline static const int CALENDAR_WIDTH = 42;
+            inline static const int CALENDAR_WIDTH = 51;
+            inline static const int DAYS_OF_THE_WEEK = 7;
+            inline static const int ITEM_WIDTH = 7;
+            inline static const int ITEM_HEIGHT = 3;
 
             CalendarView();
             ~CalendarView() override;
