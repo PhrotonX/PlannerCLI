@@ -30,6 +30,14 @@ namespace PlannerCLI{
         Month* month = new Month(currentMonth->GetValueN() - 1);
         month->Populate(firstDayOfTheMonth_dayOfTheWeek, firstDayOfTheMonth->GetYear()->IsLeapYear());
 
+        int monthSize = month->GetMonthSize();
+        std::cout << "Month Size: " << monthSize << std::endl;
+        for(int i = 0; i < monthSize; i++){
+            std::cout << month->GetMonthName() << " "
+                << month->GetDay(i)->GetValue() << ", "
+                << currentYear->GetValue() << std::endl;
+        }
+
         //@TODO: Add manual memory management.
         //delete currentDate;
         //delete firstDayOfTheMonth;
