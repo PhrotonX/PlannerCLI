@@ -4,7 +4,7 @@
 #include "Year.h"
 #include "Month.h"
 #include "Day.h"
-#include <ctime>
+#include "Date.h"
 #include <iostream>
 
 namespace PlannerCLI{
@@ -17,12 +17,13 @@ namespace PlannerCLI{
             Calendar();
             virtual ~Calendar();
 
-            static int CalculateDayList(const Year& year, const Month& month);
+
 
             void Save() override;
 
             /**
                 \details Fill up data.
+                \deprecated
             */
             void Seed();
 

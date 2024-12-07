@@ -11,37 +11,12 @@ namespace PlannerCLI{
         //dtor
     }
 
-    int Calendar::CalculateDayList(const Year& year, const Month& month){
-        switch(month.GetMonth()){
-        case Month::February:
-            if(year.IsLeapYear())
-                return 29;
-            else
-                return 28;
-        case Month::April:
-        case Month::June:
-        case Month::September:
-        case Month::November:
-            return 30;
-        case Month::January:
-        case Month::March:
-        case Month::May:
-        case Month::July:
-        case Month::August:
-        case Month::October:
-        case Month::December:
-            return 31;
-        default:
-            //@TODO: Error handling.
-            return 0;
-        }
-    }
-
     void Calendar::Save(){
 
     }
 
     void Calendar::Seed(){
+        /*
         //Add 1900 years to each of these variable since tm_year of tm structure
         //uses year 1900 as a base year.
         int minYear = 1900, maxYear = 1900, currentYear = 1900;
@@ -99,7 +74,7 @@ namespace PlannerCLI{
                 //Set months into Year objects.
                 for(int j = 0; j < 12; j++){
                     Month* month = new Month(j);
-                    int monthSize = CalculateDayList(*m_year[i - minYear], *month);
+                    int monthSize = CalculateDayLength(*m_year[i - minYear], *month);
                     Day** day = (Day**)calloc(monthSize, sizeof(Day**));
                     for(int k = 0; k < monthSize; k++){
                         day[k] = new Day(k + 1, weekday);
@@ -118,14 +93,14 @@ namespace PlannerCLI{
             for(int i = minYear; i <= 9999; i++){
                 m_year[i - minYear] = new Year(i);
             }*/
-
+        /*
             //@TODO: Add message for unsupported years (year 2106 and beyond).
         }
 
         for(int i = minYear; i <= maxYear; i++){
             for(int j = 0; j < 12; j++){
                 Month* month = m_year[i - minYear]->GetMonth(j);
-                int monthSize = CalculateDayList(*m_year[i - minYear], *month);
+                int monthSize = CalculateDayLength(*m_year[i - minYear], *month);
                 for(int k = 0; k < monthSize; k++){
                     std::cout << m_year[i - minYear]->GetYear() << ", " << month->GetMonthName() << " " << month->GetDay(k)->GetValue() << std::endl;
                 }
@@ -133,7 +108,7 @@ namespace PlannerCLI{
             if(m_year[i - minYear]->IsLeapYear()) std::cout << " (leap year)";
 
             std::cout << "\n";
-        }
+        }*/
 
     }
 }

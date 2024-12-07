@@ -3,6 +3,7 @@
 #include "Controller.h"
 #include "CalendarView.h"
 #include "Calendar.h"
+#include "Date.h"
 
 namespace PlannerCLI{
     class CalendarController : public Controller
@@ -11,6 +12,7 @@ namespace PlannerCLI{
             CalendarController();
             ~CalendarController() override;
 
+            void HandleInput() override;
             void Create() override;
             void Index() override;
             void Store() override;

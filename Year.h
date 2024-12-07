@@ -12,12 +12,13 @@ namespace PlannerCLI{
             /**
                 \param position The zero-based month value. E.g. 0 for January,
                 1 for February, and so on.
+                \deprecated
             */
             Month*& GetMonth(int month){
                 return m_month[month];
             }
 
-            int GetYear() const{
+            int GetValue() const{
                 return m_nYear;
             }
 
@@ -28,12 +29,13 @@ namespace PlannerCLI{
             /**
                 \param position The zero-based month value or ID.
                 \param month The month object.
+                \deprecated
             */
             void SetMonth(int position, Month*& month){
                 m_month[position] = month;
             }
 
-            void SetYear(int year){
+            void SetValue(int year){
                 m_nYear = year;
 
                 if((year % 100) == 0){

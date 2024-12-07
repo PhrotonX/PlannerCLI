@@ -22,16 +22,25 @@ namespace PlannerCLI{
                 December
             };
 
+            /**
+                \details A constructor that calls Populate() method.
+
+                \param month The enumerated month value.
+            */
             Month(eMonth month);
 
             /**
-                \param The zero-based month value.
+                \details A constructor that calls Populate() method.
+
+                \param month The 1-based month value.
             */
             Month(int month);
             virtual ~Month();
 
+            int CalculateMonthLength(const Month& month, bool leapYear = false);
+
             /**
-                \param position The zero-index position of the day.
+                \param position The 1-index position of the day.
                 \return Day*& The reference to a pointer to Day object.
             */
             Day*& GetDay(int position){
@@ -45,19 +54,34 @@ namespace PlannerCLI{
                 return m_day;
             }
 
+            int GetMonthSize() const{
+                return m_nMonthSize;
+            }
+
             /**
                 \return The enumerated month value.
             */
-            eMonth GetMonth() const{
+            eMonth GetValue() const{
                 return m_month;
             }
 
             /**
-                \return The zero-based month value.
+                \return The 1-based month value.
             */
-            int GetMonthID() const;
+            int GetValueN() const;
 
             std::string GetMonthName() const;
+
+
+            /**
+                \brief Populate the month with Day objects.
+
+                \param firstDayOfTheWeek The first day of the week (0 = Saturday, 6 = Friday) based on
+                Zeller's Congruence algorithm in Calendar::CalculateDate().
+                \param leapYear (Optional) Set true if the year of the month is a leap year. Used for
+                intercalation of additional day in the month of February.
+            */
+            void Populate(int firstDayOfTheWeek, bool leapYear = false);
 
             void SetDay(int position, Day* day){
                 m_day[position] = day;
@@ -78,6 +102,8 @@ namespace PlannerCLI{
 
             //Dynamic array. Length of day differs. It could range from 28 to 31.
             Day** m_day;
+
+            int m_nMonthSize;
     };
 }
 
