@@ -16,6 +16,10 @@ namespace PlannerCLI{
 
     }
 
+    void CalendarController::HandleInput(){
+
+    }
+
     void CalendarController::Index(){
         Date* currentDate = Date::GetCurrentDate();
 
@@ -44,7 +48,7 @@ namespace PlannerCLI{
         //currentDate = nullptr;
         //firstDayOfTheMonth = nullptr;
 
-        m_calendarView->Display();
+        m_calendarView->Display(month);
 
     }
 
