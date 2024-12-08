@@ -16,29 +16,7 @@ namespace PlannerCLI{
     }
 
     int Month::CalculateMonthLength(bool leapYear){
-        switch(m_nMonthSize){
-        case Month::February:
-            if(leapYear)
-                return 29;
-            else
-                return 28;
-        case Month::April:
-        case Month::June:
-        case Month::September:
-        case Month::November:
-            return 30;
-        case Month::January:
-        case Month::March:
-        case Month::May:
-        case Month::July:
-        case Month::August:
-        case Month::October:
-        case Month::December:
-            return 31;
-        default:
-            //@TODO: Error handling.
-            return 0;
-        }
+        return CalculateMonthLength(m_nMonthSize, leapYear);
     }
 
     int Month::CalculateMonthLength(int month, bool leapYear){
@@ -129,7 +107,7 @@ namespace PlannerCLI{
         }
     }
 
-    std::string Month::GetMonthName(int month) const{
+    std::string Month::GetMonthName(int month){
         switch(month){
         case 1:
             return "January";

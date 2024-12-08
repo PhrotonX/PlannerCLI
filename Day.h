@@ -3,6 +3,9 @@
 #include <string>
 
 namespace PlannerCLI{
+    /**
+        \brief Handles day information.
+    */
     class Day
     {
         public:
@@ -39,17 +42,23 @@ namespace PlannerCLI{
                 m_nDayOfTheWeek = dayOfTheWeek;
             }
 
+            /**
+                \brief Set the day of the week.
+                \param dayOfTheWeek Set 0 for Sunday and 6 for Saturday.
+            */
             void SetDayOftheWeek(int dayOfTheWeek);
 
             /**
-                \return Returns 0 for Saturday, 6 for Friday, and -1 if not available.
+                \brief Sets the day of the week based on Zeller's Congruence Algorithm
+                from Date::CalculateDayOfTheWeek().
+                \param dayOfTheWeek Set 0 for Saturday and 6 for Friday.
             */
-            int GetDayOfTheWeekID();
+            void SetDayOfTheWeekZC(int dayOfTheWeek);
 
             /**
                 \return Returns 0 for Sunday, 6 for Saturday, and -1 if not available.
             */
-            int GetDayOfTheWeekIDNormal();
+            int GetDayOfTheWeekID();
 
             std::string GetDayOfTheWeekName();
 

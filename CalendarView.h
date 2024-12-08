@@ -22,9 +22,7 @@ namespace PlannerCLI{
 
             void Display() override;
 
-            void Display(Month*& month);
-
-            void DisplayNew(Date*& date);
+            void Display(Date& date);
 
         private:
     };

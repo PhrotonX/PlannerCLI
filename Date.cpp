@@ -6,6 +6,9 @@ namespace PlannerCLI{
         m_year = Year(year);
         m_month = Month(month);
         m_day = Day(day);
+
+        int dayOfTheWeek = CalculateDayOfTheWeek(year, month, day);
+        m_day.SetDayOfTheWeekZC(dayOfTheWeek);
     }
 
     Date::~Date()
@@ -13,11 +16,7 @@ namespace PlannerCLI{
 
     }
 
-    int Date::CalculateDayOfTheWeek(){
-        int year = GetYear().GetValue();
-        int month = GetMonth().GetValueN();
-        int day = GetDay().GetValue();
-
+    int Date::CalculateDayOfTheWeek(int year, int month, int day){
         if(month == 1){
             month = 13;
             year--;
@@ -37,7 +36,7 @@ namespace PlannerCLI{
         return h;
     }
 
-    Date* Date::GetCurrentDate(){
+    Date Date::GetCurrentDate(){
         int currentYear = 1900;
         int currentMonth;
         int currentDay;
@@ -51,7 +50,7 @@ namespace PlannerCLI{
         currentMonth = currentTime->tm_mon;
         currentDay = currentTime->tm_mday;
 
-        return new Date(currentYear, currentMonth, currentDay);
+        return Date(currentYear, currentMonth, currentDay);
     }
 
 }

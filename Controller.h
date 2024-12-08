@@ -1,5 +1,6 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
+#include <conio.h>
 
 #define KEY_UP 72
 #define KEY_DOWN 80

@@ -17,7 +17,7 @@ namespace PlannerCLI{
     }
 
     void CalendarController::HandleInput(){
-        /*bool isRunning = true;
+        bool isRunning = true;
         char choice;
         do{
             choice = getch();
@@ -27,22 +27,12 @@ namespace PlannerCLI{
             default:
                 break;
             }
-        }while(isRunning);*/
+        }while(isRunning);
     }
 
     void CalendarController::Index(){
-        Date* currentDate = Date::GetCurrentDate();
-
-        Year currentYear = currentDate->GetYear();
-        Month currentMonth = currentDate->GetMonth();
-
-        Date* firstDayOfTheMonth = new Date(currentYear.GetValue(), currentMonth.GetValueN(), 1);
-
-        int dayOfTheWeek = firstDayOfTheMonth->CalculateDayOfTheWeek();
-        firstDayOfTheMonth->GetDay().SetDayOftheWeek(dayOfTheWeek);
-
-        m_calendarView->DisplayNew(firstDayOfTheMonth);
-
+        Date date = m_calendar->OnNavigateInit();
+        m_calendarView->Display(date);
     }
 
     void CalendarController::Store(){

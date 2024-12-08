@@ -3,6 +3,9 @@
 #include "Month.h"
 
 namespace PlannerCLI{
+    /**
+        \brief Handles year information.
+    */
     class Year
     {
         public:
@@ -10,53 +13,25 @@ namespace PlannerCLI{
             Year(int year);
             virtual ~Year();
 
-            /**
-                \param position The zero-based month value. E.g. 0 for January,
-                1 for February, and so on.
-                \deprecated
-            */
-            /*Month*& GetMonth(int month){
-                return m_month[month];
-            }*/
-
             int GetValue() const{
                 return m_nYear;
             }
 
+            /**
+                \return bool Returns true if the year is a leap year.
+            */
             bool IsLeapYear() const{
                 return m_bLeapYear;
             }
 
             /**
-                \param position The zero-based month value or ID.
-                \param month The month object.
-                \deprecated
+                \brief Sets the year value and checks for leap year value.
             */
-            /*void SetMonth(int position, Month*& month){
-                m_month[position] = month;
-            }*/
-
-            void SetValue(int year){
-                m_nYear = year;
-
-                if((year % 100) == 0){
-                    if((year % 400) == 0){
-                        m_bLeapYear = true;
-                    }
-                }else{
-                    if((year % 4) == 0){
-                        m_bLeapYear = true;
-                    }
-                }
-            }
-
-
+            void SetValue(int year);
 
         private:
             int m_nYear;
             bool m_bLeapYear;
-
-            //Month* m_month[12];
     };
 
 }

@@ -25,12 +25,12 @@ namespace PlannerCLI{
                 \param year 1-based day value.
                 \return The day of the week (0 = Saturday, 6 = Friday).
             */
-            int CalculateDayOfTheWeek();
+            static int CalculateDayOfTheWeek(int year, int month, int day);
 
             /**
                 \remarks Does not include the day of the week.
             */
-            static Date* GetCurrentDate();
+            static Date GetCurrentDate();
 
             Year& GetYear(){
                 return m_year;
