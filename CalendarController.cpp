@@ -39,7 +39,8 @@ namespace PlannerCLI{
         for(int i = 0; i < monthSize; i++){
             std::cout << month->GetMonthName() << " "
                 << month->GetDay(i)->GetValue() << ", "
-                << currentYear->GetValue() << std::endl;
+                << currentYear->GetValue() << " "
+                << month->GetDay(i)->GetDayOfTheWeekName() << std::endl;
         }
 
         //@TODO: Add manual memory management.

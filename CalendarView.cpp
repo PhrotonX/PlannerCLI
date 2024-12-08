@@ -100,37 +100,52 @@ namespace PlannerCLI{
         }*/
 
 
-        int nDay = 0;
+
         int monthSize = month->GetMonthSize();
+        int dayOfTheWeek = 0;
+        int nDay = 1 - month->GetDay(0)->GetDayOfTheWeekIDNormal();
+
         do{
             std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
             std::cout << ANSI_TEXT_COLOR_BLACK;
             std::cout << "º";
 
             for(int i = 0; i < DAYS_OF_THE_WEEK; i++){
-                Day* day = month->GetDay(nDay);
-                int dayOfTheWeek = day->GetDayOfTheWeekIDNormal();
-                int dayValue = day->GetValue();
+                if((nDay >= 1) && (nDay <= monthSize)){
+                    //Day* day = month->GetDay(nDay - 1);
+                    //Replace with dayOfTheWeek++ one redundant Day array
+                    //on Month class are removed.
+                    //dayOfTheWeek = day->GetDayOfTheWeekIDNormal();
 
-                std::cout << dayValue;
+                    std::cout << nDay;
 
-                if(dayValue >= 10){
-                    for(int j = 0; j < (ITEM_WIDTH - 3); j++){
-                        std::cout << " ";
+                    if(nDay >= 10){
+                        for(int j = 0; j < (ITEM_WIDTH - 3); j++){
+                            std::cout << " ";
+                        }
+                    }else{
+                        for(int j = 0; j < (ITEM_WIDTH - 2); j++){
+                            std::cout << " ";
+                        }
                     }
+
+                    std::cout << "º";
+
+                    nDay++;
                 }else{
-                    for(int j = 0; j < (ITEM_WIDTH - 2); j++){
+                    //Print blank dates
+                    for(int j = 0; j < (ITEM_WIDTH - 1); j++){
                         std::cout << " ";
                     }
+                    std::cout << "º";
                 }
 
-                std::cout << "º";
+                dayOfTheWeek++;
 
-                nDay++;
             }
 
             std::cout << ANSI_COLOR_RESET << std::endl;
-        }while(nDay < monthSize);
+        }while((nDay < monthSize) || (dayOfTheWeek < 6));
     }
 
 }
