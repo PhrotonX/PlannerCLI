@@ -76,16 +76,17 @@ namespace PlannerCLI{
             day++;
         }*/
 
-
+        /*
         for(int i = 0; i < month->GetMonthSize(); i++){
             std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
             std::cout << ANSI_TEXT_COLOR_BLACK;
             std::cout << "º";
             for(int j = 0; j < DAYS_OF_THE_WEEK; j++){
 
+
                 //for(int k = 0; k < ITEM_HEIGHT; k++){
-                    if(j == 0/* && k == 0*/){
-                        std::cout << month->GetDay(i)->GetValue();
+                    if(j == 0/* && k == 0*///){
+                        /*std::cout << month->GetDay(i)->GetValue();
                     }else if((j % ITEM_WIDTH) == 0){
                         std::cout << "º";
                     }else if(j >= 1){
@@ -96,7 +97,40 @@ namespace PlannerCLI{
                 //}
             }
             std::cout << ANSI_COLOR_RESET << std::endl;
-        }
+        }*/
+
+
+        int nDay = 0;
+        int monthSize = month->GetMonthSize();
+        do{
+            std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
+            std::cout << ANSI_TEXT_COLOR_BLACK;
+            std::cout << "º";
+
+            for(int i = 0; i < DAYS_OF_THE_WEEK; i++){
+                Day* day = month->GetDay(nDay);
+                int dayOfTheWeek = day->GetDayOfTheWeekIDNormal();
+                int dayValue = day->GetValue();
+
+                std::cout << dayValue;
+
+                if(dayValue >= 10){
+                    for(int j = 0; j < (ITEM_WIDTH - 3); j++){
+                        std::cout << " ";
+                    }
+                }else{
+                    for(int j = 0; j < (ITEM_WIDTH - 2); j++){
+                        std::cout << " ";
+                    }
+                }
+
+                std::cout << "º";
+
+                nDay++;
+            }
+
+            std::cout << ANSI_COLOR_RESET << std::endl;
+        }while(nDay < monthSize);
     }
 
 }
