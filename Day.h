@@ -45,6 +45,11 @@ namespace PlannerCLI{
             */
             int GetDayOfTheWeekID();
 
+            /**
+                \return Returns 0 for Sunday, 6 for Saturday, and -1 if not available.
+            */
+            int GetDayOfTheWeekIDNormal();
+
             std::string GetDayOfTheWeekName();
 
         private:
