@@ -21,7 +21,7 @@ namespace PlannerCLI{
         std::cout << ANSI_TEXT_COLOR_BLACK;
 
         std::cout << "É";
-        for(int i = 0; i < (CALENDAR_WIDTH - 2); i++){
+        for(int i = 0; i < (CALENDAR_WIDTH - PADDING); i++){
             std::cout << "Í";
         }
         std::cout << "»" << ANSI_COLOR_RESET << std::endl;
@@ -31,7 +31,7 @@ namespace PlannerCLI{
         std::cout << ANSI_TEXT_COLOR_BLACK;
 
         std::string monthName = month->GetMonthName();
-        int monthNameMargin = ((CALENDAR_WIDTH - 2) - monthName.size()) - 1;
+        int monthNameMargin = ((CALENDAR_WIDTH - PADDING) - monthName.size()) - 1;
 
         std::cout << "º " << monthName;
         for(int i = 0; i < monthNameMargin; i++){
@@ -42,11 +42,18 @@ namespace PlannerCLI{
         //Display the bottom border.
         std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
         std::cout << ANSI_TEXT_COLOR_BLACK;
-        std::cout << "È";
-        for(int i = 0; i < (CALENDAR_WIDTH - 2); i++){
-            std::cout << "Í";
+        std::cout << "Ì";
+        for(int i = 1; i <= (CALENDAR_WIDTH - PADDING_RIGHT); i++){
+            int dayOfTheWeekNo = i % ITEM_WIDTH;
+            if((dayOfTheWeekNo == 0)){
+                if(i == (CALENDAR_WIDTH - PADDING_RIGHT))
+                    std::cout << "¹" << ANSI_COLOR_RESET << std::endl;
+                else
+                    std::cout << "Ë";
+            }else{
+                std::cout << "Í";
+            }
         }
-        std::cout << "¼" << ANSI_COLOR_RESET << std::endl;
 
         //Display the dates and the side border.
         std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
