@@ -39,7 +39,7 @@ namespace PlannerCLI{
         }
         std::cout << "º" << ANSI_COLOR_RESET << std::endl;
 
-        //Display the bottom border.
+        //Display the bottom border of month name.
         std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
         std::cout << ANSI_TEXT_COLOR_BLACK;
         std::cout << "Ì";
@@ -56,51 +56,6 @@ namespace PlannerCLI{
         }
 
         //Display the dates and the side border.
-        std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
-        std::cout << ANSI_TEXT_COLOR_BLACK;
-
-        //int day = 0;
-        /*for(int i = 0; i < (CALENDAR_WIDTH - 2); i++){
-            if((i % ITEM_WIDTH) == 0){
-                std::cout << "º";
-            }else{
-                if(i >= 10){
-                    std::cout << month->GetDay(day)->GetValue();
-                    for(int j = 0; j < (ITEM_WIDTH - 2); j++){
-                        std::cout << " ";
-                    }
-                }
-            }
-
-            std::cout << ANSI_COLOR_RESET << std::endl;
-            day++;
-        }*/
-
-        /*
-        for(int i = 0; i < month->GetMonthSize(); i++){
-            std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
-            std::cout << ANSI_TEXT_COLOR_BLACK;
-            std::cout << "º";
-            for(int j = 0; j < DAYS_OF_THE_WEEK; j++){
-
-
-                //for(int k = 0; k < ITEM_HEIGHT; k++){
-                    if(j == 0/* && k == 0*///){
-                        /*std::cout << month->GetDay(i)->GetValue();
-                    }else if((j % ITEM_WIDTH) == 0){
-                        std::cout << "º";
-                    }else if(j >= 1){
-                        if(((i + 1) >= 10) && (j == (ITEM_WIDTH - 1)))
-                            continue;
-                        std::cout << " ";
-                    }
-                //}
-            }
-            std::cout << ANSI_COLOR_RESET << std::endl;
-        }*/
-
-
-
         int monthSize = month->GetMonthSize();
         int dayOfTheWeek = 0;
         int nDay = 1 - month->GetDay(0)->GetDayOfTheWeekIDNormal();
@@ -146,6 +101,21 @@ namespace PlannerCLI{
 
             std::cout << ANSI_COLOR_RESET << std::endl;
         }while((nDay < monthSize) || (dayOfTheWeek < 6));
-    }
 
+        //Display the bottom border of calendar days.
+        std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
+        std::cout << ANSI_TEXT_COLOR_BLACK;
+        std::cout << "È";
+        for(int i = 1; i <= (CALENDAR_WIDTH - PADDING_RIGHT); i++){
+            int dayOfTheWeekNo = i % ITEM_WIDTH;
+            if((dayOfTheWeekNo == 0)){
+                if(i == (CALENDAR_WIDTH - PADDING_RIGHT))
+                    std::cout << "¼" << ANSI_COLOR_RESET << std::endl;
+                else
+                    std::cout << "Ê";
+            }else{
+                std::cout << "Í";
+            }
+        }
+    }
 }
