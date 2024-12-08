@@ -11,6 +11,34 @@ namespace PlannerCLI{
         //dtor
     }
 
+    Date*& Calendar::OnNavigateInit(){
+        m_date = Date::GetCurrentDate();
+
+        m_year = std::move(currentDate->GetYear());
+        m_month = std::move(currentDate->GetMonth());
+
+        Date* firstDayOfTheMonth = new Date(currentYear->GetValue(), currentMonth->GetValueN(), 1);
+        int firstDayOfTheMonth_dayOfTheWeek = firstDayOfTheMonth->CalculateDayOfTheWeek();
+
+        Month* month = new Month(currentMonth->GetValueN() - 1);
+        month->Populate(firstDayOfTheMonth_dayOfTheWeek, firstDayOfTheMonth->GetYear()->IsLeapYear());
+
+        int monthSize = month->GetMonthSize();
+        std::cout << "Month Size: " << monthSize << std::endl;
+        for(int i = 0; i < monthSize; i++){
+            std::cout << month->GetMonthName() << " "
+                << month->GetDay(i)->GetValue() << ", "
+                << currentYear->GetValue() << " "
+                << month->GetDay(i)->GetDayOfTheWeekName() << std::endl;
+        }
+
+        return m_date;
+    }
+
+    void Calendar::OnNavigateBack(){
+
+    }
+
     void Calendar::Save(){
 
     }

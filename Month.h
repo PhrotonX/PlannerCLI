@@ -40,6 +40,11 @@ namespace PlannerCLI{
             int CalculateMonthLength(const Month& month, bool leapYear = false);
 
             /**
+                \brief Deletes all day content.
+            */
+            void Clear();
+
+            /**
                 \param position The 1-index position of the day.
                 \return Day*& The reference to a pointer to Day object.
             */

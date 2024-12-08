@@ -17,13 +17,22 @@ namespace PlannerCLI{
     }
 
     void CalendarController::HandleInput(){
+        bool isRunning = true;
+        char choice;
+        do{
+            choice = getch();
 
+            switch(choice){
+            case 'A':
+
+            }
+        }while(isRunning);
     }
 
     void CalendarController::Index(){
         Date* currentDate = Date::GetCurrentDate();
 
-        int currentDate_dayOfTheWeek = currentDate->CalculateDayOfTheWeek();
+        //int currentDate_dayOfTheWeek = currentDate->CalculateDayOfTheWeek();
 
         Year* currentYear = std::move(currentDate->GetYear());
         Month* currentMonth = std::move(currentDate->GetMonth());

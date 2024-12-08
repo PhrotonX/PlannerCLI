@@ -59,5 +59,4 @@ namespace PlannerCLI{
         return new Date(currentYear, currentMonth, currentDay);
     }
 
-
 }

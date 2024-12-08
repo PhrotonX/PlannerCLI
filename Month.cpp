@@ -47,6 +47,14 @@ namespace PlannerCLI{
         }
     }
 
+    void Month::Clear(){
+        m_nMonthSize;
+
+        for(int i = 0; i < m_nMonthSize; i++){
+
+        }
+    }
+
     int Month::GetValueN() const{
         switch(m_month){
         case eMonth::January:
