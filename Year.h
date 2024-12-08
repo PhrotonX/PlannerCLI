@@ -6,6 +6,7 @@ namespace PlannerCLI{
     class Year
     {
         public:
+            Year(){}
             Year(int year);
             virtual ~Year();
 
@@ -14,9 +15,9 @@ namespace PlannerCLI{
                 1 for February, and so on.
                 \deprecated
             */
-            Month*& GetMonth(int month){
+            /*Month*& GetMonth(int month){
                 return m_month[month];
-            }
+            }*/
 
             int GetValue() const{
                 return m_nYear;
@@ -31,9 +32,9 @@ namespace PlannerCLI{
                 \param month The month object.
                 \deprecated
             */
-            void SetMonth(int position, Month*& month){
+            /*void SetMonth(int position, Month*& month){
                 m_month[position] = month;
-            }
+            }*/
 
             void SetValue(int year){
                 m_nYear = year;
@@ -55,7 +56,7 @@ namespace PlannerCLI{
             int m_nYear;
             bool m_bLeapYear;
 
-            Month* m_month[12];
+            //Month* m_month[12];
     };
 
 }

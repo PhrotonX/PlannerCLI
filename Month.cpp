@@ -12,17 +12,11 @@ namespace PlannerCLI{
 
     Month::~Month()
     {
-        for(int i = 0; i < m_nMonthSize; i++){
-            if(m_day[i] != nullptr){
-                delete m_day[i];
-                m_day[i] = nullptr;
-            }
 
-        }
     }
 
-    int Month::CalculateMonthLength(const Month& month, bool leapYear){
-        switch(month.GetValue()){
+    int Month::CalculateMonthLength(bool leapYear){
+        switch(m_nMonthSize){
         case Month::February:
             if(leapYear)
                 return 29;
@@ -47,11 +41,29 @@ namespace PlannerCLI{
         }
     }
 
-    void Month::Clear(){
-        m_nMonthSize;
-
-        for(int i = 0; i < m_nMonthSize; i++){
-
+    int Month::CalculateMonthLength(int month, bool leapYear){
+        switch(month){
+        case Month::February:
+            if(leapYear)
+                return 29;
+            else
+                return 28;
+        case Month::April:
+        case Month::June:
+        case Month::September:
+        case Month::November:
+            return 30;
+        case Month::January:
+        case Month::March:
+        case Month::May:
+        case Month::July:
+        case Month::August:
+        case Month::October:
+        case Month::December:
+            return 31;
+        default:
+            //@TODO: Error handling.
+            return 0;
         }
     }
 
@@ -117,20 +129,34 @@ namespace PlannerCLI{
         }
     }
 
-    void Month::Populate(int firstDayOfTheWeek, bool leapYear){
-        int dayOfTheWeek = firstDayOfTheWeek;
-
-        m_nMonthSize = CalculateMonthLength(*this, leapYear);
-
-        for(int i = 1; i <= m_nMonthSize; i++){
-            Day** day = (Day**)calloc(m_nMonthSize, sizeof(Day**));
-            for(int k = 0; k < m_nMonthSize; k++){
-                day[k] = new Day(k + 1, dayOfTheWeek);
-                dayOfTheWeek++;
-                if(dayOfTheWeek >= 6) dayOfTheWeek = 0;
-            }
-
-            this->SetDays(day);
+    std::string Month::GetMonthName(int month) const{
+        switch(month){
+        case 1:
+            return "January";
+        case 2:
+            return "February";
+        case 3:
+            return "March";
+        case 4:
+            return "April";
+        case 5:
+            return "May";
+        case 6:
+            return "June";
+        case 7:
+            return "July";
+        case 8:
+            return "August";
+        case 9:
+            return "September";
+        case 10:
+            return "October";
+        case 11:
+            return "November";
+        case 12:
+            return "December";
+        default:
+            break;
         }
     }
 

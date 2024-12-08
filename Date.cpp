@@ -3,25 +3,20 @@
 namespace PlannerCLI{
     Date::Date(int year, int month, int day)
     {
-        m_year = new Year(year);
-        m_month = new Month(month);
-        m_day = new Day(day);
+        m_year = Year(year);
+        m_month = Month(month);
+        m_day = Day(day);
     }
 
     Date::~Date()
     {
-        if(m_year != nullptr) delete m_year;
-        if(m_month != nullptr) delete m_month;
-        if(m_year != nullptr) delete m_day;
-        m_year = nullptr;
-        m_month = nullptr;
-        m_day = nullptr;
+
     }
 
     int Date::CalculateDayOfTheWeek(){
-        int year = GetYear()->GetValue();
-        int month = GetMonth()->GetValueN();
-        int day = GetDay()->GetValue();
+        int year = GetYear().GetValue();
+        int month = GetMonth().GetValueN();
+        int day = GetDay().GetValue();
 
         if(month == 1){
             month = 13;

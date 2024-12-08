@@ -32,22 +32,22 @@ namespace PlannerCLI{
             */
             static Date* GetCurrentDate();
 
-            Year*& GetYear(){
+            Year& GetYear(){
                 return m_year;
             }
 
-            Month*& GetMonth(){
+            Month& GetMonth(){
                 return m_month;
             }
 
-            Day*& GetDay(){
+            Day& GetDay(){
                 return m_day;
             }
 
         private:
-            Year* m_year = nullptr;
-            Month* m_month = nullptr;
-            Day* m_day = nullptr;
+            Year m_year;
+            Month m_month;
+            Day m_day;
     };
 
 }

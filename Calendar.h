@@ -17,9 +17,9 @@ namespace PlannerCLI{
             Calendar();
             virtual ~Calendar();
 
-            Date* OnNavigateInit();
-            Date* OnNavigateNext();
-            Date* OnNavigateBack();
+            Date*& OnNavigateInit();
+            Date*& OnNavigateNext();
+            Date*& OnNavigatePrev();
 
             void Save() override;
 
@@ -33,7 +33,7 @@ namespace PlannerCLI{
             //Handle 69 years. From 1970-2038.
             //Year* m_year[36];
             //Handle 137 years. From 1970-2106.
-            Year** m_year;
+            //Year** m_year;
 
             Date* m_date;
             int m_year;

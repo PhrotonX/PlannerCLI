@@ -16,6 +16,7 @@ namespace PlannerCLI{
                 Saturday
             };
 
+            Day(){}
             Day(int day);
             Day(int day, DaysOfTheWeek dayOfTheWeek);
             Day(int day, int weekday);
