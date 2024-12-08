@@ -16,6 +16,10 @@ namespace PlannerCLI{
 
     }
 
+    void CalendarController::HandleInput(){
+
+    }
+
     void CalendarController::Index(){
         Date* currentDate = Date::GetCurrentDate();
 
@@ -35,7 +39,8 @@ namespace PlannerCLI{
         for(int i = 0; i < monthSize; i++){
             std::cout << month->GetMonthName() << " "
                 << month->GetDay(i)->GetValue() << ", "
-                << currentYear->GetValue() << std::endl;
+                << currentYear->GetValue() << " "
+                << month->GetDay(i)->GetDayOfTheWeekName() << std::endl;
         }
 
         //@TODO: Add manual memory management.
@@ -44,8 +49,10 @@ namespace PlannerCLI{
         //currentDate = nullptr;
         //firstDayOfTheMonth = nullptr;
 
-        m_calendarView->Display();
+        m_calendarView->Display(month);
 
+        //@TODO: Delete the month object after using. But the Month and other
+        //classes shall support the rule of five.
     }
 
     void CalendarController::Store(){

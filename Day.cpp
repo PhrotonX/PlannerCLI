@@ -42,6 +42,29 @@ namespace PlannerCLI{
         case DaysOfTheWeek::Saturday:
             return 0;
         default:
+            return -1;
+            break;
+        }
+    }
+
+    int Day::GetDayOfTheWeekIDNormal(){
+        switch(m_nDayOfTheWeek){
+        case DaysOfTheWeek::Sunday:
+            return 0;
+        case DaysOfTheWeek::Monday:
+            return 1;
+        case DaysOfTheWeek::Tuesday:
+            return 2;
+        case DaysOfTheWeek::Wednesday:
+            return 3;
+        case DaysOfTheWeek::Thursday:
+            return 4;
+        case DaysOfTheWeek::Friday:
+            return 5;
+        case DaysOfTheWeek::Saturday:
+            return 6;
+        default:
+            return -1;
             break;
         }
     }
