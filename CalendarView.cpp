@@ -15,7 +15,8 @@ namespace PlannerCLI{
 
     }
 
-    void CalendarView::Display(Month*& month){
+    void CalendarView::Display(Date& date){
+
         //Display the top border.
         std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
         std::cout << ANSI_TEXT_COLOR_BLACK;
@@ -30,7 +31,7 @@ namespace PlannerCLI{
         std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
         std::cout << ANSI_TEXT_COLOR_BLACK;
 
-        std::string monthName = month->GetMonthName();
+        std::string monthName = date.GetMonth().GetMonthName();
         int monthNameMargin = ((CALENDAR_WIDTH - PADDING) - monthName.size()) - 1;
 
         std::cout << "º " << monthName;
@@ -56,9 +57,10 @@ namespace PlannerCLI{
         }
 
         //Display the dates and the side border.
-        int monthSize = month->GetMonthSize();
+
+        int monthSize = date.GetMonth().CalculateMonthLength(date.GetYear().IsLeapYear());
         int dayOfTheWeek = 0;
-        int nDay = 1 - month->GetDay(0)->GetDayOfTheWeekIDNormal();
+        int nDay = 1 - date.GetDay().GetDayOfTheWeekID();
 
         do{
             std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
@@ -68,7 +70,7 @@ namespace PlannerCLI{
             for(int i = 0; i < DAYS_OF_THE_WEEK; i++){
                 if((nDay >= 1) && (nDay <= monthSize)){
                     //Day* day = month->GetDay(nDay - 1);
-                    //Replace with dayOfTheWeek++ one redundant Day array
+                    //Replace with dayOfTheWeek++ once redundant Day array
                     //on Month class are removed.
                     //dayOfTheWeek = day->GetDayOfTheWeekIDNormal();
 

@@ -1,7 +1,10 @@
 #ifndef CALENDARVIEW_H
 #define CALENDARVIEW_H
+#include "Year.h"
 #include "Month.h"
 #include "View.h"
+#include "Day.h"
+#include "Date.h"
 
 namespace PlannerCLI{
     class CalendarView : View
@@ -19,7 +22,7 @@ namespace PlannerCLI{
 
             void Display() override;
 
-            void Display(Month*& month);
+            void Display(Date& date);
 
         private:
     };
