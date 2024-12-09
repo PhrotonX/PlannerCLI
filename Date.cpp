@@ -7,8 +7,7 @@ namespace PlannerCLI{
         m_month = Month(month);
         m_day = Day(day);
 
-        int dayOfTheWeek = CalculateDayOfTheWeek(year, month, day);
-        m_day.SetDayOfTheWeekZC(dayOfTheWeek);
+        m_day.SetDayOfTheWeekZC(CalculateDayOfTheWeek(year, month, day));
     }
 
     Date::~Date()
@@ -30,7 +29,7 @@ namespace PlannerCLI{
         int m = month;
         int j = year / 100; //zero-based year of the century.
         int k = year % 100; //year of the century
-        int h = (q + 13 * ((m + 1) / 5) + k + (k / 4) + (j / 4) + 5 * j);
+        int h = q + 13 * (m + 1) / 5 + k + k / 4 + j / 4 + 5 * j;
         h = h % 7;
 
         return h;
