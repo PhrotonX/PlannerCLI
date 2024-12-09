@@ -16,6 +16,7 @@ namespace PlannerCLI{
     }
 
     void CalendarView::Display(Date& date){
+        CLEAR_SCREEN;
 
         //Display the top border.
         std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
@@ -31,7 +32,7 @@ namespace PlannerCLI{
         std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
         std::cout << ANSI_TEXT_COLOR_BLACK;
 
-        std::string monthName = date.GetMonth().GetMonthName();
+        std::string monthName = date.GetMonth().GetMonthName() + " " + std::to_string(date.GetYear().GetValue());
         int monthNameMargin = ((CALENDAR_WIDTH - PADDING) - monthName.size()) - 1;
 
         std::cout << "º " << monthName;
@@ -59,8 +60,8 @@ namespace PlannerCLI{
         //Display the dates and the side border.
 
         int monthSize = date.GetMonth().CalculateMonthLength(date.GetYear().IsLeapYear());
-        int dayOfTheWeek = 0;
-        int nDay = 1 - date.GetDay().GetDayOfTheWeekID();
+        int dayOfTheWeek = date.GetDay().GetDayOfTheWeekID();
+        int nDay = 1 - dayOfTheWeek;
 
         do{
             std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
@@ -88,7 +89,6 @@ namespace PlannerCLI{
 
                     std::cout << "º";
 
-                    nDay++;
                 }else{
                     //Print blank dates
                     for(int j = 0; j < (ITEM_WIDTH - 1); j++){
@@ -97,12 +97,13 @@ namespace PlannerCLI{
                     std::cout << "º";
                 }
 
+                nDay++;
                 dayOfTheWeek++;
 
             }
 
             std::cout << ANSI_COLOR_RESET << std::endl;
-        }while((nDay < monthSize) || (dayOfTheWeek < 6));
+        }while((nDay <= monthSize));
 
         //Display the bottom border of calendar days.
         std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;

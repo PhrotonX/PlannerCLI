@@ -49,6 +49,8 @@ namespace PlannerCLI{
     void CalendarController::Index(){
         Date date = m_calendar->OnNavigateInit();
         m_calendarView->Display(date);
+
+        
     }
 
     void CalendarController::Store(){
