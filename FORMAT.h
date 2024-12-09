@@ -39,9 +39,9 @@
 #define ANSI_BACKGROUND_BRIGHT_COLOR_WHITE		"\x1b[107m"
 #define ANSI_BACKGROUND_BRIGHT_COLOR_DEFAULT	"\x1b[109m"
 
-#ifdef __WIN32
+#ifdef _WIN32
     #define CLEAR_SCREEN system("cls");
-#elif __UNIX
+#else
     #define CLEAR_SCREEN system("clear");
 #endif // __WIN32
 

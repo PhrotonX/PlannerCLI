@@ -1,5 +1,11 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
+#include <conio.h>
+
+#define KEY_UP 72
+#define KEY_DOWN 80
+#define KEY_LEFT 75
+#define KEY_RIGHT 77
 
 namespace PlannerCLI{
     /**

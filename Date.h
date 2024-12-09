@@ -10,6 +10,7 @@ namespace PlannerCLI{
     class Date
     {
         public:
+            Date() {}
             /**
                 \param year 1-based value of year.
                 \param year 1-based value of month.
@@ -25,29 +26,29 @@ namespace PlannerCLI{
                 \param year 1-based day value.
                 \return The day of the week (0 = Saturday, 6 = Friday).
             */
-            int CalculateDayOfTheWeek();
+            static int CalculateDayOfTheWeek(int year, int month, int day);
 
             /**
                 \remarks Does not include the day of the week.
             */
-            static Date* GetCurrentDate();
+            static Date GetCurrentDate();
 
-            Year*& GetYear(){
+            Year& GetYear(){
                 return m_year;
             }
 
-            Month*& GetMonth(){
+            Month& GetMonth(){
                 return m_month;
             }
 
-            Day*& GetDay(){
+            Day& GetDay(){
                 return m_day;
             }
 
         private:
-            Year* m_year = nullptr;
-            Month* m_month = nullptr;
-            Day* m_day = nullptr;
+            Year m_year;
+            Month m_month;
+            Day m_day;
     };
 
 }

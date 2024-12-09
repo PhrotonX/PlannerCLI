@@ -17,21 +17,19 @@ namespace PlannerCLI{
             Calendar();
             virtual ~Calendar();
 
-
+            /**
+                \return Date*& The date object which consists of current date
+                information.
+            */
+            Date OnNavigateInit();
+            Date OnNavigateNext();
+            Date OnNavigatePrev();
 
             void Save() override;
 
-            /**
-                \details Fill up data.
-                \deprecated
-            */
-            void Seed();
-
         private:
-            //Handle 69 years. From 1970-2038.
-            //Year* m_year[36];
-            //Handle 137 years. From 1970-2106.
-            Year** m_year;
+            int m_nNavigatedYear;
+            int m_nNavigatedMonth;
     };
 }
 

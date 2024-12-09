@@ -3,26 +3,20 @@
 namespace PlannerCLI{
     Date::Date(int year, int month, int day)
     {
-        m_year = new Year(year);
-        m_month = new Month(month);
-        m_day = new Day(day);
+        m_year = Year(year);
+        m_month = Month(month);
+        m_day = Day(day);
+
+        int dayOfTheWeek = CalculateDayOfTheWeek(year, month, day);
+        m_day.SetDayOfTheWeekZC(dayOfTheWeek);
     }
 
     Date::~Date()
     {
-        if(m_year != nullptr) delete m_year;
-        if(m_month != nullptr) delete m_month;
-        if(m_year != nullptr) delete m_day;
-        m_year = nullptr;
-        m_month = nullptr;
-        m_day = nullptr;
+
     }
 
-    int Date::CalculateDayOfTheWeek(){
-        int year = GetYear()->GetValue();
-        int month = GetMonth()->GetValueN();
-        int day = GetDay()->GetValue();
-
+    int Date::CalculateDayOfTheWeek(int year, int month, int day){
         if(month == 1){
             month = 13;
             year--;
@@ -42,22 +36,22 @@ namespace PlannerCLI{
         return h;
     }
 
-    Date* Date::GetCurrentDate(){
+    Date Date::GetCurrentDate(){
         int currentYear = 1900;
-        int currentMonth;
-        int currentDay;
+        int currentMonth = 1;
+        int currentDay = 1;
         time_t unixCurrentTime;
 
         //Get current time
         time(&unixCurrentTime);
 
-        tm* currentTime = localtime(&unixCurrentTime);
-        currentYear += currentTime->tm_year;
-        currentMonth = currentTime->tm_mon;
-        currentDay = currentTime->tm_mday;
+        struct tm currentTime;
+        localtime_s(&currentTime, &unixCurrentTime);
+        currentYear += currentTime.tm_year;
+        currentMonth += currentTime.tm_mon;
+        currentDay = currentTime.tm_mday;
 
-        return new Date(currentYear, currentMonth, currentDay);
+        return Date(currentYear, currentMonth, currentDay);
     }
-
 
 }

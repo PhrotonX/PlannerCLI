@@ -17,42 +17,38 @@ namespace PlannerCLI{
     }
 
     void CalendarController::HandleInput(){
+        bool isRunning = true;
+        char choice;
+        do{
+            choice = _getch();
 
+            Date date;
+
+            switch(choice){
+            case 'A':
+            case 'a':
+                date = m_calendar->OnNavigatePrev();
+                break;
+            case 'D':
+            case 'd':
+                date = m_calendar->OnNavigateNext();
+                break;
+            case 'Q':
+            case 'q':
+                isRunning = false;
+                break;
+            default:
+                break;
+            }
+
+            m_calendarView->Display(date);
+
+        }while(isRunning);
     }
 
     void CalendarController::Index(){
-        Date* currentDate = Date::GetCurrentDate();
-
-        int currentDate_dayOfTheWeek = currentDate->CalculateDayOfTheWeek();
-
-        Year* currentYear = std::move(currentDate->GetYear());
-        Month* currentMonth = std::move(currentDate->GetMonth());
-
-        Date* firstDayOfTheMonth = new Date(currentYear->GetValue(), currentMonth->GetValueN(), 1);
-        int firstDayOfTheMonth_dayOfTheWeek = firstDayOfTheMonth->CalculateDayOfTheWeek();
-
-        Month* month = new Month(currentMonth->GetValueN() - 1);
-        month->Populate(firstDayOfTheMonth_dayOfTheWeek, firstDayOfTheMonth->GetYear()->IsLeapYear());
-
-        int monthSize = month->GetMonthSize();
-        std::cout << "Month Size: " << monthSize << std::endl;
-        for(int i = 0; i < monthSize; i++){
-            std::cout << month->GetMonthName() << " "
-                << month->GetDay(i)->GetValue() << ", "
-                << currentYear->GetValue() << " "
-                << month->GetDay(i)->GetDayOfTheWeekName() << std::endl;
-        }
-
-        //@TODO: Add manual memory management.
-        //delete currentDate;
-        //delete firstDayOfTheMonth;
-        //currentDate = nullptr;
-        //firstDayOfTheMonth = nullptr;
-
-        m_calendarView->Display(month);
-
-        //@TODO: Delete the month object after using. But the Month and other
-        //classes shall support the rule of five.
+        Date date = m_calendar->OnNavigateInit();
+        m_calendarView->Display(date);
     }
 
     void CalendarController::Store(){

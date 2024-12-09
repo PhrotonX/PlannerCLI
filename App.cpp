@@ -39,6 +39,7 @@ namespace PlannerCLI{
             switch(choice){
             case APP_SHOW_CALENDAR:
                 m_calendarController->Index();
+                m_calendarController->HandleInput();
                 break;
             case APP_EXIT:
                 //@TODO: Add exit message here.
