@@ -22,11 +22,27 @@ namespace PlannerCLI{
         do{
             choice = _getch();
 
+            Date date;
+
             switch(choice){
             case 'A':
+            case 'a':
+                date = m_calendar->OnNavigatePrev();
+                break;
+            case 'D':
+            case 'd':
+                date = m_calendar->OnNavigateNext();
+                break;
+            case 'Q':
+            case 'q':
+                isRunning = false;
+                break;
             default:
                 break;
             }
+
+            m_calendarView->Display(date);
+
         }while(isRunning);
     }
 

@@ -22,16 +22,14 @@ namespace PlannerCLI{
                 information.
             */
             Date OnNavigateInit();
-            Date*& OnNavigateNext();
-            Date*& OnNavigatePrev();
+            Date OnNavigateNext();
+            Date OnNavigatePrev();
 
             void Save() override;
 
         private:
-            Date* m_navigatedDate;
-
-            //int m_year;
-            //int m_month;
+            int m_nNavigatedYear;
+            int m_nNavigatedMonth;
     };
 }
 

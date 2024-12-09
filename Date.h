@@ -10,6 +10,7 @@ namespace PlannerCLI{
     class Date
     {
         public:
+            Date() {}
             /**
                 \param year 1-based value of year.
                 \param year 1-based value of month.
