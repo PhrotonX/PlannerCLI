@@ -1,4 +1,5 @@
 #include "Month.h"
+#include <iostream>
 
 namespace PlannerCLI{
     Month::Month(eMonth month)
@@ -16,7 +17,7 @@ namespace PlannerCLI{
     }
 
     int Month::CalculateMonthLength(bool leapYear){
-        return CalculateMonthLength(m_nMonthSize, leapYear);
+        return CalculateMonthLength(GetValue(), leapYear);
     }
 
     int Month::CalculateMonthLength(int month, bool leapYear){
@@ -142,28 +143,40 @@ namespace PlannerCLI{
         switch(month){
         case 1:
             m_month = January;
+            break;
         case 2:
             m_month = February;
+            break;
         case 3:
             m_month = March;
+            break;
         case 4:
             m_month = April;
+            break;
         case 5:
             m_month = May;
+            break;
         case 6:
             m_month = June;
+            break;
         case 7:
             m_month = July;
+            break;
         case 8:
             m_month = August;
+            break;
         case 9:
             m_month = September;
+            break;
         case 10:
             m_month = October;
+            break;
         case 11:
             m_month = November;
+            break;
         case 12:
             m_month = December;
+            break;
         default:
             break;
         }
