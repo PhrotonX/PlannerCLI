@@ -38,17 +38,18 @@ namespace PlannerCLI{
 
     Date Date::GetCurrentDate(){
         int currentYear = 1900;
-        int currentMonth;
-        int currentDay;
+        int currentMonth = 1;
+        int currentDay = 1;
         time_t unixCurrentTime;
 
         //Get current time
         time(&unixCurrentTime);
 
-        tm* currentTime = localtime(&unixCurrentTime);
-        currentYear += currentTime->tm_year;
-        currentMonth = currentTime->tm_mon;
-        currentDay = currentTime->tm_mday;
+        struct tm currentTime;
+        localtime_s(&currentTime, &unixCurrentTime);
+        currentYear += currentTime.tm_year;
+        currentMonth += currentTime.tm_mon;
+        currentDay = currentTime.tm_mday;
 
         return Date(currentYear, currentMonth, currentDay);
     }
