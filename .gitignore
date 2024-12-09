@@ -40,3 +40,8 @@
 internal_version.txt
 PlannerCLI_build_log.html
 gitlog
+/.vs
+/PlannerCLI.sln
+/PlannerCLI.vcxproj
+/PlannerCLI.vcxproj.user
+/PlannerCLI.vcxproj.filters
