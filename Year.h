@@ -24,6 +24,8 @@ namespace PlannerCLI{
                 return m_bLeapYear;
             }
 
+            static bool IsLeapYear(int year);
+
             /**
                 \brief Sets the year value and checks for leap year value.
             */

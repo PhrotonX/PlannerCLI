@@ -16,15 +16,21 @@ namespace PlannerCLI{
     void Year::SetValue(int year){
         m_nYear = year;
 
+        m_bLeapYear = IsLeapYear(year);
+    }
+
+    bool Year::IsLeapYear(int year) {
         if((year % 100) == 0){
             if((year % 400) == 0){
-                m_bLeapYear = true;
+                return true;
             }
         }else{
             if((year % 4) == 0){
-                m_bLeapYear = true;
+                return true;
             }
         }
+
+        return false;
     }
 }
 
