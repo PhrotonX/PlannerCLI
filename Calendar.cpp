@@ -30,11 +30,15 @@ namespace PlannerCLI{
     }
 
     Date*& Calendar::OnNavigateNext(){
-
+        //Unimplemented
+        Date* date = nullptr;
+        return date;
     }
 
     Date*& Calendar::OnNavigatePrev(){
-
+        //Unimplemented
+        Date* date = nullptr;
+        return date;
     }
 
     void Calendar::Save(){

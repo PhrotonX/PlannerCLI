@@ -40,15 +40,16 @@ namespace PlannerCLI{
         int currentYear = 1900;
         int currentMonth;
         int currentDay;
-        time_t unixCurrentTime;
+        __time64_t unixCurrentTime;
 
         //Get current time
-        time(&unixCurrentTime);
+        _time64(&unixCurrentTime);
 
-        tm* currentTime = localtime(&unixCurrentTime);
-        currentYear += currentTime->tm_year;
-        currentMonth = currentTime->tm_mon;
-        currentDay = currentTime->tm_mday;
+        tm currentTime;
+        _localtime64_s(&currentTime, &unixCurrentTime);
+        currentYear += currentTime.tm_year;
+        currentMonth = currentTime.tm_mon;
+        currentDay = currentTime.tm_mday;
 
         return Date(currentYear, currentMonth, currentDay);
     }

@@ -20,7 +20,7 @@ namespace PlannerCLI{
         bool isRunning = true;
         char choice;
         do{
-            choice = getch();
+            choice = _getch();
 
             switch(choice){
             case 'A':
