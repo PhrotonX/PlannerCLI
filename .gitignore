@@ -45,3 +45,5 @@ gitlog
 /PlannerCLI.vcxproj
 /PlannerCLI.vcxproj.user
 /PlannerCLI.vcxproj.filters
+/PlannerCLI/x64/Debug
+/x64/Debug
