@@ -9,7 +9,7 @@ namespace PlannerCLI{
 
     CalendarController::~CalendarController()
     {
-
+        
     }
 
     void CalendarController::Create(){
@@ -27,16 +27,18 @@ namespace PlannerCLI{
             switch(choice){
             case 'A':
             case 'a':
-                date = m_calendar->OnNavigatePrev();
+                date = m_calendar->OnNavigatePrevMonth();
                 break;
             case 'D':
             case 'd':
-                date = m_calendar->OnNavigateNext();
+                date = m_calendar->OnNavigateNextMonth();
                 break;
             case 'Q':
             case 'q':
                 isRunning = false;
                 break;
+            case KEY_LEFT:
+                
             default:
                 break;
             }

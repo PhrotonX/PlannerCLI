@@ -18,6 +18,7 @@ namespace PlannerCLI{
         //Obtain the date values.
         m_nNavigatedYear = currentDate.GetYear().GetValue();
         m_nNavigatedMonth = currentDate.GetMonth().GetValueN();
+        m_nNavigatedDay = currentDate.GetDay().GetValue();
 
         //Get the first day of the month.
         Date firstDayOfTheMonth = Date(m_nNavigatedYear, m_nNavigatedMonth, 1);
@@ -25,8 +26,9 @@ namespace PlannerCLI{
         return firstDayOfTheMonth;
     }
 
-    Date Calendar::OnNavigateNext(){
+    Date Calendar::OnNavigateNextMonth(){
         m_nNavigatedMonth++;
+        m_nNavigatedDay = 1;
         if (m_nNavigatedMonth > 12) {
             m_nNavigatedMonth = 1;
             m_nNavigatedYear++;
@@ -35,8 +37,9 @@ namespace PlannerCLI{
         return Date(m_nNavigatedYear, m_nNavigatedMonth, 1);
     }
 
-    Date Calendar::OnNavigatePrev(){
+    Date Calendar::OnNavigatePrevMonth(){
         m_nNavigatedMonth--;
+        m_nNavigatedDay = Month::CalculateMonthLength(m_nNavigatedMonth, Year::IsLeapYear(m_nNavigatedYear));
         if (m_nNavigatedMonth < 1) {
             m_nNavigatedMonth = 12;
             m_nNavigatedYear--;
