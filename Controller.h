@@ -30,7 +30,7 @@ namespace PlannerCLI{
             */
             virtual void HandleInput() = 0;
 
-            virtual void Create() = 0;
+            //virtual void Create() = 0;
 
             /**
                 \brief Handle the homescreen which consists of options.
@@ -41,9 +41,9 @@ namespace PlannerCLI{
                 \brief Store general information from the View into the Model.
 
             */
-            virtual void Store() = 0;
-            virtual void Update() = 0;
-            virtual void Delete() = 0;
+            //virtual void Store() = 0;
+            //virtual void Update() = 0;
+            //virtual void Delete() = 0;
     };
 }
 
