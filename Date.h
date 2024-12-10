@@ -43,7 +43,9 @@ namespace PlannerCLI{
 
             Day& GetDay(){
                 return m_day;
-            }
+            
+
+            void SetDate(int year, int month, int day);
 
         private:
             Year m_year;

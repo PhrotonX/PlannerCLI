@@ -17,11 +17,11 @@ namespace PlannerCLI{
     }
 
     int Month::CalculateMonthLength(bool leapYear){
-        return CalculateMonthLength(GetValue(), leapYear);
+        return CalculateMonthLength(GetValueN(), leapYear);
     }
 
     int Month::CalculateMonthLength(int month, bool leapYear){
-        switch(month){
+        switch(month - 1){
         case Month::February:
             if(leapYear)
                 return 29;

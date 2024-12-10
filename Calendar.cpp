@@ -3,12 +3,17 @@
 namespace PlannerCLI{
     Calendar::Calendar()
     {
-        //ctor
+        //Set the default date into the day when this program has been first created.
+        m_navigatedDate.SetDate(2024, 12, 4);
     }
 
     Calendar::~Calendar()
     {
         //dtor
+    }
+
+    void Calendar::Debug() {
+        std::cout << m_nNavigatedYear << " " << m_nNavigatedMonth << " " << m_nNavigatedDay << std::endl;
     }
 
     void Calendar::OnNavigateDayUp() {
@@ -19,6 +24,8 @@ namespace PlannerCLI{
             OnNavigatePrevMonth();
             m_nNavigatedDay -= distance;
         }
+
+        m_navigatedDate.GetDay().SetValue(m_nNavigatedDay);
     }
 
     void Calendar::OnNavigateDayLeft() {
@@ -27,28 +34,35 @@ namespace PlannerCLI{
         if (m_nNavigatedDay < 1) {
             OnNavigatePrevMonth();
         }
+
+        m_navigatedDate.GetDay().SetValue(m_nNavigatedDay);
     }
 
     void Calendar::OnNavigateDayRight() {
+        int formerMonthLength = Month::CalculateMonthLength(m_nNavigatedMonth, Year::IsLeapYear(m_nNavigatedYear));
         m_nNavigatedDay++;
 
-        if (m_nNavigatedDay > Month::CalculateMonthLength(m_nNavigatedMonth, Year::IsLeapYear(m_nNavigatedYear))) {
+        if (m_nNavigatedDay > formerMonthLength) {
             OnNavigateNextMonth();
         }
+
+        m_navigatedDate.GetDay().SetValue(m_nNavigatedDay);
     }
 
     void Calendar::OnNavigateDayDown() {
+        int formerMonthLength = Month::CalculateMonthLength(m_nNavigatedMonth, Year::IsLeapYear(m_nNavigatedYear));
         m_nNavigatedDay += 7;
 
-        int monthSize = Month::CalculateMonthLength(m_nNavigatedMonth, Year::IsLeapYear(m_nNavigatedYear));
-        if (m_nNavigatedDay > monthSize) {
-            int distance = m_nNavigatedDay - monthSize;
+        if (m_nNavigatedDay > formerMonthLength) {
+            int distance = m_nNavigatedDay - formerMonthLength;
             OnNavigateNextMonth();
             m_nNavigatedDay += distance;
         }
+
+        m_navigatedDate.GetDay().SetValue(m_nNavigatedDay);
     }
 
-    Date Calendar::OnNavigateInit(){
+    void Calendar::OnNavigateInit(){
         //Get current date.
         Date currentDate = Date::GetCurrentDate();
 
@@ -56,14 +70,11 @@ namespace PlannerCLI{
         m_nNavigatedYear = currentDate.GetYear().GetValue();
         m_nNavigatedMonth = currentDate.GetMonth().GetValueN();
         m_nNavigatedDay = currentDate.GetDay().GetValue();
-
-        //Get the first day of the month.
-        Date firstDayOfTheMonth = Date(m_nNavigatedYear, m_nNavigatedMonth, 1);
-
-        return firstDayOfTheMonth;
+        
+        m_navigatedDate = Date(m_nNavigatedYear, m_nNavigatedMonth, m_nNavigatedDay);
     }
 
-    Date Calendar::OnNavigateNextMonth(){
+    void Calendar::OnNavigateNextMonth(){
         m_nNavigatedMonth++;
         m_nNavigatedDay = 1;
         if (m_nNavigatedMonth > 12) {
@@ -71,18 +82,20 @@ namespace PlannerCLI{
             m_nNavigatedYear++;
         }
 
-        return Date(m_nNavigatedYear, m_nNavigatedMonth, 1);
+        m_navigatedDate.SetDate(m_nNavigatedYear, m_nNavigatedMonth, m_nNavigatedDay);
     }
 
-    Date Calendar::OnNavigatePrevMonth(){
+    void Calendar::OnNavigatePrevMonth(){
         m_nNavigatedMonth--;
+
+        //Set day to the new month length.
         m_nNavigatedDay = Month::CalculateMonthLength(m_nNavigatedMonth, Year::IsLeapYear(m_nNavigatedYear));
         if (m_nNavigatedMonth < 1) {
             m_nNavigatedMonth = 12;
             m_nNavigatedYear--;
         }
 
-        return Date(m_nNavigatedYear, m_nNavigatedMonth, m_nNavigatedDay);
+        m_navigatedDate.SetDate(m_nNavigatedYear, m_nNavigatedMonth, m_nNavigatedDay);
     }
 
     void Calendar::Save(){

@@ -3,11 +3,7 @@
 namespace PlannerCLI{
     Date::Date(int year, int month, int day)
     {
-        m_year = Year(year);
-        m_month = Month(month);
-        m_day = Day(day);
-
-        m_day.SetDayOfTheWeekZC(CalculateDayOfTheWeek(year, month, day));
+        SetDate(year, month, day);
     }
 
     Date::~Date()
@@ -51,6 +47,14 @@ namespace PlannerCLI{
         currentDay = currentTime.tm_mday;
 
         return Date(currentYear, currentMonth, currentDay);
+    }
+
+    void Date::SetDate(int year, int month, int day) {
+        m_year = Year(year);
+        m_month = Month(month);
+        m_day = Day(day);
+
+        m_day.SetDayOfTheWeekZC(CalculateDayOfTheWeek(year, month, day));
     }
 
 }
