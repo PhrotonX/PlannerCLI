@@ -24,7 +24,11 @@ namespace PlannerCLI{
 
             void Display(Date& date);
 
+            void SetNavigatedDay(int* navigatedDay) {
+                m_pnNavigatedDay = navigatedDay;
+            }
         private:
+            int* m_pnNavigatedDay;
     };
 
 }

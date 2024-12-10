@@ -5,6 +5,8 @@ namespace PlannerCLI{
     {
         m_calendarView = new CalendarView();
         m_calendar = new Calendar();
+
+        m_calendarView->SetNavigatedDay(m_calendar->GetNavigatedDay());
     }
 
     CalendarController::~CalendarController()
@@ -37,9 +39,23 @@ namespace PlannerCLI{
             case 'q':
                 isRunning = false;
                 break;
-            case KEY_LEFT:
-                
             default:
+                switch (_getch()) {
+                case KEY_UP:
+                    m_calendar->OnNavigateDayUp();
+                    break;
+                case KEY_LEFT:
+                    m_calendar->OnNavigateDayLeft();
+                    break;
+                case KEY_RIGHT:
+                    m_calendar->OnNavigateDayRight();
+                    break;
+                case KEY_DOWN:
+                    m_calendar->OnNavigateDayDown();
+                    break;
+                default:
+                    break;
+                }
                 break;
             }
 

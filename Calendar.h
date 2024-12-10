@@ -17,6 +17,11 @@ namespace PlannerCLI{
             Calendar();
             virtual ~Calendar();
 
+            void OnNavigateDayUp();
+            void OnNavigateDayLeft();
+            void OnNavigateDayRight();
+            void OnNavigateDayDown();
+
             /**
                 \return Date*& The date object which consists of current date
                 information.
@@ -25,16 +30,20 @@ namespace PlannerCLI{
             Date OnNavigateNextMonth();
             Date OnNavigatePrevMonth();
 
-            int GetNavigatedDay() const {
-                return m_nNavigatedDay;
+            int* GetNavigatedDay() {
+                return &m_nNavigatedDay;
             }
+
+
 
             void Save() override;
 
         private:
+            //Date m_navigatedDate;
+
             int m_nNavigatedYear = 0;
             int m_nNavigatedMonth = 0;
-            int m_nNavigatedDay = 0;
+            int m_nNavigatedDay = 1;
     };
 }
 

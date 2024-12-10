@@ -11,6 +11,43 @@ namespace PlannerCLI{
         //dtor
     }
 
+    void Calendar::OnNavigateDayUp() {
+        m_nNavigatedDay -= 7;
+
+        if (m_nNavigatedDay < 1) {
+            int distance = m_nNavigatedDay;
+            OnNavigatePrevMonth();
+            m_nNavigatedDay -= distance;
+        }
+    }
+
+    void Calendar::OnNavigateDayLeft() {
+        m_nNavigatedDay--;
+
+        if (m_nNavigatedDay < 1) {
+            OnNavigatePrevMonth();
+        }
+    }
+
+    void Calendar::OnNavigateDayRight() {
+        m_nNavigatedDay++;
+
+        if (m_nNavigatedDay > Month::CalculateMonthLength(m_nNavigatedMonth, Year::IsLeapYear(m_nNavigatedYear))) {
+            OnNavigateNextMonth();
+        }
+    }
+
+    void Calendar::OnNavigateDayDown() {
+        m_nNavigatedDay += 7;
+
+        int monthSize = Month::CalculateMonthLength(m_nNavigatedMonth, Year::IsLeapYear(m_nNavigatedYear));
+        if (m_nNavigatedDay > monthSize) {
+            int distance = m_nNavigatedDay - monthSize;
+            OnNavigateNextMonth();
+            m_nNavigatedDay += distance;
+        }
+    }
+
     Date Calendar::OnNavigateInit(){
         //Get current date.
         Date currentDate = Date::GetCurrentDate();
@@ -45,7 +82,7 @@ namespace PlannerCLI{
             m_nNavigatedYear--;
         }
 
-        return Date(m_nNavigatedYear, m_nNavigatedMonth, 1);
+        return Date(m_nNavigatedYear, m_nNavigatedMonth, m_nNavigatedDay);
     }
 
     void Calendar::Save(){

@@ -75,6 +75,12 @@ namespace PlannerCLI{
                     //on Month class are removed.
                     //dayOfTheWeek = day->GetDayOfTheWeekIDNormal();
 
+                    //Hightlight text if the day is selected.
+                    if (nDay == *m_pnNavigatedDay) {
+                        std::cout << ANSI_BACKGROUND_COLOR_BLUE;
+                        std::cout << ANSI_TEXT_COLOR_BRIGHT_WHITE;
+                    }
+
                     std::cout << nDay;
 
                     if(nDay >= 10){
@@ -85,6 +91,12 @@ namespace PlannerCLI{
                         for(int j = 0; j < (ITEM_WIDTH - 2); j++){
                             std::cout << " ";
                         }
+                    }
+
+                    //Unhiglight text if the next day is not selected.
+                    if (nDay == *m_pnNavigatedDay) {
+                        std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
+                        std::cout << ANSI_TEXT_COLOR_BLACK;
                     }
 
                     std::cout << "º";

@@ -2,6 +2,8 @@
 #define CONTROLLER_H
 #include <conio.h>
 
+#define KEY_SCAN_CODE 0
+#define KEY_SCAN_CODE_2 224
 #define KEY_UP 72
 #define KEY_DOWN 80
 #define KEY_LEFT 75
