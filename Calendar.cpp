@@ -25,7 +25,7 @@ namespace PlannerCLI{
             m_nNavigatedDay -= distance;
         }
 
-        m_navigatedDate.GetDay().SetValue(m_nNavigatedDay);
+        m_navigatedDate.SetDay(m_nNavigatedDay);
     }
 
     void Calendar::OnNavigateDayLeft() {
@@ -35,7 +35,7 @@ namespace PlannerCLI{
             OnNavigatePrevMonth();
         }
 
-        m_navigatedDate.GetDay().SetValue(m_nNavigatedDay);
+        m_navigatedDate.SetDay(m_nNavigatedDay);
     }
 
     void Calendar::OnNavigateDayRight() {
@@ -46,7 +46,7 @@ namespace PlannerCLI{
             OnNavigateNextMonth();
         }
 
-        m_navigatedDate.GetDay().SetValue(m_nNavigatedDay);
+        m_navigatedDate.SetDay(m_nNavigatedDay);
     }
 
     void Calendar::OnNavigateDayDown() {
@@ -59,7 +59,7 @@ namespace PlannerCLI{
             m_nNavigatedDay += distance;
         }
 
-        m_navigatedDate.GetDay().SetValue(m_nNavigatedDay);
+        m_navigatedDate.SetDay(m_nNavigatedDay);
     }
 
     void Calendar::OnNavigateInit(){

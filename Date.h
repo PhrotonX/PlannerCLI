@@ -21,15 +21,6 @@ namespace PlannerCLI{
             virtual ~Date();
 
             /**
-                \details Calculates the day of the week through Zeller's Congruence.
-                \param year 1-based year value.
-                \param year 1-based month value.
-                \param year 1-based day value.
-                \return The day of the week (0 = Saturday, 6 = Friday).
-            */
-            static int CalculateDayOfTheWeek(int year, int month, int day);
-
-            /**
                 \remarks Does not include the day of the week.
             */
             static Date GetCurrentDate();
@@ -56,40 +47,13 @@ namespace PlannerCLI{
             */
             void SetDay(int day) {
                 m_day.SetValue(day);
-                SetDayOfTheWeekZC(CalculateDayOfTheWeek(m_year.GetValue(), m_month.GetValueN(), m_day.GetValue()));
+                m_day.GetDayOfTheWeek().SetValueZC(DayOfTheWeek::CalculateDayOfTheWeek(m_year.GetValue(), m_month.GetValueN(), m_day.GetValue()));
             }
-
-            void SetDayOfTheWeek(DayOfTheWeek::DayOfTheWeek dayOfTheWeek) {
-                m_nDayOfTheWeek = dayOfTheWeek;
-                
-            }
-
-            /**
-                \brief Set the day of the week.
-                \param dayOfTheWeek Set 0 for Sunday and 6 for Saturday.
-            */
-            void SetDayOfTheWeek(int dayOfTheWeek);
-
-            /**
-                \brief Sets the day of the week based on Zeller's Congruence Algorithm
-                from Date::CalculateDayOfTheWeek().
-                \param dayOfTheWeek Set 0 for Saturday and 6 for Friday.
-            */
-            void SetDayOfTheWeekZC(int dayOfTheWeek);
-
-            /**
-                \return Returns 0 for Sunday, 6 for Saturday, and -1 if not available.
-            */
-            int GetDayOfTheWeekID();
-
-            std::string GetDayOfTheWeekName();
 
         private:
             Year m_year;
             Month m_month;
             Day m_day;
-
-            DayOfTheWeek::DayOfTheWeek m_nDayOfTheWeek;
     };
 
 }

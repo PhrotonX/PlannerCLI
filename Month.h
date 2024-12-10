@@ -1,6 +1,7 @@
 #ifndef MONTH_H
 #define MONTH_H
 #include <string>
+#include "DayOfTheWeek.h"
 
 namespace PlannerCLI{
     /**
@@ -58,6 +59,10 @@ namespace PlannerCLI{
             */
             static int CalculateMonthLength(int month, bool leapYear = false);
 
+            DayOfTheWeek& GetFirstDayOfTheWeek() {
+                return m_firstDayOfTheWeek;
+            }
+
             int GetMonthSize() const{
                 return m_nMonthSize;
             }
@@ -90,6 +95,9 @@ namespace PlannerCLI{
             */
             static std::string GetMonthName(int month);
 
+            void SetFirstDayOfTheWeek(const DayOfTheWeek& dayOfTheWeek) {
+                m_firstDayOfTheWeek = dayOfTheWeek;
+            }
 
             void SetMonth(eMonth month){
                 m_month = month;
@@ -101,6 +109,8 @@ namespace PlannerCLI{
             eMonth m_month;
 
             int m_nMonthSize;
+
+            DayOfTheWeek m_firstDayOfTheWeek;
     };
 }
 
