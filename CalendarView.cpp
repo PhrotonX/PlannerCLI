@@ -60,8 +60,10 @@ namespace PlannerCLI{
         //Display the dates and the side border.
 
         int monthSize = m_pnDate->GetMonth().CalculateMonthLength(m_pnDate->GetYear().IsLeapYear());
-        int dayOfTheWeek = m_pnDate->GetDayOfTheWeekID();
-        int nDay = 1 - dayOfTheWeek;
+        int dayOfTheWeek = m_pnDate->GetDay().GetDayOfTheWeek().GetValueN();
+        //Decrease day value by the numeric value of the first day of the month's day of the week
+        //to show blank dates before day 1 of the calendar.
+        int nDay = 1 - m_pnDate->GetMonth().GetFirstDayOfTheWeek().GetValueN();
 
         do{
             std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;

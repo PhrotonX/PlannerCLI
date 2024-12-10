@@ -1,6 +1,7 @@
 #ifndef DAY_H
 #define DAY_H
 #include <string>
+#include "DayOfTheWeek.h"
 
 namespace PlannerCLI{
     /**
@@ -15,8 +16,16 @@ namespace PlannerCLI{
             Day(int day);
             virtual ~Day();
 
-            int GetValue(){
+            DayOfTheWeek& GetDayOfTheWeek() {
+                return m_dayOfTheWeek;
+            }
+
+            int GetValue() const{
                 return m_nDay;
+            }
+
+            void SetDayOfTheWeek(const DayOfTheWeek& dayOfTheWeek) {
+                m_dayOfTheWeek = dayOfTheWeek;
             }
 
             /**
@@ -31,6 +40,7 @@ namespace PlannerCLI{
         private:
             int m_nDay;
             
+            DayOfTheWeek m_dayOfTheWeek;
     };
 }
 
