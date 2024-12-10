@@ -3,6 +3,7 @@
 #include "Year.h"
 #include "Month.h"
 #include "Day.h"
+#include "DayOfTheWeek.h"
 #include <iostream>
 #include <ctime>
 
@@ -10,16 +11,6 @@ namespace PlannerCLI{
     class Date
     {
         public:
-            enum DaysOfTheWeek {
-                Sunday,
-                Monday,
-                Tuesday,
-                Wednesday,
-                Thursday,
-                Friday,
-                Saturday
-            };
-
             Date() {}
             /**
                 \param year 1-based value of year.
@@ -57,15 +48,27 @@ namespace PlannerCLI{
 
             void SetDate(int year, int month, int day);
 
-            void SetDayOftheWeek(DaysOfTheWeek dayOfTheWeek) {
+            /**
+                \details Sets the day value and automatically sets the day of the week since
+                GetDay().SetValue() does not.
+
+                \param day The 1-based day value.
+            */
+            void SetDay(int day) {
+                m_day.SetValue(day);
+                SetDayOfTheWeekZC(CalculateDayOfTheWeek(m_year.GetValue(), m_month.GetValueN(), m_day.GetValue()));
+            }
+
+            void SetDayOfTheWeek(DayOfTheWeek::DayOfTheWeek dayOfTheWeek) {
                 m_nDayOfTheWeek = dayOfTheWeek;
+                
             }
 
             /**
                 \brief Set the day of the week.
                 \param dayOfTheWeek Set 0 for Sunday and 6 for Saturday.
             */
-            void SetDayOftheWeek(int dayOfTheWeek);
+            void SetDayOfTheWeek(int dayOfTheWeek);
 
             /**
                 \brief Sets the day of the week based on Zeller's Congruence Algorithm
@@ -86,7 +89,7 @@ namespace PlannerCLI{
             Month m_month;
             Day m_day;
 
-            DaysOfTheWeek m_nDayOfTheWeek;
+            DayOfTheWeek::DayOfTheWeek m_nDayOfTheWeek;
     };
 
 }

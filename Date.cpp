@@ -59,19 +59,19 @@ namespace PlannerCLI{
 
     int Date::GetDayOfTheWeekID() {
         switch (m_nDayOfTheWeek) {
-        case DaysOfTheWeek::Sunday:
+        case DayOfTheWeek::Sunday:
             return 0;
-        case DaysOfTheWeek::Monday:
+        case DayOfTheWeek::Monday:
             return 1;
-        case DaysOfTheWeek::Tuesday:
+        case DayOfTheWeek::Tuesday:
             return 2;
-        case DaysOfTheWeek::Wednesday:
+        case DayOfTheWeek::Wednesday:
             return 3;
-        case DaysOfTheWeek::Thursday:
+        case DayOfTheWeek::Thursday:
             return 4;
-        case DaysOfTheWeek::Friday:
+        case DayOfTheWeek::Friday:
             return 5;
-        case DaysOfTheWeek::Saturday:
+        case DayOfTheWeek::Saturday:
             return 6;
         default:
             return -1;
@@ -81,47 +81,47 @@ namespace PlannerCLI{
 
     std::string Date::GetDayOfTheWeekName() {
         switch (m_nDayOfTheWeek) {
-        case DaysOfTheWeek::Sunday:
+        case DayOfTheWeek::Sunday:
             return "Sunday";
-        case DaysOfTheWeek::Monday:
+        case DayOfTheWeek::Monday:
             return "Monday";
-        case DaysOfTheWeek::Tuesday:
+        case DayOfTheWeek::Tuesday:
             return "Tuesday";
-        case DaysOfTheWeek::Wednesday:
+        case DayOfTheWeek::Wednesday:
             return "Wednesday";
-        case DaysOfTheWeek::Thursday:
+        case DayOfTheWeek::Thursday:
             return "Thursday";
-        case DaysOfTheWeek::Friday:
+        case DayOfTheWeek::Friday:
             return "Friday";
-        case DaysOfTheWeek::Saturday:
+        case DayOfTheWeek::Saturday:
             return "Saturday";
         default:
             break;
         }
     }
 
-    void Date::SetDayOftheWeek(int dayOfTheWeek) {
+    void Date::SetDayOfTheWeek(int dayOfTheWeek) {
         switch (dayOfTheWeek) {
         case 0:
-            m_nDayOfTheWeek = Sunday;
+            m_nDayOfTheWeek = DayOfTheWeek::Sunday;
             break;
         case 1:
-            m_nDayOfTheWeek = Monday;
+            m_nDayOfTheWeek = DayOfTheWeek::Monday;
             break;
         case 2:
-            m_nDayOfTheWeek = Tuesday;
+            m_nDayOfTheWeek = DayOfTheWeek::Tuesday;
             break;
         case 3:
-            m_nDayOfTheWeek = Wednesday;
+            m_nDayOfTheWeek = DayOfTheWeek::Wednesday;
             break;
         case 4:
-            m_nDayOfTheWeek = Thursday;
+            m_nDayOfTheWeek = DayOfTheWeek::Thursday;
             break;
         case 5:
-            m_nDayOfTheWeek = Friday;
+            m_nDayOfTheWeek = DayOfTheWeek::Friday;
             break;
         case 6:
-            m_nDayOfTheWeek = Saturday;
+            m_nDayOfTheWeek = DayOfTheWeek::Saturday;
             break;
         default:
             break;
@@ -131,25 +131,25 @@ namespace PlannerCLI{
     void Date::SetDayOfTheWeekZC(int dayOfTheWeek) {
         switch (dayOfTheWeek) {
         case 1:
-            m_nDayOfTheWeek = Sunday;
+            m_nDayOfTheWeek = DayOfTheWeek::Sunday;
             break;
         case 2:
-            m_nDayOfTheWeek = Monday;
+            m_nDayOfTheWeek = DayOfTheWeek::Monday;
             break;
         case 3:
-            m_nDayOfTheWeek = Tuesday;
+            m_nDayOfTheWeek = DayOfTheWeek::Tuesday;
             break;
         case 4:
-            m_nDayOfTheWeek = Wednesday;
+            m_nDayOfTheWeek = DayOfTheWeek::Wednesday;
             break;
         case 5:
-            m_nDayOfTheWeek = Thursday;
+            m_nDayOfTheWeek = DayOfTheWeek::Thursday;
             break;
         case 6:
-            m_nDayOfTheWeek = Friday;
+            m_nDayOfTheWeek = DayOfTheWeek::Friday;
             break;
         case 0:
-            m_nDayOfTheWeek = Saturday;
+            m_nDayOfTheWeek = DayOfTheWeek::Saturday;
             break;
         default:
             break;
