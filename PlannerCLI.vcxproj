@@ -137,9 +137,15 @@
     <ClInclude Include="Date.h" />
     <ClInclude Include="Day.h" />
     <ClInclude Include="DayOfTheWeek.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="EventController.h" />
+    <ClInclude Include="EventManager.h" />
+    <ClInclude Include="EventView.h" />
     <ClInclude Include="FORMAT.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Month.h" />
+    <ClInclude Include="NoteList.h" />
+    <ClInclude Include="Time.h" />
     <ClInclude Include="View.h" />
     <ClInclude Include="Year.h" />
   </ItemGroup>
@@ -152,9 +158,15 @@
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Day.cpp" />
     <ClCompile Include="DayOfTheWeek.cpp" />
+    <ClCompile Include="Event.cpp" />
+    <ClCompile Include="EventController.cpp" />
+    <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="EventView.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Month.cpp" />
+    <ClCompile Include="NoteList.cpp" />
+    <ClCompile Include="Time.cpp" />
     <ClCompile Include="View.cpp" />
     <ClCompile Include="Year.cpp" />
   </ItemGroup>
