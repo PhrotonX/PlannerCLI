@@ -22,7 +22,7 @@ namespace PlannerCLI{
         if (m_nNavigatedDay < 1) {
             int distance = m_nNavigatedDay;
             OnNavigatePrevMonth();
-            m_nNavigatedDay -= distance;
+            m_nNavigatedDay += distance;
         }
 
         m_navigatedDate.SetDay(m_nNavigatedDay);
@@ -56,7 +56,7 @@ namespace PlannerCLI{
         if (m_nNavigatedDay > formerMonthLength) {
             int distance = m_nNavigatedDay - formerMonthLength;
             OnNavigateNextMonth();
-            m_nNavigatedDay += distance;
+            m_nNavigatedDay = distance;
         }
 
         m_navigatedDate.SetDay(m_nNavigatedDay);
