@@ -17,14 +17,16 @@ namespace PlannerCLI{
             inline static const int PADDING_RIGHT = 1;
             inline static const int PADDING = 2;
 
-            CalendarView();
+            CalendarView(Date* navigatedDate);
             ~CalendarView() override;
 
             void Display() override;
 
-            void Display(Date& date);
-
+            void SetNavigatedDate(Date* navigatedDate) {
+                m_pnDate= navigatedDate;
+            }
         private:
+            Date* m_pnDate;
     };
 
 }

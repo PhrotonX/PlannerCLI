@@ -41,9 +41,5 @@ internal_version.txt
 PlannerCLI_build_log.html
 gitlog
 /.vs
-/PlannerCLI.sln
-/PlannerCLI.vcxproj
-/PlannerCLI.vcxproj.user
-/PlannerCLI.vcxproj.filters
 /PlannerCLI/x64/Debug
 /x64/Debug

@@ -3,6 +3,7 @@
 #include "Year.h"
 #include "Month.h"
 #include "Day.h"
+#include "DayOfTheWeek.h"
 #include <iostream>
 #include <ctime>
 
@@ -20,15 +21,6 @@ namespace PlannerCLI{
             virtual ~Date();
 
             /**
-                \details Calculates the day of the week through Zeller's Congruence.
-                \param year 1-based year value.
-                \param year 1-based month value.
-                \param year 1-based day value.
-                \return The day of the week (0 = Saturday, 6 = Friday).
-            */
-            static int CalculateDayOfTheWeek(int year, int month, int day);
-
-            /**
                 \remarks Does not include the day of the week.
             */
             static Date GetCurrentDate();
@@ -41,8 +33,21 @@ namespace PlannerCLI{
                 return m_month;
             }
 
-            Day& GetDay(){
+            Day& GetDay() {
                 return m_day;
+            }
+
+            void SetDate(int year, int month, int day);
+
+            /**
+                \details Sets the day value and automatically sets the day of the week since
+                GetDay().SetValue() does not.
+
+                \param day The 1-based day value.
+            */
+            void SetDay(int day) {
+                m_day.SetValue(day);
+                m_day.GetDayOfTheWeek().SetValueZC(DayOfTheWeek::CalculateDayOfTheWeek(m_year.GetValue(), m_month.GetValueN(), m_day.GetValue()));
             }
 
         private:

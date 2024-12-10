@@ -1,21 +1,21 @@
 #include "CalendarView.h"
 
 namespace PlannerCLI{
-    CalendarView::CalendarView()
+    CalendarView::CalendarView(Date* navigatedDate)
     {
         //ctor
+        SetNavigatedDate(navigatedDate);
     }
 
     CalendarView::~CalendarView()
     {
         //dtor
+        //@NOTE: m_pnDate cannot be deleted because this class is not the owner of that object.
+        //Instead, set it to null to avoid dangling pointer.
+        m_pnDate = nullptr;
     }
 
     void CalendarView::Display(){
-
-    }
-
-    void CalendarView::Display(Date& date){
         CLEAR_SCREEN;
 
         //Display the top border.
@@ -32,7 +32,7 @@ namespace PlannerCLI{
         std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
         std::cout << ANSI_TEXT_COLOR_BLACK;
 
-        std::string monthName = date.GetMonth().GetMonthName() + " " + std::to_string(date.GetYear().GetValue());
+        std::string monthName = m_pnDate->GetMonth().GetMonthName() + " " + std::to_string(m_pnDate->GetYear().GetValue());
         int monthNameMargin = ((CALENDAR_WIDTH - PADDING) - monthName.size()) - 1;
 
         std::cout << "º " << monthName;
@@ -59,9 +59,11 @@ namespace PlannerCLI{
 
         //Display the dates and the side border.
 
-        int monthSize = date.GetMonth().CalculateMonthLength(date.GetYear().IsLeapYear());
-        int dayOfTheWeek = date.GetDay().GetDayOfTheWeekID();
-        int nDay = 1 - dayOfTheWeek;
+        int monthSize = m_pnDate->GetMonth().CalculateMonthLength(m_pnDate->GetYear().IsLeapYear());
+        int dayOfTheWeek = m_pnDate->GetDay().GetDayOfTheWeek().GetValueN();
+        //Decrease day value by the numeric value of the first day of the month's day of the week
+        //to show blank dates before day 1 of the calendar.
+        int nDay = 1 - m_pnDate->GetMonth().GetFirstDayOfTheWeek().GetValueN();
 
         do{
             std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
@@ -75,6 +77,12 @@ namespace PlannerCLI{
                     //on Month class are removed.
                     //dayOfTheWeek = day->GetDayOfTheWeekIDNormal();
 
+                    //Hightlight text if the day is selected.
+                    if (nDay == m_pnDate->GetDay().GetValue()) {
+                        std::cout << ANSI_BACKGROUND_COLOR_BLUE;
+                        std::cout << ANSI_TEXT_COLOR_BRIGHT_WHITE;
+                    }
+
                     std::cout << nDay;
 
                     if(nDay >= 10){
@@ -85,6 +93,12 @@ namespace PlannerCLI{
                         for(int j = 0; j < (ITEM_WIDTH - 2); j++){
                             std::cout << " ";
                         }
+                    }
+
+                    //Unhiglight text if the next day is not selected.
+                    if (nDay == m_pnDate->GetDay().GetValue()) {
+                        std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
+                        std::cout << ANSI_TEXT_COLOR_BLACK;
                     }
 
                     std::cout << "º";

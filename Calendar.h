@@ -17,19 +17,33 @@ namespace PlannerCLI{
             Calendar();
             virtual ~Calendar();
 
+            void Debug();
+
+            void OnNavigateDayUp();
+            void OnNavigateDayLeft();
+            void OnNavigateDayRight();
+            void OnNavigateDayDown();
+
             /**
                 \return Date*& The date object which consists of current date
                 information.
             */
-            Date OnNavigateInit();
-            Date OnNavigateNext();
-            Date OnNavigatePrev();
+            void OnNavigateInit();
+            void OnNavigateNextMonth();
+            void OnNavigatePrevMonth();
+
+            Date* GetNavigatedDate() {
+                return &m_navigatedDate;
+            }
 
             void Save() override;
 
         private:
+            Date m_navigatedDate;
+
             int m_nNavigatedYear;
             int m_nNavigatedMonth;
+            int m_nNavigatedDay;
     };
 }
 
