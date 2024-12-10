@@ -60,7 +60,7 @@ namespace PlannerCLI{
         //Display the dates and the side border.
 
         int monthSize = m_pnDate->GetMonth().CalculateMonthLength(m_pnDate->GetYear().IsLeapYear());
-        int dayOfTheWeek = m_pnDate->GetDay().GetDayOfTheWeekID();
+        int dayOfTheWeek = m_pnDate->GetDayOfTheWeekID();
         int nDay = 1 - dayOfTheWeek;
 
         do{

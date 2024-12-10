@@ -10,6 +10,16 @@ namespace PlannerCLI{
     class Date
     {
         public:
+            enum DaysOfTheWeek {
+                Sunday,
+                Monday,
+                Tuesday,
+                Wednesday,
+                Thursday,
+                Friday,
+                Saturday
+            };
+
             Date() {}
             /**
                 \param year 1-based value of year.
@@ -41,16 +51,42 @@ namespace PlannerCLI{
                 return m_month;
             }
 
-            Day& GetDay(){
+            Day& GetDay() {
                 return m_day;
-            
+            }
 
             void SetDate(int year, int month, int day);
+
+            void SetDayOftheWeek(DaysOfTheWeek dayOfTheWeek) {
+                m_nDayOfTheWeek = dayOfTheWeek;
+            }
+
+            /**
+                \brief Set the day of the week.
+                \param dayOfTheWeek Set 0 for Sunday and 6 for Saturday.
+            */
+            void SetDayOftheWeek(int dayOfTheWeek);
+
+            /**
+                \brief Sets the day of the week based on Zeller's Congruence Algorithm
+                from Date::CalculateDayOfTheWeek().
+                \param dayOfTheWeek Set 0 for Saturday and 6 for Friday.
+            */
+            void SetDayOfTheWeekZC(int dayOfTheWeek);
+
+            /**
+                \return Returns 0 for Sunday, 6 for Saturday, and -1 if not available.
+            */
+            int GetDayOfTheWeekID();
+
+            std::string GetDayOfTheWeekName();
 
         private:
             Year m_year;
             Month m_month;
             Day m_day;
+
+            DaysOfTheWeek m_nDayOfTheWeek;
     };
 
 }
