@@ -17,6 +17,9 @@ namespace PlannerCLI{
 
 
         protected:
+            inline static const int APP_WIDTH = 50;
+            inline static const int PADDING_RIGHT = 1;
+            inline static const int PADDING = 2;
 
         private:
     };
