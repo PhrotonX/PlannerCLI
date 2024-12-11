@@ -8,7 +8,9 @@ namespace PlannerCLI {
 	class Event
 	{
 	public:
-		Event(){}
+		inline static long EVENT_COUNT = 0;
+
+		Event();
 		virtual ~Event(){}
 		//Reserved for To-Do list.
 		/*
@@ -21,6 +23,10 @@ namespace PlannerCLI {
 
 		std::string GetColor() const {
 			return m_strColor;
+		}
+
+		long GetID() const {
+			return m_nId;
 		}
 
 		std::string GetTitle() const {
@@ -54,6 +60,7 @@ namespace PlannerCLI {
 
 		
 	private:
+		long m_nId;
 		std::string m_strTitle;
 		std::string m_strDescription;
 		std::string m_strLocation;
@@ -61,8 +68,8 @@ namespace PlannerCLI {
 		Time m_timeBegin;
 		Time m_timeEnd;
 
-		std::string m_strNotes[3];
-		int m_nNoteCount = 0;
+		//std::string m_strNotes[3];
+		//long m_nNoteCount = 0;
 	};
 }
 
