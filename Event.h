@@ -67,6 +67,14 @@ namespace PlannerCLI {
 			m_strLocation = value;
 		}
 
+		void SetStartTime(const Time& value) {
+			m_timeBegin = value;
+		}
+
+		void SetEndTime(const Time& value) {
+			m_timeEnd = value;
+		}
+
 		
 	private:
 		long m_nId;
