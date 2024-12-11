@@ -21,17 +21,8 @@ namespace PlannerCLI{
         DrawTopBorder();
 
         //Display the month title and the side border.
-        std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
-        std::cout << ANSI_TEXT_COLOR_BLACK;
-
         std::string monthName = m_pnDate->GetMonth().GetMonthName() + " " + std::to_string(m_pnDate->GetYear().GetValue());
-        int monthNameMargin = ((CALENDAR_WIDTH - PADDING) - monthName.size()) - 1;
-
-        std::cout << "º " << monthName;
-        for(int i = 0; i < monthNameMargin; i++){
-            std::cout << " ";
-        }
-        std::cout << "º" << ANSI_COLOR_RESET << std::endl;
+        DrawHeading(monthName);
 
         //Display the bottom border of month name.
         std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;

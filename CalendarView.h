@@ -18,7 +18,7 @@ namespace PlannerCLI{
             CalendarView(Date* navigatedDate);
             ~CalendarView() override;
 
-            void Display() override;
+            void Display();
 
             void SetNavigatedDate(Date* navigatedDate) {
                 m_pnDate= navigatedDate;

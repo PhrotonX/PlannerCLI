@@ -13,14 +13,17 @@ namespace PlannerCLI{
             View();
             virtual ~View();
 
-            virtual void Display() = 0;
+            void Display() {}
 
         protected:
             inline static const int APP_WIDTH = 50;
             inline static const int PADDING_RIGHT = 1;
             inline static const int PADDING = 2;
-
+                
+            void DrawDoubleLine();
+            void DrawBottomBorder();
             void DrawTopBorder();
+            void DrawHeading(const std::string& heading);
 
         private:
     };
