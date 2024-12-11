@@ -34,16 +34,33 @@ namespace PlannerCLI {
 			case KEY_ESC:
 				run = false;
 				break;
+			case 'E':
+			case 'e':
+				switch (navigation) {
+				case AddEventView::TITLE_FIELD:
+					event.SetTitle(addEventView.EditTitle(event.GetTitle()));
+					break;
+				case AddEventView::DESCRIPTION_FIELD:
+					event.SetDescription(addEventView.EditTitle(event.GetDescription()));
+					break;
+				case AddEventView::LOCATION_FIELD:
+					event.SetLocation(addEventView.EditTitle(event.GetLocation()));
+					break;
+				case AddEventView::START_TIME_FIELD:
+					event.SetStartTime(addEventView.EditStartTime(event.GetStartTime()));
+					break;
+				case AddEventView::END_TIME_FIELD:
+					event.SetEndTime(addEventView.EditEndTime(event.GetEndTime()));
+					break;
+				case AddEventView::CANCEL_BUTTON:
+					run = false;
+					break;
+				default:
+					break;
+				}
+				break;
 			default:
 				switch (_getch()) {
-				case 'E':
-				case 'e':
-					switch (navigation) {
-					case AddEventView::CANCEL_BUTTON:
-						run = false;
-						break;
-					}
-					break;
 				case KEY_DOWN:
 					navigation++;
 					if (navigation > AddEventView::FIELD_SIZE - 1)

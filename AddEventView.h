@@ -4,6 +4,8 @@
 #include "Event.h"
 #include "Button.h"
 #include "Date.h"
+#include "EditStringView.h"
+#include "EditTimeView.h"
 
 namespace PlannerCLI {
     class AddEventView : public View
@@ -19,9 +21,14 @@ namespace PlannerCLI {
         inline static const int CANCEL_BUTTON = 7;
         inline static const int FIELD_SIZE = 8;
 
-        void Display() override{}
-
         void Create(Event& newEvent, Date date, int* navigation);
+
+        std::string EditTitle(const std::string& title);
+        std::string EditDescription(const std::string& description);
+        std::string EditLocation(const std::string& location);
+        void EditColor();
+        Time EditStartTime(const Time& time);
+        Time EditEndTime(const Time& time);
     private:
         Button* m_button[FIELD_SIZE];
     };
