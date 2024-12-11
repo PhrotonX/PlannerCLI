@@ -15,11 +15,12 @@ namespace PlannerCLI{
 
             virtual void Display() = 0;
 
-
         protected:
             inline static const int APP_WIDTH = 50;
             inline static const int PADDING_RIGHT = 1;
             inline static const int PADDING = 2;
+
+            void DrawTopBorder();
 
         private:
     };

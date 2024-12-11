@@ -18,15 +18,7 @@ namespace PlannerCLI{
     void CalendarView::Display(){
         CLEAR_SCREEN;
 
-        //Display the top border.
-        std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
-        std::cout << ANSI_TEXT_COLOR_BLACK;
-
-        std::cout << "É";
-        for(int i = 0; i < (CALENDAR_WIDTH - PADDING); i++){
-            std::cout << "Í";
-        }
-        std::cout << "»" << ANSI_COLOR_RESET << std::endl;
+        DrawTopBorder();
 
         //Display the month title and the side border.
         std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
