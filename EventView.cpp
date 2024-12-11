@@ -1,7 +1,11 @@
 #include "EventView.h"
 
 namespace PlannerCLI {
-	void EventView::Index() {
+	void EventView::Display(const Event& event, const Date& date) {
+        CLEAR_SCREEN;
 
+        DrawTopBorder();
 	}
+
+    
 }

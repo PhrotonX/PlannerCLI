@@ -26,6 +26,7 @@ namespace PlannerCLI {
 		void Save() override {}
 
 	private:
+		//@NOTE: Very problematic!
 		std::map<std::string, List<Event>> m_event;
 	};
 
