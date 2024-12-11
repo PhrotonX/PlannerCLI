@@ -142,6 +142,7 @@
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="EventView.h" />
     <ClInclude Include="FORMAT.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Month.h" />
     <ClInclude Include="NoteList.h" />
@@ -162,6 +163,7 @@
     <ClCompile Include="EventController.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="EventView.cpp" />
+    <ClCompile Include="List.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Month.cpp" />
