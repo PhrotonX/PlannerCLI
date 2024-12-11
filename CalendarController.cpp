@@ -5,12 +5,14 @@ namespace PlannerCLI{
     {
         m_calendar = new Calendar();
         m_calendarView = new CalendarView(m_calendar->GetNavigatedDate());
+        
+        m_eventController = new EventController();
     }
 
     CalendarController::~CalendarController()
     {
         //Delete m_calendarView first since it has a pointer to an instance of m_calendar.
-        if(m_calendarView != nullptr) delete m_calendarView;
+        if (m_calendarView != nullptr) delete m_calendarView;
         if(m_calendar != nullptr) delete m_calendar;
         m_calendarView = nullptr;
         m_calendar = nullptr;
@@ -40,6 +42,10 @@ namespace PlannerCLI{
             case 'Q':
             case 'q':
                 isRunning = false;
+                break;
+            case 'E':
+            case 'e':
+                m_eventController->Create(*m_calendar->GetNavigatedDate());
                 break;
             default:
                 switch (_getch()) {

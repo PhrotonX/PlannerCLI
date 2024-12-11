@@ -4,6 +4,7 @@
 #include "CalendarView.h"
 #include "Calendar.h"
 #include "Date.h"
+#include "EventController.h"
 
 namespace PlannerCLI{
     class CalendarController : public Controller
@@ -22,6 +23,8 @@ namespace PlannerCLI{
         private:
             CalendarView* m_calendarView;
             Calendar* m_calendar;
+
+            EventController* m_eventController;
     };
 }
 
