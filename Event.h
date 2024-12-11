@@ -3,6 +3,7 @@
 #include "Model.h"
 #include <string>
 #include "Time.h"
+#include "Color.h"
 
 namespace PlannerCLI {
 	class Event
@@ -21,8 +22,8 @@ namespace PlannerCLI {
 			}
 		}*/
 
-		std::string GetColor() const {
-			return m_strColor;
+		Color GetColor() const {
+			return m_color;
 		}
 
 		long GetID() const {
@@ -31,6 +32,14 @@ namespace PlannerCLI {
 
 		std::string GetTitle() const {
 			return m_strTitle;
+		}
+
+		Time GetStartTime() const {
+			return m_timeBegin;
+		}
+
+		Time GetEndTime() const {
+			return m_timeEnd;
 		}
 
 		std::string GetDescription() const {
@@ -64,7 +73,7 @@ namespace PlannerCLI {
 		std::string m_strTitle;
 		std::string m_strDescription;
 		std::string m_strLocation;
-		std::string m_strColor;
+		Color m_color;
 		Time m_timeBegin;
 		Time m_timeEnd;
 
