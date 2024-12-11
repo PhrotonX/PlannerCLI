@@ -16,6 +16,13 @@ namespace PlannerCLI {
 		return m_event[id][position];
 	}
 
+	List<Event> EventManager::GetEventList(Date date)
+	{
+		std::string id = date.GetString();
+
+		return m_event[id];
+	}
+
 	void EventManager::RemoveEvent(size_t position, Date date)
 	{
 		std::string id = date.GetString();

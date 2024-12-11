@@ -16,6 +16,7 @@ namespace PlannerCLI {
 
 		void AddEvent(Event event, Date date);
 		Event GetEvent(Date date, size_t position);
+		List<Event> GetEventList(Date date);
 		std::map<std::string, List<Event>> GetAllEvents() {
 			return m_event;
 		}
