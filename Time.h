@@ -27,6 +27,8 @@ namespace PlannerCLI {
 			m_nMinutes = minutes;
 		}
 
+		static std::string AddLeadingZero(int value);
+
 	private:
 		int m_nHours;
 		int m_nMinutes;

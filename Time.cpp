@@ -1,22 +1,29 @@
 #include "Time.h"
 
 namespace PlannerCLI {
+	Time::Time()
+	{
+		m_nHours = 0;
+		m_nMinutes = 0;
+	}
+
 	Time::Time(const int& hours, const int& minutes) {
 		m_nHours = hours;
 		m_nMinutes = minutes;
 	}
 
 	std::string Time::GetString() const {
-		std::string timeMinutes = std::to_string(m_nMinutes);
-		std::string timeHours = std::to_string(m_nHours);
+		return AddLeadingZero(m_nHours) + ":" + AddLeadingZero(m_nMinutes);
+	}
 
-		if (m_nHours < 10) {
-			timeHours = "0" + timeHours;
-		}
-		if (m_nMinutes < 10) {
-			timeMinutes = "0" + timeMinutes;
+	std::string Time::AddLeadingZero(int value)
+	{
+		std::string strValue = std::to_string(value);
+
+		if (value < 10) {
+			strValue = "0" + value;
 		}
 
-		return timeHours + ":" + timeMinutes;
+		return strValue;
 	}
 }
