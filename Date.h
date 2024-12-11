@@ -37,21 +37,7 @@ namespace PlannerCLI{
                 return m_day;
             }
 
-            std::string GetString() const {
-                std::string space = " ";
-                std::string strYear = std::to_string(m_year.GetValue());
-                std::string strMonth = std::to_string(m_month.GetValueN());
-                std::string strDay = std::to_string(m_day.GetValue());
-
-                if (m_month.GetValueN() < 10) {
-                    strMonth = space + strMonth;
-                }
-                if (m_day.GetValue() < 10) {
-                    strDay = space + strDay;
-                }
-
-                std::string strDate = strYear + strMonth + strDay;
-            }
+            std::string GetString() const;
 
             void SetDate(int year, int month, int day);
 
