@@ -6,10 +6,8 @@ namespace PlannerCLI {
 	class Time
 	{
 	public:
-		Time(const int& hours, const int& minutes) {
-			m_nHours = hours;
-			m_nMinutes = minutes;
-		}
+		Time();
+		Time(const int& hours, const int& minutes);
 
 		int GetHours() const {
 			return m_nHours;
@@ -19,19 +17,7 @@ namespace PlannerCLI {
 			return m_nMinutes;
 		}
 
-		std::string GetString() const {
-			std::string timeMinutes = std::to_string(m_nMinutes);
-			std::string timeHours = std::to_string(m_nHours);
-
-			if (m_nHours < 10) {
-				timeHours = "0" + timeHours;
-			}
-			if (m_nMinutes < 10) {
-				timeMinutes = "0" + timeMinutes;
-			}
-
-			return timeHours + ":" + timeMinutes;
-		}
+		std::string GetString() const;
 
 		void SetHours(const int& hours) {
 			m_nHours = hours;
