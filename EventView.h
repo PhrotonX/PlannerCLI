@@ -11,8 +11,6 @@ namespace PlannerCLI {
 		EventView(){}
 		~EventView() {}
 
-		void Display() override{}
-
 		/**
 			\details Display all events from a specific date.
 		*/
