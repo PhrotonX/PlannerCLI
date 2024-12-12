@@ -5,6 +5,8 @@
 namespace PlannerCLI {
 	/**
 		\brief Dynamic Array.
+
+		\remarks This class remains incomplete and filled with bugs,
 	*/
 	template<typename T>
 	class List
