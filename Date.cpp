@@ -31,21 +31,20 @@ namespace PlannerCLI{
 
     std::string Date::GetFormattedString(bool withDayOfTheWeek) const
     {
+        std::string strDate;
         std::string space = " ";
         std::string strYear = std::to_string(m_year.GetValue());
         std::string strMonth = m_month.GetMonthName();
         std::string strDay = std::to_string(m_day.GetValue());
         std::string strDayOfTheWeek = m_day.GetDayOfTheWeek().GetName();
 
-        if (m_month.GetValueN() < 10) {
-            strMonth = space + strMonth;
+        if (withDayOfTheWeek) {
+            strDate = strDayOfTheWeek + ", " + strMonth + " " + strDay + ", " + strYear;
         }
-        if (m_day.GetValue() < 10) {
-            strDay = space + strDay;
+        else {
+            strDate = strMonth + " " + strDay + ", " + strYear;
         }
-
-        std::string strDate = strYear + strMonth + strDay;
-
+        
         return strDate;
     }
 
