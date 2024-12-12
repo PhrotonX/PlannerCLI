@@ -37,6 +37,7 @@ namespace PlannerCLI{
                 return m_day;
             }
 
+            std::string GetFormattedString(bool withDayOfTheWeek = false) const;
             std::string GetString() const;
 
             void SetDate(int year, int month, int day);
