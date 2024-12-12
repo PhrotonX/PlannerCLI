@@ -42,7 +42,7 @@ namespace PlannerCLI {
 		}
 	}
 
-	void EventManager::RemoveEvent(size_t position, Date date)
+	void EventManager::RemoveEvent(Date date, size_t position)
 	{
 		std::string id = date.GetString();
 
@@ -61,18 +61,21 @@ namespace PlannerCLI {
 
 		bool swapped = false;
 
-		for (size_t i = 0; i < m_event.size() - 1; i++) {
-			for (size_t j = i; j < m_event.size() - 1; j++){
-				Time lowerTime = m_event[id].at(j).GetStartTime();
-				Time upperTime = m_event[id].at(j + 1).GetStartTime();
-				if (lowerTime.GetHours() > upperTime.GetHours()) {
-					 std::swap(m_event[id].at(j), m_event[id].at(j + 1));
-					 swapped = true;
+		if (!m_event[id].size() <= 1) {
+			for (size_t i = 0; i < m_event.size() - 1; i++) {
+				for (size_t j = i; j < m_event.size() - 1; j++){
+					Time lowerTime = m_event[id].at(j).GetStartTime();
+					Time upperTime = m_event[id].at(j + 1).GetStartTime();
+					if (lowerTime.GetHours() > upperTime.GetHours()) {
+						 std::swap(m_event[id].at(j), m_event[id].at(j + 1));
+						 swapped = true;
+					}
 				}
-			}
 
-			if (!swapped)
-				break;
+				if (!swapped)
+					break;
+			}
 		}
+		
 	}
 }

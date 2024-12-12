@@ -25,38 +25,10 @@ namespace PlannerCLI {
 		do {
 			m_addEventView->Create(event, date, &navigation);
 
-			choice = _getch();
-			switch (choice) {
+			switch (_getch()) {
 			case KEY_ESC:
 				run = false;
-				break;
-			case 'E':
-			case 'e':
-				switch (navigation) {
-				case AddEventView::TITLE_FIELD:
-					event.SetTitle(m_addEventView->EditTitle(event.GetTitle()));
-					break;
-				case AddEventView::DESCRIPTION_FIELD:
-					event.SetDescription(m_addEventView->EditTitle(event.GetDescription()));
-					break;
-				case AddEventView::LOCATION_FIELD:
-					event.SetLocation(m_addEventView->EditTitle(event.GetLocation()));
-					break;
-				case AddEventView::START_TIME_FIELD:
-					event.SetStartTime(m_addEventView->EditStartTime(event.GetStartTime()));
-					break;
-				case AddEventView::END_TIME_FIELD:
-					event.SetEndTime(m_addEventView->EditEndTime(event.GetEndTime()));
-					break;
-				case AddEventView::SAVE_BUTTON:
-					saveFunction();
-				case AddEventView::CANCEL_BUTTON:
-					run = false;
-					break;
-				default:
-					break;
-				}
-				break;
+				break;				
 			default:
 				switch (_getch()) {
 				case KEY_DOWN:
@@ -68,6 +40,32 @@ namespace PlannerCLI {
 					navigation--;
 					if (navigation < 0)
 						navigation = 0;
+					break;
+				default:
+					switch (navigation) {
+					case AddEventView::TITLE_FIELD:
+						event.SetTitle(m_addEventView->EditTitle(event.GetTitle()));
+						break;
+					case AddEventView::DESCRIPTION_FIELD:
+						event.SetDescription(m_addEventView->EditTitle(event.GetDescription()));
+						break;
+					case AddEventView::LOCATION_FIELD:
+						event.SetLocation(m_addEventView->EditTitle(event.GetLocation()));
+						break;
+					case AddEventView::START_TIME_FIELD:
+						event.SetStartTime(m_addEventView->EditStartTime(event.GetStartTime()));
+						break;
+					case AddEventView::END_TIME_FIELD:
+						event.SetEndTime(m_addEventView->EditEndTime(event.GetEndTime()));
+						break;
+					case AddEventView::SAVE_BUTTON:
+						saveFunction();
+					case AddEventView::CANCEL_BUTTON:
+						run = false;
+						break;
+					default:
+						break;
+					}
 					break;
 				}
 				break;

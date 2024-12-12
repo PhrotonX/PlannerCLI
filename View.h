@@ -2,6 +2,7 @@
 #define VIEW_H
 #include <iostream>
 #include "FORMAT.h"
+#include "Color.h"
 
 namespace PlannerCLI{
     /**
@@ -34,9 +35,19 @@ namespace PlannerCLI{
             void DrawConnectingBorder();
             void DrawTopBorder();
             void DrawHeading(const std::string& heading);
+            void DrawSingleLine();
             void DrawText(const std::string& text);
 
+            void SetColor(const Color& color) {
+                m_color = color;
+            }
+
+            void SetColor(const std::string& background, const std::string& foreground);
+
+            void SetColorDefaults();
+
         private:
+            Color m_color;
     };
 }
 

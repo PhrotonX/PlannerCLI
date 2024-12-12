@@ -16,18 +16,21 @@ namespace PlannerCLI {
         ~EventController() override;
         // Inherited via Controller
         void HandleInput() override;
-        void Create(Date date, std::function<void()> saveFunction);
+        void Create(Date date);
         void Index();
         void Index(Date date);
         void Store();
-        void Update(const Event& event, Date date);
-        void Delete();
+        void Update(size_t position);
+        void Delete(size_t position);
 
     private:
         EventView* m_eventView;
         EventManager* m_eventManager;
 
         AddEventController* m_addEventController;
+
+        std::vector<Event> m_event;
+        Date m_date;
     };
 
     

@@ -22,7 +22,7 @@ namespace PlannerCLI {
 		std::map<std::string, std::vector<Event>>& GetAllEvents() {
 			return m_event;
 		}
-		void RemoveEvent(size_t position, Date date);
+		void RemoveEvent(Date date, size_t position);
 		void UpdateEvent(Event event, Date date, size_t position);
 
 		void Save() override {}

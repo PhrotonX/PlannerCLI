@@ -7,6 +7,15 @@ namespace PlannerCLI {
 		m_data = time;
 	}
 
+	EditTimeView::~EditTimeView()
+	{
+		for (int i = 0; i < FIELD_COUNT; i++) {
+			if (m_button[i] != nullptr) delete m_button[i];
+			m_button[i] = nullptr;
+		}
+
+	}
+
 	Time EditTimeView::Show()
 	{
 		bool running = true;
