@@ -4,8 +4,9 @@
 #include "Event.h"
 #include "EventView.h"
 #include "EventManager.h"
-#include "AddEventView.h"
+#include "AddEventController.h"
 #include "Date.h"
+#include <functional>
 
 namespace PlannerCLI {
     class EventController : public Controller
@@ -15,16 +16,18 @@ namespace PlannerCLI {
         ~EventController() override;
         // Inherited via Controller
         void HandleInput() override;
-        void Create(Date date);
-        void Index() override;
+        void Create(Date date, std::function<void()> saveFunction);
+        void Index();
         void Index(Date date);
         void Store();
-        void Update();
+        void Update(const Event& event, Date date);
         void Delete();
 
     private:
         EventView* m_eventView;
         EventManager* m_eventManager;
+
+        AddEventController* m_addEventController;
     };
 
     
