@@ -4,7 +4,7 @@
 #include "Model.h"
 #include "Event.h"
 #include "Date.h"
-#include "List.h"
+#include <vector>
 #include <map>
 
 namespace PlannerCLI {
@@ -16,8 +16,8 @@ namespace PlannerCLI {
 
 		void AddEvent(Event event, Date date);
 		Event& GetEvent(Date date, size_t position);
-		List<Event>*& GetEventList(Date date);
-		std::map<std::string, List<Event>*> GetAllEvents() {
+		std::vector<Event>& GetEventList(Date date);
+		std::map<std::string, std::vector<Event>>& GetAllEvents() {
 			return m_event;
 		}
 		void RemoveEvent(size_t position, Date date);
@@ -27,7 +27,7 @@ namespace PlannerCLI {
 
 	private:
 		//@NOTE: Very problematic!
-		std::map<std::string, List<Event>*> m_event;
+		std::map<std::string, std::vector<Event>> m_event;
 	};
 
 }
