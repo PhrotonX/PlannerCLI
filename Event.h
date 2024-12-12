@@ -4,9 +4,10 @@
 #include <string>
 #include "Time.h"
 #include "Color.h"
+#include "Nullable.h"
 
 namespace PlannerCLI {
-	class Event
+	class Event : public Nullable
 	{
 	public:
 		inline static long EVENT_COUNT = 0;
