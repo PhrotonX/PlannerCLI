@@ -21,7 +21,7 @@ namespace PlannerCLI {
 		std::string strValue = std::to_string(value);
 
 		if (value < 10) {
-			strValue = "0" + value;
+			strValue = "0" + strValue;
 		}
 
 		return strValue;

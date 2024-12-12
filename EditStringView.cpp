@@ -18,9 +18,9 @@ namespace PlannerCLI {
 		DrawDoubleLine();
 		std::cout << "New: ";
 
-		std::string newTitle;
-		std::cin >> newTitle;
+		std::string newString;
+		std::getline(std::cin, newString);
 
-		return newTitle;
+		return newString;
 	}
 }
