@@ -3,14 +3,14 @@
 namespace PlannerCLI {
 	EventController::EventController() {
 		m_eventView = new EventView();
-		//m_eventManager = new EventManager();
+		m_eventManager = new EventManager();
 	}
 
 	EventController::~EventController() {
 		if (m_eventView != nullptr) delete m_eventView;
-		//if (m_eventManager != nullptr) delete m_eventManager;
+		if (m_eventManager != nullptr) delete m_eventManager;
 		m_eventView = nullptr;
-		//m_eventManager = nullptr;
+		m_eventManager = nullptr;
 	}
 
 	void EventController::HandleInput(){
@@ -52,6 +52,8 @@ namespace PlannerCLI {
 				case AddEventView::END_TIME_FIELD:
 					event.SetEndTime(addEventView.EditEndTime(event.GetEndTime()));
 					break;
+				case AddEventView::SAVE_BUTTON:
+					m_eventManager->AddEvent(event, date);
 				case AddEventView::CANCEL_BUTTON:
 					run = false;
 					break;
@@ -75,10 +77,6 @@ namespace PlannerCLI {
 				break;
 			}
 		} while (run);
-		
-
-
-		//m_eventManager->AddEvent(event, date);
 	}
 
 	void EventController::Index()

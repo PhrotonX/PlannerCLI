@@ -1,5 +1,7 @@
 #ifndef LIST_H
 #define LIST_H
+
+#include <iostream>
 namespace PlannerCLI {
 	/**
 		\brief Dynamic Array.
@@ -22,6 +24,8 @@ namespace PlannerCLI {
 
 		T& operator[](size_t position);
 
+	protected:
+		void Allocate();
 	private:
 		T* m_data;
 
@@ -30,26 +34,43 @@ namespace PlannerCLI {
 
 	template<typename T>
 	List<T>::List() {
-		this->m_data = (T*)calloc(1, sizeof(T*));
+		
 	}
 
 	template<typename T>
 	List<T>::~List() {
-		
+		if (this->m_nSize != 0) {
+			free(m_data);
+			this->m_nSize = 0;
+		}
 	}
 
 	template<typename T>
 	void List<T>::Add(T data) {
 		this->m_nSize++;
 
-		this->Update();
+		std::cout << "Size: " << this->m_nSize << std::endl;
+		std::cout << "Size of data: " << sizeof(data) << std::endl;
+		std::cout << "Size of T: " << sizeof(T) << std::endl;
 
+		if (this->m_nSize > 1) {
+			this->Update();
+		}
+		else {
+			this->Allocate();
+		}
+		
 		m_data[m_nSize - 1] = data;
 	}
 
 	template<typename T>
+	void List<T>::Allocate() {
+		this->m_data = (T*)calloc(this->m_nSize, sizeof(T));
+	}
+
+	template<typename T>
 	void List<T>::Update() {
-		this->m_data = (T*)realloc(this->m_data, m_nSize * sizeof(T*));
+		this->m_data = (T*)realloc(this->m_data, this->m_nSize * sizeof(T));
 	}
 
 	template<typename T>
@@ -58,7 +79,9 @@ namespace PlannerCLI {
 
 		this->m_nSize--;
 
-		this->Update();
+		if (this->m_nSize > 1) {
+			this->Update();
+		}
 
 		return value;
 	}

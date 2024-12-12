@@ -24,7 +24,7 @@ namespace PlannerCLI {
 
     private:
         EventView* m_eventView;
-        //EventManager* m_eventManager;
+        EventManager* m_eventManager;
     };
 
     
