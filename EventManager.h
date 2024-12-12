@@ -4,6 +4,8 @@
 #include "Model.h"
 #include "Event.h"
 #include "Date.h"
+#include "Time.h"
+#include "NullEvent.h"
 #include <vector>
 #include <map>
 
@@ -11,7 +13,7 @@ namespace PlannerCLI {
 	class EventManager : public Model
 	{
 	public:
-		EventManager(){}
+		EventManager();
 		~EventManager() override{}
 
 		void AddEvent(Event event, Date date);
@@ -24,10 +26,14 @@ namespace PlannerCLI {
 		void UpdateEvent(Event event, Date date, size_t position);
 
 		void Save() override {}
+		void Sort(Date date);
 
 	private:
 		//@NOTE: Very problematic!
 		std::map<std::string, std::vector<Event>> m_event;
+		
+		NullEvent m_nullEvent;
+		std::vector<Event> m_nullEvents;
 	};
 
 }
