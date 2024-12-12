@@ -45,7 +45,7 @@ namespace PlannerCLI{
                 break;
             case 'E':
             case 'e':
-                m_eventController->Create(*m_calendar->GetNavigatedDate());
+                m_eventController->Index(*m_calendar->GetNavigatedDate());
                 break;
             default:
                 switch (_getch()) {

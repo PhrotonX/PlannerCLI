@@ -3,6 +3,7 @@
 #include "View.h"
 #include "Event.h"
 #include "Date.h"
+#include <vector>
 
 namespace PlannerCLI {
 	class EventView : public View
@@ -10,11 +11,11 @@ namespace PlannerCLI {
 	public:
 		EventView(){}
 		~EventView() {}
-
+		
 		/**
 			\details Display all events from a specific date.
 		*/
-		void Display(const Event& event, const Date& date);
+		void Display(const std::vector<Event>& event, Date date);
 	};
 }
 
