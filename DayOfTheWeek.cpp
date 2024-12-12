@@ -21,7 +21,7 @@ namespace PlannerCLI {
         return h;
     }
 
-    int DayOfTheWeek::GetValueN() {
+    int DayOfTheWeek::GetValueN() const {
         switch (m_dayOfTheWeek) {
         case DayOfTheWeek::Sunday:
             return 0;
@@ -43,7 +43,7 @@ namespace PlannerCLI {
         }
     }
 
-    std::string DayOfTheWeek::GetName() {
+    std::string DayOfTheWeek::GetName() const {
         switch (m_dayOfTheWeek) {
         case DayOfTheWeek::Sunday:
             return "Sunday";
