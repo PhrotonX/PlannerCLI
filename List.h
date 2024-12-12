@@ -14,6 +14,7 @@ namespace PlannerCLI {
 		virtual ~List();
 
 		void Add(T data);
+		T& At(size_t position);
 		T Remove(size_t position);
 
 		size_t GetSize() const{
@@ -40,7 +41,7 @@ namespace PlannerCLI {
 	template<typename T>
 	List<T>::~List() {
 		if (this->m_nSize != 0) {
-			free(m_data);
+			free(this->m_data);
 			this->m_nSize = 0;
 		}
 	}
@@ -53,14 +54,30 @@ namespace PlannerCLI {
 		std::cout << "Size of data: " << sizeof(data) << std::endl;
 		std::cout << "Size of T: " << sizeof(T) << std::endl;
 
+		T* temp = this->m_data;
+
 		if (this->m_nSize > 1) {
 			this->Update();
 		}
 		else {
 			this->Allocate();
 		}
-		
-		m_data[m_nSize - 1] = data;
+
+		std::cout << "Size of m_data" << sizeof(this->m_data) << std::endl;
+
+		if (!this->m_data) {
+			std::cout << "Error reallocating memory" << std::endl;
+			this->m_data = temp;
+		}
+		else {
+			this->m_data[this->m_nSize - 1] = data;
+		}
+	}
+
+	template<typename T>
+	T& List<T>::At(size_t position) {
+		T value = this->m_data[position];
+		return value;
 	}
 
 	template<typename T>
@@ -88,8 +105,7 @@ namespace PlannerCLI {
 
 	template<typename T>
 	T& List<T>::operator[](size_t position) {
-		T value = this->m_data[m_nSize - 1];
-		return value;
+		return this->At(position);
 	}
 }
 

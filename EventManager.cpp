@@ -6,17 +6,20 @@ namespace PlannerCLI {
 	{
 		std::string id = date.GetString();
 
-		m_event[id].Add(event);
+		if (m_event[id] == nullptr) {
+			m_event[id] = new List<Event>();
+		}
+		m_event[id]->Add(event);
 	}
 
-	Event EventManager::GetEvent(Date date, size_t position)
+	Event& EventManager::GetEvent(Date date, size_t position)
 	{
 		std::string id = date.GetString();
 
-		return m_event[id][position];
+		return m_event[id]->At(position);
 	}
 
-	List<Event> EventManager::GetEventList(Date date)
+	List<Event>*& EventManager::GetEventList(Date date)
 	{
 		std::string id = date.GetString();
 
@@ -27,13 +30,13 @@ namespace PlannerCLI {
 	{
 		std::string id = date.GetString();
 
-		m_event[id].Remove(position);
+		m_event[id]->Remove(position);
 	}
 
 	void EventManager::UpdateEvent(Event event, Date date, size_t position)
 	{
 		std::string id = date.GetString();
 
-		m_event[id][position] = event;
+		m_event[id]->At(position) = event;
 	}
 }
