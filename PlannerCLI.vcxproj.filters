@@ -90,6 +90,15 @@
     <ClInclude Include="EditTimeView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AddEventController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Nullable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NullEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CalendarController.cpp">
@@ -165,6 +174,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EditTimeView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AddEventController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Nullable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NullEvent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
