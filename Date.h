@@ -10,53 +10,77 @@
 namespace PlannerCLI{
     class Date
     {
-        public:
-            Date() {}
-            /**
-                \param year 1-based value of year.
-                \param year 1-based value of month.
-                \param year 1-based value of day.
-            */
-            Date(int year, int month, int day);
-            virtual ~Date();
+    public:
+        Date() {}
+        /**
+            \param year 1-based value of year.
+            \param year 1-based value of month.
+            \param year 1-based value of day.
+        */
+        Date(int year, int month, int day);
+        virtual ~Date();
 
-            /**
-                \remarks Does not include the day of the week.
-            */
-            static Date GetCurrentDate();
+        /**
+            \remarks Does not include the day of the week.
+        */
+        static Date GetCurrentDate();
 
-            Year& GetYear(){
-                return m_year;
-            }
+        Year& GetYear(){
+            return m_year;
+        }
 
-            Month& GetMonth(){
-                return m_month;
-            }
+        Month& GetMonth(){
+            return m_month;
+        }
 
-            Day& GetDay() {
-                return m_day;
-            }
+        Day& GetDay() {
+            return m_day;
+        }
 
-            std::string GetFormattedString(bool withDayOfTheWeek = false) const;
-            std::string GetString() const;
+        std::string GetFormattedString(bool withDayOfTheWeek = false);
+        std::string GetString() const;
 
-            void SetDate(int year, int month, int day);
+        void SetDate(int year, int month, int day);
 
-            /**
-                \details Sets the day value and automatically sets the day of the week since
-                GetDay().SetValue() does not.
+        /**
+            \details Sets the year value and automatically sets the day of the week since
+            GetYear().SetValue() does not.
 
-                \param day The 1-based day value.
-            */
-            void SetDay(int day) {
-                m_day.SetValue(day);
-                m_day.GetDayOfTheWeek().SetValueZC(DayOfTheWeek::CalculateDayOfTheWeek(m_year.GetValue(), m_month.GetValueN(), m_day.GetValue()));
-            }
+            \param day The 1-based day value.
+        */
+        void SetYear(int year) {
+            m_year.SetValue(year);
+            UpdateDayOfTheWeek();
+        }
 
-        private:
-            Year m_year;
-            Month m_month;
-            Day m_day;
+        /**
+            \details Sets the month value and automatically sets the day of the week since
+            GetMonth().SetMonth() does not.
+
+            \param day The 1-based day value.
+        */
+        void SetMonth(int month) {
+            m_month.SetMonth(month);
+            UpdateDayOfTheWeek();
+        }
+
+        /**
+            \details Sets the day value and automatically sets the day of the week since
+            GetDay().SetValue() does not.
+
+            \param day The 1-based day value.
+        */
+        void SetDay(int day) {
+            m_day.SetValue(day);
+            UpdateDayOfTheWeek();
+        }
+
+        void UpdateDayOfTheWeek();
+
+    private:
+        Year m_year;
+        Month m_month;
+        Day m_day;
     };
 
 }

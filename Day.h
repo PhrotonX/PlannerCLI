@@ -16,7 +16,7 @@ namespace PlannerCLI{
             Day(int day);
             virtual ~Day();
 
-            DayOfTheWeek GetDayOfTheWeek() const {
+            DayOfTheWeek& GetDayOfTheWeek() {
                 return m_dayOfTheWeek;
             }
 

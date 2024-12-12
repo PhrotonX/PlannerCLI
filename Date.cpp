@@ -29,7 +29,7 @@ namespace PlannerCLI{
         return Date(currentYear, currentMonth, currentDay);
     }
 
-    std::string Date::GetFormattedString(bool withDayOfTheWeek) const
+    std::string Date::GetFormattedString(bool withDayOfTheWeek)
     {
         std::string strDate;
         std::string space = " ";
@@ -71,9 +71,14 @@ namespace PlannerCLI{
         m_month = Month(month);
         m_day = Day(day);
 
-        m_month.GetFirstDayOfTheWeek().SetValueZC(DayOfTheWeek::CalculateDayOfTheWeek(year, month, 1));
+        UpdateDayOfTheWeek();
+    }
 
-        m_day.GetDayOfTheWeek().SetValueZC(DayOfTheWeek::CalculateDayOfTheWeek(year, month, day));
+    void Date::UpdateDayOfTheWeek()
+    {
+        m_month.GetFirstDayOfTheWeek().SetValueZC(DayOfTheWeek::CalculateDayOfTheWeek(m_year.GetValue(), m_month.GetValueN(), 1));
+
+        m_day.GetDayOfTheWeek().SetValueZC(DayOfTheWeek::CalculateDayOfTheWeek(m_year.GetValue(), m_month.GetValueN(), m_day.GetValue()));
     }
 
 }
