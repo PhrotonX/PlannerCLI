@@ -19,7 +19,7 @@ namespace PlannerCLI {
 
 		std::string query;
 		std::getline(std::cin, query);
-		std::cin.clear();
+		std::cin.ignore();
 
 		return query;
 	}

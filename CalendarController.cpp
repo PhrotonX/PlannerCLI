@@ -45,6 +45,10 @@ namespace PlannerCLI{
             case KEY_ENTER:
                 m_eventController->Index(*m_calendar->GetNavigatedDate());
                 break;
+            case 'S':
+            case 's':
+                m_eventController->Search();
+                break;
             default:
                 switch (_getch()) {
                 case KEY_UP:

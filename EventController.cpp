@@ -5,6 +5,7 @@ namespace PlannerCLI {
 		m_eventView = nullptr;
 		m_eventManager = new EventManager();
 		m_addEventController = new AddEventController();
+		m_bIsSearching = false;
 	}
 
 	EventController::~EventController() {
@@ -121,6 +122,7 @@ namespace PlannerCLI {
 	}
 
 	void EventController::Search() {
+		m_bIsSearching = true;
 
 		m_eventView = new SearchEventView();
 		SearchEventView* m_searchView = dynamic_cast<SearchEventView*>(m_eventView);
@@ -131,6 +133,8 @@ namespace PlannerCLI {
 
 		delete m_eventView;
 		m_eventView = nullptr;
+
+		m_bIsSearching = false;
 	}
 
 	void EventController::Update(size_t position)

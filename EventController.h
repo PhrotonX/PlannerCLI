@@ -29,6 +29,7 @@ namespace PlannerCLI {
         void Delete(size_t position);
 
     private:
+        bool m_bIsSearching;
         int m_nNavigation;
         int m_nEventNavigation;
 

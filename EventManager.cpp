@@ -86,7 +86,7 @@ namespace PlannerCLI {
 
 		bool swapped = false;
 
-		if (!m_event[id].size() <= 1) {
+		if (m_event[id].size() > 1) {
 			for (size_t i = 0; i < m_event.size() - 1; i++) {
 				for (size_t j = i; j < m_event.size() - 1; j++){
 					Time lowerTime = m_event[id].at(j).GetStartTime();
