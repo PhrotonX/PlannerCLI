@@ -49,8 +49,7 @@ namespace PlannerCLI {
 		std::string time;
 		if (startTime.GetHours() > previousTime.GetHours() ||
 			startTime.GetHours() == 0) {
-			time = std::to_string(startTime.GetHours()) + ":00";
-			DrawText(date.GetFormattedString() + " " + time);
+			DrawText(date.GetFormattedString() + " " + startTime.GetString() + "-" + endTime.GetString());
 		}
 	}
 
