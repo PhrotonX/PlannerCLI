@@ -16,10 +16,14 @@ namespace PlannerCLI {
         ~EventController() override;
         // Inherited via Controller
         void HandleInput() override;
+        
+        void Index(Date date);
+        void Search(Date date);
+        
+
+    protected:
         void Create(Date date);
         void Index();
-        void Index(Date date);
-        void Store();
         void Update(size_t position);
         void Delete(size_t position);
 
