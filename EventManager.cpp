@@ -10,6 +10,8 @@ namespace PlannerCLI {
 	{
 		std::string id = date.GetString();
 
+		event.SetDate(date);
+
 		//Find event by id.
 		if (m_event.count(id) == 0) {
 			m_event[id] = std::vector<Event>();
@@ -58,8 +60,6 @@ namespace PlannerCLI {
 		for (auto& mapItem : m_event) {
 			for (auto& eventItem : mapItem.second) {
 				if (eventItem.GetTitle().find(query) != std::string::npos) {
-					Date date = Date(mapItem.first);
-					eventItem.SetDate(date);
 					results.push_back(eventItem);
 				}
 			}
@@ -84,21 +84,21 @@ namespace PlannerCLI {
 	{
 		std::string id = date.GetString();
 
-		bool swapped = false;
+		//bool swapped = false;
 
 		if (m_event[id].size() > 1) {
-			for (size_t i = 0; i < m_event.size() - 1; i++) {
-				for (size_t j = i; j < m_event.size() - 1; j++){
+			for (size_t i = 0; i < m_event[id].size() - 1; i++) {
+				for (size_t j = i; j < m_event[id].size() - 1; j++){
 					Time lowerTime = m_event[id].at(j).GetStartTime();
 					Time upperTime = m_event[id].at(j + 1).GetStartTime();
 					if (lowerTime.GetHours() > upperTime.GetHours()) {
 						 std::swap(m_event[id].at(j), m_event[id].at(j + 1));
-						 swapped = true;
+						 //swapped = true;
 					}
 				}
 
-				if (!swapped)
-					break;
+				/*if (!swapped)
+					break;*/
 			}
 		}
 		
