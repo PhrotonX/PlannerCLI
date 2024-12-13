@@ -30,7 +30,7 @@ namespace PlannerCLI {
 			return m_nNoOfEvents;
 		}
 
-		void HelpInfo();
+		void DisplayHelpInfo() override;
 
 	protected:
 		virtual void OnDisplayTitle();

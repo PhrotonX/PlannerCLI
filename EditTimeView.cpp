@@ -62,13 +62,13 @@ namespace PlannerCLI {
 			DrawDoubleLine();
 
 			std::cout << "<> Navigate\t\t^v Edit Values" << std::endl;
-			std::cout << "E  Enter\t\t" << std::endl;
+			std::cout << "Esc - Back\t\tEnter - OK" << std::endl;
 
 			DrawDoubleLine();
 
+			
 			switch (_getch()) {
-			case 'E':
-			case 'e':
+			case _KEY_ENTER:
 				switch (navigation) {
 				case OK_BUTTON:
 					m_data.SetHours(hours);
@@ -82,7 +82,10 @@ namespace PlannerCLI {
 					break;
 				}
 				break;
-			default:
+			case _KEY_ESC:
+				running = false;
+				break;
+			case _KEY_CODE:
 				switch (_getch()) {
 				case _KEY_UP:
 					switch (navigation) {

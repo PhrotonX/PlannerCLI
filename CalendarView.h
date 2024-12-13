@@ -23,6 +23,8 @@ namespace PlannerCLI{
             void SetNavigatedDate(Date* navigatedDate) {
                 m_pnDate= navigatedDate;
             }
+        protected:
+            void DisplayHelpInfo() override;
         private:
             Date* m_pnDate;
     };

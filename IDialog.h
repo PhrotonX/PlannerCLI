@@ -15,7 +15,10 @@ namespace PlannerCLI {
 		virtual T Show() = 0;
 
 	protected:
-
+		
+		inline static const int _KEY_CODE = 224;
+		inline static const int _KEY_ESC = 27;
+		inline static const int _KEY_ENTER = 13;
 		inline static const int _KEY_UP = 72;
 		inline static const int _KEY_DOWN = 80;
 		inline static const int _KEY_LEFT = 75;

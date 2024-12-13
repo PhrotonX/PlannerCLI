@@ -15,6 +15,10 @@ namespace PlannerCLI {
 		return query;
 	}
 
+	void SearchEventView::DisplayHelpInfo() {
+		EventView::DisplayHelpInfo();
+	}
+
 	void SearchEventView::OnDisplayTitle()
 	{
 		DrawTopBorder();

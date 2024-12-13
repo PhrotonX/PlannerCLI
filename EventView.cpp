@@ -35,15 +35,16 @@ namespace PlannerCLI {
 
         OnDisplayButtons();
 
-        HelpInfo();
+        DisplayHelpInfo();
 	}
 
-    void EventView::HelpInfo() {
+    void EventView::DisplayHelpInfo() {
         SetColorDefaults();
         DrawSingleLine();
 
-        std::cout << "<> Button Navigation\t\t^v Event Navigation" << std::endl;
-        std::cout << "D - Delete\t\tAny key - Enter/Edit" << std::endl;
+        std::cout << "<> Button Navigation\t^v Event Navigation" << std::endl;
+        std::cout << "D - Delete\t\tEnter - OK/Edit" << std::endl;
+        std::cout << "Esc - Back" << std::endl;
     }
 
     void EventView::OnDisplayTitle()

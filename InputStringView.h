@@ -11,6 +11,7 @@ namespace PlannerCLI {
 		InputStringView(const std::string& title, const std::string& hint);
 		~InputStringView() override {}
 
+		void DisplayHelpInfo() override {}
 		std::string Show() override;
 
 	private:
