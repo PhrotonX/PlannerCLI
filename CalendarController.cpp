@@ -69,7 +69,7 @@ namespace PlannerCLI{
 
             m_calendarView->Display();
 
-            m_calendar->Debug();
+            //m_calendar->Debug();
 
         }while(isRunning);
     }
