@@ -2,7 +2,7 @@
 
 namespace PlannerCLI {
 	EventController::EventController() {
-		m_eventView = new EventView();
+		m_eventView = nullptr;
 		m_eventManager = new EventManager();
 		m_addEventController = new AddEventController();
 	}
@@ -21,7 +21,9 @@ namespace PlannerCLI {
 
 		int navigation = 0;
 		int eventNavigation = 0;
-	
+
+		if (m_eventView == nullptr) m_eventView = new EventView();
+
 		do {
 			m_eventView->Display(m_event, m_date, &navigation, &eventNavigation);
 
@@ -102,12 +104,24 @@ namespace PlannerCLI {
 		m_event = m_eventManager->GetEventList(date);
 		m_date = date;
 		
+		m_eventView = new EventView();
+
 		HandleInput();
+
+		delete m_eventView;
+		m_eventView = nullptr;
 	}
 
-	void EventController::Store()
-	{
+	void EventController::Search(Date date) {
+		//m_event = m_eventManager->GetEventList(date);
+		m_date = date;
 
+		//m_eventView = new SearchEventView();
+
+		HandleInput();
+
+		delete m_eventView;
+		m_eventView = nullptr;
 	}
 
 	void EventController::Update(size_t position)

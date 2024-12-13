@@ -1,9 +1,12 @@
 #ifndef EVENTVIEW_H
 #define EVENTVIEW_H
+
 #include "Button.h"
 #include "View.h"
 #include "Event.h"
 #include "Date.h"
+#include "Time.h"
+
 #include <vector>
 
 namespace PlannerCLI {
@@ -29,10 +32,22 @@ namespace PlannerCLI {
 
 		void HelpInfo();
 
-	private:
-		int m_nNoOfEvents;
+		void OnDisplayTitle();
+		void OnDisplayButtons();
+		void OnDisplayDateAndTime(Date date, Time startTime, Time endTime, Time previousTime);
+		void OnDisplayEvent(const Event& event, size_t position);
 
-		Button* m_button[BUTTON_COUNT];
+	protected:
+		int m_nNoOfEvents;
+		int* m_pnNavigation;
+		int* m_pnEventNavigation;
+		Button* m_button[BUTTON_COUNT - 1];
+	private:
+		
+		Date m_date;
+
+		std::vector<Event> m_event;
+		
 	};
 }
 
