@@ -4,8 +4,8 @@
 
 #define KEY_SCAN_CODE 0
 #define KEY_SCAN_CODE_2 224
-#define KEY_ESC 13
-#define KEY_ENTER 28
+#define KEY_ESC 27
+#define KEY_ENTER 13
 #define KEY_SPACE 57
 #define KEY_UP 72
 #define KEY_DOWN 80

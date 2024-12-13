@@ -117,5 +117,15 @@ namespace PlannerCLI{
                 std::cout << "Í";
             }
         }
+
+        DisplayHelpInfo();
+    }
+
+    void CalendarView::DisplayHelpInfo()
+    {
+        DrawSingleLine();
+        std::cout << "<>^v Navigation\t\tEnter - OK" << std::endl;
+        std::cout << "A - Prev Month\t\tD - Next Month" << std::endl;
+        std::cout << "S - Search\t\tEsc - Back" << std::endl;
     }
 }

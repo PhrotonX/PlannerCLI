@@ -18,6 +18,7 @@ namespace PlannerCLI {
         EditTimeView(const std::string& title, const Time& time);
         ~EditTimeView() override;
 
+        void DisplayHelpInfo() override {}
         Time Show() override;
 
     private:
