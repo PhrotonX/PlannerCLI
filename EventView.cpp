@@ -2,52 +2,27 @@
 
 namespace PlannerCLI {
 	void EventView::Display(const std::vector<Event>& event, Date date, int* navigation, int* eventNavigation) {
+        m_event = event;
+        m_date = date;
+        m_pnNavigation = navigation;
+        m_pnEventNavigation = eventNavigation;
+
         CLEAR_SCREEN;
 
-        DrawTopBorder();
-        DrawHeading(date.GetFormattedString(true));
-        DrawConnectingBorder();
-
-        for (int i = 0; i < BUTTON_COUNT; i++) {
-            m_button[i] = new Button(navigation, i);
-        }
-
-        m_button[BACK_BUTTON]->SetText("[ BACK ]");
-        m_button[ADD_BUTTON]->SetText("[ ADD  ]");
-
-        DrawConnectingBorder();
+        OnDisplayTitle();
 
         Time prevTime;
 
-        m_nNoOfEvents = event.size();
+        m_nNoOfEvents = m_event.size();
 
         int i = 0;
-        for (auto& eventItem : event) {
+        for (auto& eventItem : m_event) {
             if (!eventItem.IsNull()) {
-                std::string time;
-                if (eventItem.GetStartTime().GetHours() > prevTime.GetHours() ||
-                    eventItem.GetStartTime().GetHours() == 0) {
-                    time = std::to_string(eventItem.GetStartTime().GetHours()) + ":00";
-                    DrawText(time);
-                }
+                OnDisplayDateAndTime(m_date, eventItem.GetStartTime(), eventItem.GetEndTime(), prevTime);
 
-                std::string title = eventItem.GetTitle();
-                if (title.length() > (CONTENT_WIDTH - INDENT_WIDTH) - 2) {
-                    title = title.substr(0, (CONTENT_WIDTH - INDENT_WIDTH) - 7) + "...";
-                }
-
-                if (*eventNavigation == i && *navigation == EVENT_LIST) {
-                    SetColor(ANSI_BACKGROUND_COLOR_BLUE, ANSI_TEXT_COLOR_BRIGHT_WHITE);
-                    DrawText(BULLET + " " + title);
-                    SetColorDefaults();
-                }
-                else {
-                    DrawText(BULLET + " " + title);
-                }
-
+                OnDisplayEvent(eventItem, i);
+                
                 prevTime = eventItem.GetStartTime();
-
-                DrawText(" ");
             }
             else {
                 DrawText("No events to display");
@@ -58,11 +33,7 @@ namespace PlannerCLI {
 
         DrawBottomBorder();
 
-        for (int i = 0; i < BUTTON_COUNT; i++) {
-            m_button[i]->Display(false);
-            std::cout << " ";
-        }
-        std::cout << std::endl;
+        OnDisplayButtons();
 
         HelpInfo();
 	}
@@ -73,6 +44,58 @@ namespace PlannerCLI {
 
         std::cout << "<> Button Navigation\t\t^v Event Navigation" << std::endl;
         std::cout << "D - Delete\t\tAny key - Enter/Edit" << std::endl;
+    }
+
+    void EventView::OnDisplayTitle()
+    {
+        DrawTopBorder();
+        DrawHeading(m_date.GetFormattedString(true));
+        DrawConnectingBorder();
+    }
+
+    void EventView::OnDisplayButtons()
+    {
+        for (int i = 0; i < BUTTON_COUNT - 1; i++) {
+            m_button[i] = new Button(m_pnNavigation, i);
+        }
+
+        m_button[BACK_BUTTON]->SetText("[ BACK ]");
+        m_button[ADD_BUTTON]->SetText("[ ADD  ]");
+
+        for (int i = 0; i < BUTTON_COUNT - 1; i++) {
+            m_button[i]->Display(false);
+            std::cout << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    void EventView::OnDisplayDateAndTime(Date date, Time startTime, Time endTime, Time previousTime)
+    {
+        std::string time;
+        if (startTime.GetHours() > previousTime.GetHours() ||
+            startTime.GetHours() == 0) {
+            time = std::to_string(startTime.GetHours()) + ":00";
+            DrawText(time);
+        }
+    }
+
+    void EventView::OnDisplayEvent(const Event& event, size_t position)
+    {
+        std::string title = event.GetTitle();
+        if (title.length() > (CONTENT_WIDTH - INDENT_WIDTH) - 2) {
+            title = title.substr(0, (CONTENT_WIDTH - INDENT_WIDTH) - 7) + "...";
+        }
+
+        if (*m_pnEventNavigation == position && *m_pnNavigation == EVENT_LIST) {
+            SetColor(ANSI_BACKGROUND_COLOR_BLUE, ANSI_TEXT_COLOR_BRIGHT_WHITE);
+            DrawText(BULLET + " " + title);
+            SetColorDefaults();
+        }
+        else {
+            DrawText(BULLET + " " + title);
+        }
+
+        DrawText(" ");
     }
     
 }
