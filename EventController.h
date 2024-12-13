@@ -1,10 +1,11 @@
-#ifndef EVENTcONTROLLER_H
-#define EVENTcONTROLLER_H
+#ifndef EVENTCONTROLLER_H
+#define EVENTCONTROLLER_H
 #include "Controller.h"
 #include "Event.h"
 #include "EventView.h"
 #include "EventManager.h"
 #include "AddEventController.h"
+#include "SearchEventView.h"
 #include "Date.h"
 #include <functional>
 
@@ -18,7 +19,7 @@ namespace PlannerCLI {
         void HandleInput() override;
         
         void Index(Date date);
-        void Search(Date date);
+        void Search();
         
 
     protected:
@@ -28,6 +29,9 @@ namespace PlannerCLI {
         void Delete(size_t position);
 
     private:
+        int m_nNavigation;
+        int m_nEventNavigation;
+
         EventView* m_eventView;
         EventManager* m_eventManager;
 
@@ -40,4 +44,4 @@ namespace PlannerCLI {
     
 }
 
-#endif //EVENTcONTROLLER_H
+#endif //EVENTCONTROLLER_H

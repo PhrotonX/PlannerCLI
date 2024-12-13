@@ -49,6 +49,31 @@ namespace PlannerCLI {
 		m_event[id].erase(m_event[id].begin() + position);
 	}
 
+	std::vector<Event> EventManager::SearchEvent(const std::string& query)
+	{
+		std::vector<Event> results;
+
+		int count = 0;
+
+		for (auto& mapItem : m_event) {
+			for (auto& eventItem : mapItem.second) {
+				if (eventItem.GetTitle().find(query) != std::string::npos) {
+					Date date = Date(mapItem.first);
+					eventItem.SetDate(date);
+					results.push_back(eventItem);
+				}
+			}
+
+			count++;
+		}
+
+		if (count <= 0) {
+			results.push_back(m_nullEvent);
+		}
+		
+		return results;
+	}
+
 	void EventManager::UpdateEvent(Event event, Date date, size_t position)
 	{
 		std::string id = date.GetString();
