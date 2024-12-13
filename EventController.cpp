@@ -28,16 +28,34 @@ namespace PlannerCLI {
 			m_eventView->Display(m_event, m_date, &m_nNavigation, &m_nEventNavigation);
 
 			switch (_getch()) {
-			default:
-				switch (_getch()) {
-				case 'D':
-				case 'd':
-					Delete(m_nEventNavigation);
-					m_nEventNavigation--;
+			case 'D':
+			case 'd':
+				Delete(m_nEventNavigation);
+				m_nEventNavigation--;
 
-					if (m_nEventNavigation < 0)
-						m_nEventNavigation = 0;
+				if (m_nEventNavigation < 0)
+					m_nEventNavigation = 0;
+				break;
+			case KEY_ENTER:
+				switch (m_nNavigation) {
+				case EventView::ADD_BUTTON:
+					Create(m_date);
 					break;
+				case EventView::EVENT_LIST:
+					Update(m_nEventNavigation);
+					break;
+				case EventView::BACK_BUTTON:
+					run = false;
+					break;
+				default:
+					break;
+				}
+				break;
+			case KEY_ESC:
+				run = false;
+				break;
+			case KEY_SCAN_CODE_2:
+				switch (_getch()) {
 				case KEY_RIGHT:
 					m_nNavigation++;
 
@@ -67,21 +85,11 @@ namespace PlannerCLI {
 					}
 					break;
 				default:
-					switch (m_nNavigation) {
-					case EventView::ADD_BUTTON:
-						Create(m_date);
-						break;
-					case EventView::EVENT_LIST:
-						Update(m_nEventNavigation);
-						break;
-					case EventView::BACK_BUTTON:
-						run = false;
-					default:
-						break;
-					}
 					break;
 				}
-
+				break;
+			default:
+				break;
 			}
 		} while (run);
 	}
