@@ -37,8 +37,6 @@ namespace PlannerCLI {
 		m_button[EVENT_LIST]->SetText("[ EDIT ]");
 		m_button[ADD_BUTTON]->SetActiveColor(ANSI_BACKGROUND_BRIGHT_COLOR_GRAY, ANSI_TEXT_COLOR_BRIGHT_YELLOW);
 		m_button[ADD_BUTTON]->SetInactiveColor(ANSI_BACKGROUND_COLOR_WHITE, ANSI_TEXT_COLOR_GRAY);
-		
-		OnHandleEmptyEvents();
 
 		for (int i = 0; i < BUTTON_COUNT; i++) {
 			m_button[i]->Display(false);
