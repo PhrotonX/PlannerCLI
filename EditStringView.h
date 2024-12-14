@@ -11,6 +11,7 @@ namespace PlannerCLI {
 		EditStringView(const std::string& title, const std::string& data);
 		~EditStringView() override{}
 
+		void DisplayHelpInfo() override {}
 		std::string Show() override;
 	private:
 		std::string m_strData;

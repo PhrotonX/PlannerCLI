@@ -20,6 +20,7 @@ namespace PlannerCLI {
 
 		std::string newString;
 		std::getline(std::cin, newString);
+		std::cin.ignore();
 
 		return newString;
 	}

@@ -29,6 +29,9 @@ namespace PlannerCLI {
         void EditColor();
         Time EditStartTime(const Time& time);
         Time EditEndTime(const Time& time);
+
+    protected:
+        void DisplayHelpInfo() override;
     private:
         Button* m_button[FIELD_SIZE];
     };

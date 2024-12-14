@@ -28,8 +28,34 @@ namespace PlannerCLI {
 			switch (_getch()) {
 			case KEY_ESC:
 				run = false;
-				break;				
-			default:
+				break;
+			case KEY_ENTER:
+				switch (navigation) {
+				case AddEventView::TITLE_FIELD:
+					event.SetTitle(m_addEventView->EditTitle(event.GetTitle()));
+					break;
+				case AddEventView::DESCRIPTION_FIELD:
+					event.SetDescription(m_addEventView->EditTitle(event.GetDescription()));
+					break;
+				case AddEventView::LOCATION_FIELD:
+					event.SetLocation(m_addEventView->EditTitle(event.GetLocation()));
+					break;
+				case AddEventView::START_TIME_FIELD:
+					event.SetStartTime(m_addEventView->EditStartTime(event.GetStartTime()));
+					break;
+				case AddEventView::END_TIME_FIELD:
+					event.SetEndTime(m_addEventView->EditEndTime(event.GetEndTime()));
+					break;
+				case AddEventView::SAVE_BUTTON:
+					saveFunction();
+				case AddEventView::CANCEL_BUTTON:
+					run = false;
+					break;
+				default:
+					break;
+				}
+				break;
+			case KEY_SCAN_CODE_2:
 				switch (_getch()) {
 				case KEY_DOWN:
 					navigation++;
@@ -42,32 +68,10 @@ namespace PlannerCLI {
 						navigation = 0;
 					break;
 				default:
-					switch (navigation) {
-					case AddEventView::TITLE_FIELD:
-						event.SetTitle(m_addEventView->EditTitle(event.GetTitle()));
-						break;
-					case AddEventView::DESCRIPTION_FIELD:
-						event.SetDescription(m_addEventView->EditTitle(event.GetDescription()));
-						break;
-					case AddEventView::LOCATION_FIELD:
-						event.SetLocation(m_addEventView->EditTitle(event.GetLocation()));
-						break;
-					case AddEventView::START_TIME_FIELD:
-						event.SetStartTime(m_addEventView->EditStartTime(event.GetStartTime()));
-						break;
-					case AddEventView::END_TIME_FIELD:
-						event.SetEndTime(m_addEventView->EditEndTime(event.GetEndTime()));
-						break;
-					case AddEventView::SAVE_BUTTON:
-						saveFunction();
-					case AddEventView::CANCEL_BUTTON:
-						run = false;
-						break;
-					default:
-						break;
-					}
 					break;
 				}
+				break;
+			default:
 				break;
 			}
 		} while (run);

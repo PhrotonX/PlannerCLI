@@ -6,6 +6,19 @@ namespace PlannerCLI{
         SetDate(year, month, day);
     }
 
+    Date::Date(std::string dateString)
+    {
+        //@NOTE: Avoid hardcoding to make it easier to support years larger than 9999.
+        int strLength = dateString.size();
+
+        int zStrLength = strLength - 1;
+        std::string strDay = dateString.substr(zStrLength - 1, strLength);
+        std::string strMonth = dateString.substr(zStrLength - 3, strLength - 2);
+        std::string strYear = dateString.substr(0, strLength - 4);
+
+        SetDate(std::stoi(strYear), std::stoi(strMonth), std::stoi(strDay));
+    }
+
     Date::~Date()
     {
 

@@ -23,6 +23,7 @@ namespace PlannerCLI {
 			return m_event;
 		}
 		void RemoveEvent(Date date, size_t position);
+		std::vector<Event> SearchEvent(const std::string& query);
 		void UpdateEvent(Event event, Date date, size_t position);
 
 		void Save() override {}

@@ -30,14 +30,14 @@ namespace PlannerCLI {
 			return m_nNoOfEvents;
 		}
 
-		void HelpInfo();
-
-		void OnDisplayTitle();
-		void OnDisplayButtons();
-		void OnDisplayDateAndTime(Date date, Time startTime, Time endTime, Time previousTime);
-		void OnDisplayEvent(const Event& event, size_t position);
+		void DisplayHelpInfo() override;
 
 	protected:
+		virtual void OnDisplayTitle();
+		virtual void OnDisplayButtons();
+		virtual void OnDisplayDateAndTime(Date date, Time startTime, Time endTime, Time previousTime);
+		virtual void OnDisplayEvent(const Event& event, size_t position);
+	
 		int m_nNoOfEvents;
 		int* m_pnNavigation;
 		int* m_pnEventNavigation;

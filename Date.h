@@ -18,6 +18,9 @@ namespace PlannerCLI{
             \param year 1-based value of day.
         */
         Date(int year, int month, int day);
+
+        Date(std::string dateString);
+
         virtual ~Date();
 
         /**

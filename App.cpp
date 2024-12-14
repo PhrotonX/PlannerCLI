@@ -35,6 +35,7 @@ namespace PlannerCLI{
             std::cout << "Choice: ";
 
             std::cin >> choice;
+            std::cin.ignore();
 
             switch(choice){
             case APP_SHOW_CALENDAR:

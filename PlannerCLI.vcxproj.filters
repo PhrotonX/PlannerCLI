@@ -99,6 +99,12 @@
     <ClInclude Include="NullEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SearchEventView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputStringView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CalendarController.cpp">
@@ -183,6 +189,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="NullEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchEventView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputStringView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

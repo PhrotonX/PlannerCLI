@@ -5,6 +5,7 @@ namespace PlannerCLI {
 		m_eventView = nullptr;
 		m_eventManager = new EventManager();
 		m_addEventController = new AddEventController();
+		m_bIsSearching = false;
 	}
 
 	EventController::~EventController() {
@@ -19,69 +20,77 @@ namespace PlannerCLI {
 	void EventController::HandleInput(){
 		bool run = true;
 
-		int navigation = 0;
-		int eventNavigation = 0;
+		m_nNavigation = 0;
+		m_nEventNavigation = 0;
 
 		if (m_eventView == nullptr) m_eventView = new EventView();
 
 		do {
-			m_eventView->Display(m_event, m_date, &navigation, &eventNavigation);
+			m_eventView->Display(m_event, m_date, &m_nNavigation, &m_nEventNavigation);
 
 			switch (_getch()) {
-			default:
-				switch (_getch()) {
-				case 'D':
-				case 'd':
-					Delete(eventNavigation);
-					eventNavigation--;
+			case 'D':
+			case 'd':
+				Delete(m_nEventNavigation);
+				m_nEventNavigation--;
 
-					if (eventNavigation < 0)
-						eventNavigation = 0;
+				if (m_nEventNavigation < 0)
+					m_nEventNavigation = 0;
+				break;
+			case KEY_ENTER:
+				switch (m_nNavigation) {
+				case EventView::ADD_BUTTON:
+					Create(m_date);
 					break;
+				case EventView::EVENT_LIST:
+					Update(m_nEventNavigation);
+					break;
+				case EventView::BACK_BUTTON:
+					run = false;
+					break;
+				default:
+					break;
+				}
+				break;
+			case KEY_ESC:
+				run = false;
+				break;
+			case KEY_SCAN_CODE_2:
+				switch (_getch()) {
 				case KEY_RIGHT:
-					navigation++;
+					m_nNavigation++;
 
-					if (navigation > EventView::BUTTON_COUNT - 1)
-						navigation = EventView::BUTTON_COUNT - 1;
+					if (m_nNavigation > EventView::BUTTON_COUNT - 1)
+						m_nNavigation = EventView::BUTTON_COUNT - 1;
 					break;
 				case KEY_LEFT:
-					navigation--;
+					m_nNavigation--;
 					
-					if (navigation < 0)
-						navigation = 0;
+					if (m_nNavigation < 0)
+						m_nNavigation = 0;
 					break;	
 				case KEY_UP:
-					if (navigation == EventView::EVENT_LIST) {
-						eventNavigation--;
+					if (m_nNavigation == EventView::EVENT_LIST) {
+						m_nEventNavigation--;
 
-						if (eventNavigation < 0)
-							eventNavigation = 0;
+						if (m_nEventNavigation < 0)
+							m_nEventNavigation = 0;
 					}
 					break;
 				case KEY_DOWN:
-					if (navigation == EventView::EVENT_LIST) {
-						eventNavigation++;
+					if (m_nNavigation == EventView::EVENT_LIST) {
+						m_nEventNavigation++;
 
-						if (eventNavigation > m_eventView->GetNoOfEvents() - 1)
-							eventNavigation = m_eventView->GetNoOfEvents() - 1;
+						if (m_nEventNavigation > m_eventView->GetNoOfEvents() - 1)
+							m_nEventNavigation = m_eventView->GetNoOfEvents() - 1;
 					}
 					break;
 				default:
-					switch (navigation) {
-					case EventView::ADD_BUTTON:
-						Create(m_date);
-						break;
-					case EventView::EVENT_LIST:
-						Update(eventNavigation);
-						break;
-					case EventView::BACK_BUTTON:
-						run = false;
-					default:
-						break;
-					}
 					break;
 				}
-
+				break;
+			default:
+				break;
 			}
 		} while (run);
 	}
@@ -112,16 +121,20 @@ namespace PlannerCLI {
 		m_eventView = nullptr;
 	}
 
-	void EventController::Search(Date date) {
-		//m_event = m_eventManager->GetEventList(date);
-		m_date = date;
+	void EventController::Search() {
+		m_bIsSearching = true;
 
-		//m_eventView = new SearchEventView();
+		m_eventView = new SearchEventView();
+		SearchEventView* m_searchView = dynamic_cast<SearchEventView*>(m_eventView);
+
+		m_event = m_eventManager->SearchEvent(m_searchView->EditQuery());
 
 		HandleInput();
 
 		delete m_eventView;
 		m_eventView = nullptr;
+
+		m_bIsSearching = false;
 	}
 
 	void EventController::Update(size_t position)

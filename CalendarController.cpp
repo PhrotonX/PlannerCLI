@@ -39,13 +39,15 @@ namespace PlannerCLI{
             case 'd':
                 m_calendar->OnNavigateNextMonth();
                 break;
-            case 'Q':
-            case 'q':
+            case KEY_ESC:
                 isRunning = false;
                 break;
-            case 'E':
-            case 'e':
+            case KEY_ENTER:
                 m_eventController->Index(*m_calendar->GetNavigatedDate());
+                break;
+            case 'S':
+            case 's':
+                m_eventController->Search();
                 break;
             default:
                 switch (_getch()) {
@@ -69,7 +71,7 @@ namespace PlannerCLI{
 
             m_calendarView->Display();
 
-            m_calendar->Debug();
+            //m_calendar->Debug();
 
         }while(isRunning);
     }
@@ -78,7 +80,7 @@ namespace PlannerCLI{
         m_calendar->OnNavigateInit();
         m_calendarView->Display();
 
-        m_calendar->Debug();
+        //m_calendar->Debug();
     }
 
     /*

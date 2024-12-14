@@ -4,6 +4,7 @@
 #include <string>
 #include "Time.h"
 #include "Color.h"
+#include "Date.h"
 #include "Nullable.h"
 
 namespace PlannerCLI {
@@ -51,6 +52,13 @@ namespace PlannerCLI {
 			return m_strLocation;
 		}
 
+		/**
+			\remarks Used for search results.
+		*/
+		Date GetDate() const {
+			return m_date;
+		}
+
 		/*
 		std::string GetNote(int position) const {
 			return m_strNotes[position];
@@ -58,6 +66,13 @@ namespace PlannerCLI {
 
 		void SetTitle(const std::string& value) {
 			m_strTitle = value;
+		}
+
+		/**
+			\remarks Used for search results.
+		*/
+		void SetDate(Date date) {
+			m_date = date;
 		}
 
 		void SetDescription(const std::string& value) {
@@ -82,6 +97,7 @@ namespace PlannerCLI {
 		std::string m_strTitle;
 		std::string m_strDescription;
 		std::string m_strLocation;
+		Date m_date;
 		Color m_color;
 		Time m_timeBegin;
 		Time m_timeEnd;

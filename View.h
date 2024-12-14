@@ -29,7 +29,7 @@ namespace PlannerCLI{
             inline static const std::string TAB = "\t";
             inline static const std::string BULLET = "ù";
 
-                
+            virtual void DisplayHelpInfo() = 0 {}
             void DrawDoubleLine();
             void DrawBottomBorder();
             void DrawConnectingBorder();

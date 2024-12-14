@@ -18,7 +18,7 @@ namespace PlannerCLI {
         int i = 0;
         for (auto& eventItem : m_event) {
             if (!eventItem.IsNull()) {
-                OnDisplayDateAndTime(m_date, eventItem.GetStartTime(), eventItem.GetEndTime(), prevTime);
+                OnDisplayDateAndTime(eventItem.GetDate(), eventItem.GetStartTime(), eventItem.GetEndTime(), prevTime);
 
                 OnDisplayEvent(eventItem, i);
                 
@@ -35,15 +35,16 @@ namespace PlannerCLI {
 
         OnDisplayButtons();
 
-        HelpInfo();
+        DisplayHelpInfo();
 	}
 
-    void EventView::HelpInfo() {
+    void EventView::DisplayHelpInfo() {
         SetColorDefaults();
         DrawSingleLine();
 
-        std::cout << "<> Button Navigation\t\t^v Event Navigation" << std::endl;
-        std::cout << "D - Delete\t\tAny key - Enter/Edit" << std::endl;
+        std::cout << "<> Button Navigation\t^v Event Navigation" << std::endl;
+        std::cout << "D - Delete\t\tEnter - OK/Edit" << std::endl;
+        std::cout << "Esc - Back" << std::endl;
     }
 
     void EventView::OnDisplayTitle()
@@ -72,11 +73,11 @@ namespace PlannerCLI {
     void EventView::OnDisplayDateAndTime(Date date, Time startTime, Time endTime, Time previousTime)
     {
         std::string time;
-        if (startTime.GetHours() > previousTime.GetHours() ||
-            startTime.GetHours() == 0) {
-            time = std::to_string(startTime.GetHours()) + ":00";
-            DrawText(time);
-        }
+        //if (startTime.GetHours() > previousTime.GetHours() ||
+            //startTime.GetHours() == 0) {
+            //time = std::to_string(startTime.GetHours()) + ":00";
+            DrawText(startTime.GetString() + "-" + endTime.GetString());
+        //}
     }
 
     void EventView::OnDisplayEvent(const Event& event, size_t position)
