@@ -4,6 +4,7 @@
 #include "CalendarView.h"
 #include "Calendar.h"
 #include "Date.h"
+#include "EventController.h"
 
 namespace PlannerCLI{
     class CalendarController : public Controller
@@ -13,15 +14,17 @@ namespace PlannerCLI{
             ~CalendarController() override;
 
             void HandleInput() override;
-            void Create() override;
+            //void Create();
             void Index() override;
-            void Store() override;
-            void Update() override;
-            void Delete() override;
+            //void Store();
+            //void Update();
+            //void Delete();
 
         private:
             CalendarView* m_calendarView;
             Calendar* m_calendar;
+
+            EventController* m_eventController;
     };
 }
 
