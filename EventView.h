@@ -37,6 +37,7 @@ namespace PlannerCLI {
 		virtual void OnDisplayButtons();
 		virtual void OnDisplayDateAndTime(Date date, Time startTime, Time endTime, Time previousTime);
 		virtual void OnDisplayEvent(const Event& event, size_t position);
+		virtual void OnHandleEmptyEvents();
 	
 		int m_nNoOfEvents;
 		int* m_pnNavigation;

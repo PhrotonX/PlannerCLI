@@ -83,7 +83,11 @@ namespace PlannerCLI {
 	{
 		std::string id = date.GetString();
 
-		m_event[id].at(position) = event;
+		//m_event[id].at(position) = event;
+		for (auto& eventItem : m_event[id]) {
+			if (eventItem.GetID() == position)
+				eventItem = event;
+		}
 	}
 	void EventManager::Sort(Date date)
 	{

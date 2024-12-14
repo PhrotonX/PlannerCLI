@@ -147,22 +147,27 @@ namespace PlannerCLI {
 
 	void EventController::Update(size_t position)
 	{
-		Event currentEvent = m_event.at(position);
-		Date currentDate = currentEvent.GetDate();
-		m_addEventController->HandleInput(currentEvent, currentDate, [&]() {
-			m_eventManager->UpdateEvent(currentEvent, currentDate, currentEvent.GetPosition());
-			m_eventManager->Sort(currentDate);
+		Event event = m_event.at(position);
+		Date date = event.GetDate();
+		m_addEventController->HandleInput(event, date, [&]() {
+			m_eventManager->UpdateEvent(event, date, event.GetPosition());
+			m_eventManager->Sort(date);
 			if(m_bIsSearching)
 				m_event = m_eventManager->SearchEvent(m_strSearchQuery);
 			else
-				m_event = m_eventManager->GetEventList(m_date);
+				m_event = m_eventManager->GetEventList(date);
 		});
 	}
 
 	void EventController::Delete(size_t position)
 	{
-		m_eventManager->RemoveEvent(m_date, position);
-		m_eventManager->Sort(m_date);
-		m_event = m_eventManager->GetEventList(m_date);
+		Event event = m_event.at(position);
+		Date date = event.GetDate();
+		m_eventManager->RemoveEvent(date, event.GetPosition());
+		m_eventManager->Sort(date);
+		if (m_bIsSearching)
+			m_event = m_eventManager->SearchEvent(m_strSearchQuery);
+		else
+			m_event = m_eventManager->GetEventList(date);
 	}
 }

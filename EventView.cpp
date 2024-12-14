@@ -31,6 +31,8 @@ namespace PlannerCLI {
             i++;
         }
 
+        OnHandleEmptyEvents();
+
         DrawBottomBorder();
 
         OnDisplayButtons();
@@ -98,6 +100,13 @@ namespace PlannerCLI {
         }
 
         DrawText(" ");
+    }
+
+    void EventView::OnHandleEmptyEvents()
+    {
+        if (m_event.empty()) {
+            DrawText("No events to display");
+        }
     }
     
 }
