@@ -56,14 +56,15 @@ namespace PlannerCLI {
 
     void EventView::OnDisplayButtons()
     {
-        for (int i = 0; i < BUTTON_COUNT - 1; i++) {
+        for (int i = 0; i < BUTTON_COUNT; i++) {
             m_button[i] = new Button(m_pnNavigation, i);
         }
 
         m_button[BACK_BUTTON]->SetText("[ BACK ]");
         m_button[ADD_BUTTON]->SetText("[ ADD  ]");
+        m_button[EVENT_LIST]->SetText("[ EDIT ]");
 
-        for (int i = 0; i < BUTTON_COUNT - 1; i++) {
+        for (int i = 0; i < BUTTON_COUNT; i++) {
             m_button[i]->Display(false);
             std::cout << " ";
         }

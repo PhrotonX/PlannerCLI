@@ -41,7 +41,7 @@ namespace PlannerCLI {
 		int m_nNoOfEvents;
 		int* m_pnNavigation;
 		int* m_pnEventNavigation;
-		Button* m_button[BUTTON_COUNT - 1];
+		Button* m_button[BUTTON_COUNT];
 	private:
 		
 		Date m_date;

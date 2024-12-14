@@ -28,16 +28,18 @@ namespace PlannerCLI {
 
 	void SearchEventView::OnDisplayButtons()
 	{
-		for (int i = 0; i < BUTTON_COUNT - 1; i++) {
+		for (int i = 0; i < BUTTON_COUNT; i++) {
 			m_button[i] = new Button(m_pnNavigation, i);
 		}
 
 		m_button[BACK_BUTTON]->SetText("[ BACK ]");
 		m_button[ADD_BUTTON]->SetText("[ ADD  ]");
-		m_button[ADD_BUTTON]->SetInactiveColor(ANSI_BACKGROUND_BRIGHT_COLOR_GRAY, ANSI_TEXT_COLOR_BLACK);
-		m_button[ADD_BUTTON]->SetActiveColor(ANSI_BACKGROUND_BRIGHT_COLOR_GRAY, ANSI_TEXT_COLOR_YELLOW);
+		m_button[EVENT_LIST]->SetText("[ EDIT ]");
+		m_button[ADD_BUTTON]->SetActiveColor(ANSI_BACKGROUND_BRIGHT_COLOR_GRAY, ANSI_TEXT_COLOR_BRIGHT_YELLOW);
+		m_button[ADD_BUTTON]->SetInactiveColor(ANSI_BACKGROUND_COLOR_WHITE, ANSI_TEXT_COLOR_GRAY);
+		
 
-		for (int i = 0; i < BUTTON_COUNT - 1; i++) {
+		for (int i = 0; i < BUTTON_COUNT; i++) {
 			m_button[i]->Display(false);
 			std::cout << " ";
 		}

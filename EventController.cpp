@@ -31,19 +31,26 @@ namespace PlannerCLI {
 			switch (_getch()) {
 			case 'D':
 			case 'd':
-				Delete(m_nEventNavigation);
-				m_nEventNavigation--;
+				if (m_event.size() > 0) {
+					if (!m_event.at(0).IsNull())
+						Delete(m_nEventNavigation);
+						m_nEventNavigation--;
 
-				if (m_nEventNavigation < 0)
-					m_nEventNavigation = 0;
+						if (m_nEventNavigation < 0)
+							m_nEventNavigation = 0;
+				}
 				break;
 			case KEY_ENTER:
 				switch (m_nNavigation) {
 				case EventView::ADD_BUTTON:
-					Create(m_date);
+					if(!m_bIsSearching)
+						Create(m_date);
 					break;
 				case EventView::EVENT_LIST:
-					Update(m_nEventNavigation);
+					if (m_event.size() > 0){
+						if(!m_event.at(0).IsNull())
+							Update(m_nEventNavigation);
+					}
 					break;
 				case EventView::BACK_BUTTON:
 					run = false;
