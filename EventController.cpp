@@ -127,7 +127,8 @@ namespace PlannerCLI {
 		m_eventView = new SearchEventView();
 		SearchEventView* m_searchView = dynamic_cast<SearchEventView*>(m_eventView);
 
-		m_event = m_eventManager->SearchEvent(m_searchView->EditQuery());
+		m_strSearchQuery = m_searchView->EditQuery();
+		m_event = m_eventManager->SearchEvent(m_strSearchQuery);
 
 		HandleInput();
 
@@ -139,10 +140,15 @@ namespace PlannerCLI {
 
 	void EventController::Update(size_t position)
 	{
-		m_addEventController->HandleInput(m_event.at(position), m_date, [&]() {
-			m_eventManager->UpdateEvent(m_event.at(position), m_date, position);
-			m_eventManager->Sort(m_date);
-			m_event = m_eventManager->GetEventList(m_date);
+		Event currentEvent = m_event.at(position);
+		Date currentDate = currentEvent.GetDate();
+		m_addEventController->HandleInput(currentEvent, currentDate, [&]() {
+			m_eventManager->UpdateEvent(currentEvent, currentDate, currentEvent.GetPosition());
+			m_eventManager->Sort(currentDate);
+			if(m_bIsSearching)
+				m_event = m_eventManager->SearchEvent(m_strSearchQuery);
+			else
+				m_event = m_eventManager->GetEventList(m_date);
 		});
 	}
 

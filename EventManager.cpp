@@ -16,6 +16,11 @@ namespace PlannerCLI {
 		if (m_event.count(id) == 0) {
 			m_event[id] = std::vector<Event>();
 		}
+
+		//Set the event position using the size of the event vector which is 1 less than the
+		//actual size before adding the event item, in which the value is equivalent to the
+		//zero-based index position of the event item within the vector.
+		event.SetPosition(m_event[id].size());
 		
 		m_event[id].push_back(event);
 	}

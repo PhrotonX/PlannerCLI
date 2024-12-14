@@ -29,17 +29,21 @@ namespace PlannerCLI {
         void Delete(size_t position);
 
     private:
+        AddEventController* m_addEventController;
+
         bool m_bIsSearching;
+
+        Date m_date;
+
+        std::vector<Event> m_event;
+
+        EventManager* m_eventManager;
+        EventView* m_eventView;
+
         int m_nNavigation;
         int m_nEventNavigation;
 
-        EventView* m_eventView;
-        EventManager* m_eventManager;
-
-        AddEventController* m_addEventController;
-
-        std::vector<Event> m_event;
-        Date m_date;
+        std::string m_strSearchQuery;
     };
 
     
