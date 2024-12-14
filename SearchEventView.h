@@ -24,7 +24,7 @@ namespace PlannerCLI {
 		void OnDisplayButtons() override;
 		void OnDisplayDateAndTime(Date date, Time startTime, Time endTime, Time previousTime) override;
 		void OnDisplayEvent(const Event& event, size_t position) override;
-
+		void OnHandleEmptyEvents();
 	private:
 		std::string m_strQuery;
 	};

@@ -31,19 +31,26 @@ namespace PlannerCLI {
 			switch (_getch()) {
 			case 'D':
 			case 'd':
-				Delete(m_nEventNavigation);
-				m_nEventNavigation--;
+				if (m_event.size() > 0) {
+					if (!m_event.at(0).IsNull())
+						Delete(m_nEventNavigation);
+						m_nEventNavigation--;
 
-				if (m_nEventNavigation < 0)
-					m_nEventNavigation = 0;
+						if (m_nEventNavigation < 0)
+							m_nEventNavigation = 0;
+				}
 				break;
 			case KEY_ENTER:
 				switch (m_nNavigation) {
 				case EventView::ADD_BUTTON:
-					Create(m_date);
+					if(!m_bIsSearching)
+						Create(m_date);
 					break;
 				case EventView::EVENT_LIST:
-					Update(m_nEventNavigation);
+					if (m_event.size() > 0){
+						if(!m_event.at(0).IsNull())
+							Update(m_nEventNavigation);
+					}
 					break;
 				case EventView::BACK_BUTTON:
 					run = false;
@@ -127,7 +134,8 @@ namespace PlannerCLI {
 		m_eventView = new SearchEventView();
 		SearchEventView* m_searchView = dynamic_cast<SearchEventView*>(m_eventView);
 
-		m_event = m_eventManager->SearchEvent(m_searchView->EditQuery());
+		m_strSearchQuery = m_searchView->EditQuery();
+		m_event = m_eventManager->SearchEvent(m_strSearchQuery);
 
 		HandleInput();
 
@@ -139,17 +147,27 @@ namespace PlannerCLI {
 
 	void EventController::Update(size_t position)
 	{
-		m_addEventController->HandleInput(m_event.at(position), m_date, [&]() {
-			m_eventManager->UpdateEvent(m_event.at(position), m_date, position);
-			m_eventManager->Sort(m_date);
-			m_event = m_eventManager->GetEventList(m_date);
+		Event event = m_event.at(position);
+		Date date = event.GetDate();
+		m_addEventController->HandleInput(event, date, [&]() {
+			m_eventManager->UpdateEvent(event, date, event.GetPosition());
+			m_eventManager->Sort(date);
+			if(m_bIsSearching)
+				m_event = m_eventManager->SearchEvent(m_strSearchQuery);
+			else
+				m_event = m_eventManager->GetEventList(date);
 		});
 	}
 
 	void EventController::Delete(size_t position)
 	{
-		m_eventManager->RemoveEvent(m_date, position);
-		m_eventManager->Sort(m_date);
-		m_event = m_eventManager->GetEventList(m_date);
+		Event event = m_event.at(position);
+		Date date = event.GetDate();
+		m_eventManager->RemoveEvent(date, event.GetPosition());
+		m_eventManager->Sort(date);
+		if (m_bIsSearching)
+			m_event = m_eventManager->SearchEvent(m_strSearchQuery);
+		else
+			m_event = m_eventManager->GetEventList(date);
 	}
 }

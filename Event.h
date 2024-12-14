@@ -52,6 +52,10 @@ namespace PlannerCLI {
 			return m_strLocation;
 		}
 
+		size_t GetPosition() const {
+			return m_nPosition;
+		}
+
 		/**
 			\remarks Used for search results.
 		*/
@@ -83,6 +87,10 @@ namespace PlannerCLI {
 			m_strLocation = value;
 		}
 
+		void SetPosition(const size_t& position) {
+			m_nPosition = position;
+		}
+
 		void SetStartTime(const Time& value) {
 			m_timeBegin = value;
 		}
@@ -94,6 +102,7 @@ namespace PlannerCLI {
 		
 	private:
 		long m_nId;
+		size_t m_nPosition;
 		std::string m_strTitle;
 		std::string m_strDescription;
 		std::string m_strLocation;
