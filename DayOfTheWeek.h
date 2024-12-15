@@ -49,9 +49,9 @@ namespace PlannerCLI{
         /**
             \return Returns 0 for Sunday, 6 for Saturday, and -1 if not available.
         */
-        int GetValueN();
+        int GetValueN() const;
 
-        std::string GetName();
+        std::string GetName() const;
 
     private:
         eDayOfTheWeek m_dayOfTheWeek;

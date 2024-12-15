@@ -4,6 +4,9 @@
 
 #define KEY_SCAN_CODE 0
 #define KEY_SCAN_CODE_2 224
+#define KEY_ESC 27
+#define KEY_ENTER 13
+#define KEY_SPACE 57
 #define KEY_UP 72
 #define KEY_DOWN 80
 #define KEY_LEFT 75
@@ -30,7 +33,7 @@ namespace PlannerCLI{
             */
             virtual void HandleInput() = 0;
 
-            virtual void Create() = 0;
+            //virtual void Create() = 0;
 
             /**
                 \brief Handle the homescreen which consists of options.
@@ -41,9 +44,9 @@ namespace PlannerCLI{
                 \brief Store general information from the View into the Model.
 
             */
-            virtual void Store() = 0;
-            virtual void Update() = 0;
-            virtual void Delete() = 0;
+            //virtual void Store() = 0;
+            //virtual void Update() = 0;
+            //virtual void Delete() = 0;
     };
 }
 

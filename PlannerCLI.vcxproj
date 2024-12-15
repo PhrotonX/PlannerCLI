@@ -129,32 +129,66 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AddEventController.h" />
+    <ClInclude Include="AddEventView.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Calendar.h" />
     <ClInclude Include="CalendarController.h" />
     <ClInclude Include="CalendarView.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="Day.h" />
     <ClInclude Include="DayOfTheWeek.h" />
+    <ClInclude Include="EditStringView.h" />
+    <ClInclude Include="EditTimeView.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="EventController.h" />
+    <ClInclude Include="EventManager.h" />
+    <ClInclude Include="EventView.h" />
     <ClInclude Include="FORMAT.h" />
+    <ClInclude Include="IDialog.h" />
+    <ClInclude Include="InputStringView.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Month.h" />
+    <ClInclude Include="Nullable.h" />
+    <ClInclude Include="NullEvent.h" />
+    <ClInclude Include="SearchEventView.h" />
+    <ClInclude Include="Time.h" />
     <ClInclude Include="View.h" />
     <ClInclude Include="Year.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddEventController.cpp" />
+    <ClCompile Include="AddEventView.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Calendar.cpp" />
     <ClCompile Include="CalendarController.cpp" />
     <ClCompile Include="CalendarView.cpp" />
+    <ClCompile Include="Color.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Day.cpp" />
     <ClCompile Include="DayOfTheWeek.cpp" />
+    <ClCompile Include="EditStringView.cpp" />
+    <ClCompile Include="EditTimeView.cpp" />
+    <ClCompile Include="Event.cpp" />
+    <ClCompile Include="EventController.cpp" />
+    <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="EventView.cpp" />
+    <ClCompile Include="IDialog.cpp" />
+    <ClCompile Include="InputStringView.cpp" />
+    <ClCompile Include="List.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Month.cpp" />
+    <ClCompile Include="Nullable.cpp" />
+    <ClCompile Include="NullEvent.cpp" />
+    <ClCompile Include="SearchEventView.cpp" />
+    <ClCompile Include="Time.cpp" />
     <ClCompile Include="View.cpp" />
     <ClCompile Include="Year.cpp" />
   </ItemGroup>

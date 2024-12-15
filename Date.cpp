@@ -6,6 +6,19 @@ namespace PlannerCLI{
         SetDate(year, month, day);
     }
 
+    Date::Date(std::string dateString)
+    {
+        //@NOTE: Avoid hardcoding to make it easier to support years larger than 9999.
+        int strLength = dateString.size();
+
+        int zStrLength = strLength - 1;
+        std::string strDay = dateString.substr(zStrLength - 1, strLength);
+        std::string strMonth = dateString.substr(zStrLength - 3, strLength - 2);
+        std::string strYear = dateString.substr(0, strLength - 4);
+
+        SetDate(std::stoi(strYear), std::stoi(strMonth), std::stoi(strDay));
+    }
+
     Date::~Date()
     {
 
@@ -29,14 +42,56 @@ namespace PlannerCLI{
         return Date(currentYear, currentMonth, currentDay);
     }
 
+    std::string Date::GetFormattedString(bool withDayOfTheWeek)
+    {
+        std::string strDate;
+        std::string space = " ";
+        std::string strYear = std::to_string(m_year.GetValue());
+        std::string strMonth = m_month.GetMonthName();
+        std::string strDay = std::to_string(m_day.GetValue());
+        std::string strDayOfTheWeek = m_day.GetDayOfTheWeek().GetName();
+
+        if (withDayOfTheWeek) {
+            strDate = strDayOfTheWeek + ", " + strMonth + " " + strDay + ", " + strYear;
+        }
+        else {
+            strDate = strMonth + " " + strDay + ", " + strYear;
+        }
+        
+        return strDate;
+    }
+
+    std::string Date::GetString() const {
+        std::string space = " ";
+        std::string strYear = std::to_string(m_year.GetValue());
+        std::string strMonth = std::to_string(m_month.GetValueN());
+        std::string strDay = std::to_string(m_day.GetValue());
+
+        if (m_month.GetValueN() < 10) {
+            strMonth = space + strMonth;
+        }
+        if (m_day.GetValue() < 10) {
+            strDay = space + strDay;
+        }
+
+        std::string strDate = strYear + strMonth + strDay;
+
+        return strDate;
+    }
+
     void Date::SetDate(int year, int month, int day) {
         m_year = Year(year);
         m_month = Month(month);
         m_day = Day(day);
 
-        m_month.GetFirstDayOfTheWeek().SetValueZC(DayOfTheWeek::CalculateDayOfTheWeek(year, month, 1));
+        UpdateDayOfTheWeek();
+    }
 
-        m_day.GetDayOfTheWeek().SetValueZC(DayOfTheWeek::CalculateDayOfTheWeek(year, month, day));
+    void Date::UpdateDayOfTheWeek()
+    {
+        m_month.GetFirstDayOfTheWeek().SetValueZC(DayOfTheWeek::CalculateDayOfTheWeek(m_year.GetValue(), m_month.GetValueN(), 1));
+
+        m_day.GetDayOfTheWeek().SetValueZC(DayOfTheWeek::CalculateDayOfTheWeek(m_year.GetValue(), m_month.GetValueN(), m_day.GetValue()));
     }
 
 }

@@ -42,4 +42,6 @@ PlannerCLI_build_log.html
 gitlog
 /.vs
 /PlannerCLI/x64/Debug
+/PlannerCLI/x64/Release
 /x64/Debug
+/x64/Release

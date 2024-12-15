@@ -5,20 +5,22 @@ namespace PlannerCLI{
     {
         m_calendar = new Calendar();
         m_calendarView = new CalendarView(m_calendar->GetNavigatedDate());
+        
+        m_eventController = new EventController();
     }
 
     CalendarController::~CalendarController()
     {
         //Delete m_calendarView first since it has a pointer to an instance of m_calendar.
-        if(m_calendarView != nullptr) delete m_calendarView;
+        if (m_calendarView != nullptr) delete m_calendarView;
         if(m_calendar != nullptr) delete m_calendar;
         m_calendarView = nullptr;
         m_calendar = nullptr;
     }
 
-    void CalendarController::Create(){
+    /*void CalendarController::Create() {
 
-    }
+    }*/
 
     void CalendarController::HandleInput(){
         bool isRunning = true;
@@ -37,9 +39,15 @@ namespace PlannerCLI{
             case 'd':
                 m_calendar->OnNavigateNextMonth();
                 break;
-            case 'Q':
-            case 'q':
+            case KEY_ESC:
                 isRunning = false;
+                break;
+            case KEY_ENTER:
+                m_eventController->Index(*m_calendar->GetNavigatedDate());
+                break;
+            case 'S':
+            case 's':
+                m_eventController->Search();
                 break;
             default:
                 switch (_getch()) {
@@ -63,7 +71,7 @@ namespace PlannerCLI{
 
             m_calendarView->Display();
 
-            m_calendar->Debug();
+            //m_calendar->Debug();
 
         }while(isRunning);
     }
@@ -72,9 +80,10 @@ namespace PlannerCLI{
         m_calendar->OnNavigateInit();
         m_calendarView->Display();
 
-        m_calendar->Debug();
+        //m_calendar->Debug();
     }
 
+    /*
     void CalendarController::Store(){
 
     }
@@ -85,6 +94,6 @@ namespace PlannerCLI{
 
     void CalendarController::Delete(){
 
-    }
+    }*/
 
 }
