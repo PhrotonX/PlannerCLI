@@ -53,6 +53,16 @@ namespace PlannerCLI{
 
         std::string GetName() const;
 
+        /**
+            \param value 0 for Sunday, 6 for Saturday, and -1 if not available.
+        */
+        static std::string GetName(int value);
+
+        /**
+            \param value 0 for Sunday, 6 for Saturday, and -1 if not available.
+        */
+        static std::string GetName(eDayOfTheWeek value);
+
     private:
         eDayOfTheWeek m_dayOfTheWeek;
 	};
