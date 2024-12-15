@@ -5,12 +5,13 @@
 #include "Calendar.h"
 #include "Date.h"
 #include "EventController.h"
+#include "Settings.h"
 
 namespace PlannerCLI{
     class CalendarController : public Controller
     {
         public:
-            CalendarController(CalendarView* view, Calendar* model);
+            CalendarController();
             ~CalendarController() override;
 
             void HandleInput() override;
