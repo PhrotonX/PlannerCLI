@@ -12,7 +12,8 @@ namespace PlannerCLI {
 	void SettingsView::Display(int* navigation, int* settingNavigation) {
 		CLEAR_SCREEN;
 
-		std::cout << *navigation << " " << *settingNavigation << std::endl;
+		if(Settings::DebugMode)
+			std::cout << "SettingsView::Display(): " << *navigation << " " << *settingNavigation << std::endl;
 
 		DrawTopBorder();
 		DrawHeading("Settings");
