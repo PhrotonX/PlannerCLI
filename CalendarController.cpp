@@ -1,10 +1,10 @@
 #include "CalendarController.h"
 
 namespace PlannerCLI{
-    CalendarController::CalendarController()
+    CalendarController::CalendarController(CalendarView* view, Calendar* model)
     {
-        m_calendar = new Calendar();
-        m_calendarView = new CalendarView(m_calendar->GetNavigatedDate());
+        m_calendar = model;
+        m_calendarView = view;
         
         m_eventController = new EventController();
     }

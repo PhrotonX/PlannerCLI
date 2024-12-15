@@ -10,7 +10,7 @@ namespace PlannerCLI{
     class CalendarController : public Controller
     {
         public:
-            CalendarController();
+            CalendarController(CalendarView* view, Calendar* model);
             ~CalendarController() override;
 
             void HandleInput() override;

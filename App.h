@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include "typeB/ArrayCalendar.h"
 #include "CalendarController.h"
+#include "CalendarView.h"
+#include "Calendar.h"
 #include "SettingsController.h"
 #include "Settings.h"
 

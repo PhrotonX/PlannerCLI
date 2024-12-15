@@ -5,9 +5,7 @@
 namespace PlannerCLI{
     App::App()
     {
-        //ctor
-        m_arrayCalendar = new ArrayCalendar();
-        m_calendarController = new CalendarController();
+        //ctor 
         m_settingsController = new SettingsController();
     }
 
@@ -48,11 +46,20 @@ namespace PlannerCLI{
             switch(choice){
             case APP_SHOW_CALENDAR:
                 if (!Settings::ArrayCalendar) {
+                    Calendar* model = new Calendar();
+                    CalendarView* view = new CalendarView(model->GetNavigatedDate());
+
+                    m_calendarController = new CalendarController(std::move(view), std::move(model));
                     m_calendarController->Index();
                     m_calendarController->HandleInput();
                 }
                 else {
-                    m_arrayCalendar->Init();
+                    ArrayCalendar* model = new ArrayCalendar();
+                    CalendarView* view = new CalendarView(model->GetNavigatedDate());
+
+                    m_calendarController = new CalendarController(std::move(view), std::move(model));
+                    m_calendarController->Index();
+                    m_calendarController->HandleInput();
                 }
                 
                 break;
