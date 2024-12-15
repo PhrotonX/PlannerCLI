@@ -5,6 +5,8 @@
 #include "View.h"
 #include "Day.h"
 #include "Date.h"
+#include "DayOfTheWeek.h"
+//#include "ArrayYear.h"
 
 namespace PlannerCLI{
     class CalendarView : public View
@@ -20,13 +22,24 @@ namespace PlannerCLI{
 
             void Display();
 
+            void Display(int year, int month, int day);
+
             void SetNavigatedDate(Date* navigatedDate) {
-                m_pnDate= navigatedDate;
+                m_pnDate = navigatedDate;
             }
         protected:
             void DisplayHelpInfo() override;
+
+            virtual void OnDisplayTitle();
+            virtual void OnDisplayDaysOfTheWeek();
+
+            virtual void OnDisplayBottomBorder();
         private:
+            //Used for normal Zeller's Congruence Algorithm-based Calendar.
             Date* m_pnDate;
+
+            //Used for limited array-based calendar.
+            //ArrayYear* m_pCalendar = nullptr;
     };
 
 }
