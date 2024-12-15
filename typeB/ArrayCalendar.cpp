@@ -61,8 +61,11 @@ namespace PlannerCLI::typeB {
 
         int weekday = 0;
 
-        unsigned int oldInt = 0; //Represents the first date of UNIX epoch.
-        unsigned int newInt = -1; //Represents the last date of UNIX epoch.
+        //unsigned int oldInt = 0; //Represents the first date of UNIX epoch.
+        //unsigned int newInt = -1; //Represents the last date of UNIX epoch.
+
+        unsigned int oldInt = 1672531200; //2023
+        unsigned int newInt = 1798761600; //2027
 
         time_t unixTimeBegin = oldInt;
         time_t unixTimeEnd = newInt;
