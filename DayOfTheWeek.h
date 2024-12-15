@@ -33,7 +33,7 @@ namespace PlannerCLI{
             \brief Set the day of the week.
             \param dayOfTheWeek Set 0 for Sunday and 6 for Saturday.
         */
-        void SetValue(int dayOfTheWeek);
+        void SetValue(const int& dayOfTheWeek);
 
         /**
             \brief Sets the day of the week based on Zeller's Congruence Algorithm

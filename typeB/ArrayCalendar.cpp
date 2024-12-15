@@ -129,7 +129,7 @@ namespace PlannerCLI::typeB {
                         dayOfTheWeek.SetValue(weekday);
                         day.SetDayOfTheWeek(dayOfTheWeek);
                         weekday++;
-                        if(weekday >= 6) weekday = 0;
+                        if(weekday >= 7) weekday = 0;
 
                         month->UpdateDay(day);
                     }

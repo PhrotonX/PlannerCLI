@@ -64,7 +64,7 @@ namespace PlannerCLI {
         }
     }
 
-    void DayOfTheWeek::SetValue(int dayOfTheWeek) {
+    void DayOfTheWeek::SetValue(const int& dayOfTheWeek) {
         switch (dayOfTheWeek) {
         case 0:
             m_dayOfTheWeek = Sunday;
