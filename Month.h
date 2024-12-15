@@ -10,6 +10,9 @@ namespace PlannerCLI{
     class Month
     {
         public:
+
+            inline static const int MONTHS = 12;
+        
             enum eMonth{
                 January,
                 February,
