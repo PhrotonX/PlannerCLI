@@ -8,7 +8,7 @@ namespace PlannerCLI::typeB {
 	class ArrayMonth : public Month
 	{
 	public:
-
+		inline static const int BASE_YEAR = 1900;
 		inline static const int MAX_MONTH_LENGTH = 31;
 
 		ArrayMonth();

@@ -119,7 +119,8 @@ namespace PlannerCLI::typeB {
 
                 //Set months into Year objects.
                 for(int j = 0; j < 12; j++){
-                    ArrayMonth* month = new ArrayMonth(j);
+                    ArrayMonth* month = new ArrayMonth(j + 1);
+                    if(Settings::DebugMode) std::cout << "Month: " << month->GetValueN() << " " << month->GetMonthName() << std::endl;
                     int monthSize = Month::CalculateMonthLength(month->GetValueN(), m_year[i - minYear]->IsLeapYear());
                     month->SetMonthLength(monthSize);
                     for(int k = 0; k < monthSize; k++){
@@ -147,18 +148,21 @@ namespace PlannerCLI::typeB {
                 //@TODO: Add message for unsupported years (year 2106 and beyond).
         }
 
-        for(int i = minYear; i <= maxYear; i++){
-            for(int j = 0; j < 12; j++){
-                ArrayMonth* month = m_year[i - minYear]->GetMonth(j);
-                int monthSize = Month::CalculateMonthLength(month->GetValueN(), m_year[i - minYear]->IsLeapYear());
-                month->SetMonthLength(monthSize);
-                for(int k = 0; k < monthSize; k++){
-                    if (Settings::DebugMode) std::cout << m_year[i - minYear]->GetValue() << ", " << month->GetMonthName() << " " << month->GetDay(k).GetValue() << std::endl;
+        if (Settings::DebugMode) {
+            for (int i = minYear; i <= maxYear; i++) {
+                for (int j = 0; j < 12; j++) {
+                    ArrayMonth* month = m_year[i - minYear]->GetMonth(j);
+                    std::cout << "Month: " << j << std::endl;
+                    int monthSize = Month::CalculateMonthLength(month->GetValueN(), m_year[i - minYear]->IsLeapYear());
+                    month->SetMonthLength(monthSize);
+                    for (int k = 0; k < monthSize; k++) {
+                        std::cout << m_year[i - minYear]->GetValue() << ", " << month->GetMonthName() << " " << month->GetDay(k).GetValue() << " " << month->GetDay(k).GetDayOfTheWeek().GetName() << std::endl;
+                    }
                 }
-            }
-            if (Settings::DebugMode) if(m_year[i - minYear]->IsLeapYear()) std::cout << " (leap year)";
+                if (m_year[i - minYear]->IsLeapYear()) std::cout << " (leap year)";
 
-            if (Settings::DebugMode) std::cout << "\n";
+                std::cout << "\n";
+            }
         }
     }
 
