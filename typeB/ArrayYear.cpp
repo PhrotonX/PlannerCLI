@@ -4,6 +4,11 @@ namespace PlannerCLI::typeB {
 	ArrayYear::ArrayYear()
 	{
 	}
+	
+	ArrayYear::ArrayYear(int year) : Year::Year(year) {
+
+	}
+
 	ArrayYear::~ArrayYear()
 	{
 	}

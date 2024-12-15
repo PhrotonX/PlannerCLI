@@ -13,6 +13,7 @@ namespace PlannerCLI::typeB {
         inline static const int MAX_EVENTS = 10;
 
         ArrayDay();
+        ArrayDay(int day);
         ~ArrayDay() override {}
 
         void AddEvent(Event event);

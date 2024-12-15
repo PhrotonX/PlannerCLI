@@ -3,8 +3,13 @@
 namespace PlannerCLI::typeB {
 	ArrayMonth::ArrayMonth()
 	{
-		for (int i = 0; i < MAX_MONTH_LENGTH, i++) {
+		for (int i = 0; i < MAX_MONTH_LENGTH; i++) {
 			m_day[i] = ArrayDay();
 		}
+	}
+
+	ArrayMonth::ArrayMonth(int month) : Month::Month(month)
+	{
+
 	}
 }

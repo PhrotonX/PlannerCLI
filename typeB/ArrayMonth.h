@@ -12,6 +12,7 @@ namespace PlannerCLI::typeB {
 		inline static const int MAX_MONTH_LENGTH = 31;
 
 		ArrayMonth();
+		ArrayMonth(int month);
 		~ArrayMonth() override {}
 
 	private:

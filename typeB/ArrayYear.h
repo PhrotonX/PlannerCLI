@@ -6,6 +6,7 @@ namespace PlannerCLI::typeB {
     {
     public:
         ArrayYear();
+        ArrayYear(int year);
         ~ArrayYear() override;
 
         ArrayMonth& GetMonth(int position);

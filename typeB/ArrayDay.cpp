@@ -8,6 +8,11 @@ namespace PlannerCLI::typeB {
 		}
 	}
 
+	ArrayDay::ArrayDay(int day) : Day::Day(day)
+	{
+		
+	}
+
 	void ArrayDay::AddEvent(Event event)
 	{
 		if (m_nEventSize <= 10) {
