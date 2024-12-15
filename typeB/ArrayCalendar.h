@@ -1,6 +1,7 @@
 #ifndef ARRAYCALENDAR_H
 #define ARRAYCALENDAR_H
-#include "../Model.h"
+
+#include "../Calendar.h"
 #include "ArrayYear.h"
 #include "../Date.h"
 #include "../DayOfTheWeek.h"
@@ -14,7 +15,7 @@ namespace PlannerCLI::typeB {
         This class uses a type B variant or array variant of Year, Month, and Day. As the name implies,
         it uses 2D array to represent a calendar.
     */
-	class ArrayCalendar : public Model
+	class ArrayCalendar : public Calendar
 	{
     public:
         //inline static const int MAX_YEAR = 2106;
@@ -22,10 +23,6 @@ namespace PlannerCLI::typeB {
 
         ArrayCalendar();
         virtual ~ArrayCalendar();
-
-        Date* OnNavigateInit();
-        Date* OnNavigateNext();
-        Date* OnNavigateBack();
 
         void Init();
 

@@ -9,21 +9,6 @@ namespace PlannerCLI::typeB {
 	{
 	}
 
-    Date* ArrayCalendar::OnNavigateInit()
-    {
-        return nullptr;
-    }
-
-    Date* ArrayCalendar::OnNavigateNext()
-    {
-        return nullptr;
-    }
-
-    Date* ArrayCalendar::OnNavigateBack()
-    {
-        return nullptr;
-    }
-
 	void ArrayCalendar::Init()
 	{
         Seed();
