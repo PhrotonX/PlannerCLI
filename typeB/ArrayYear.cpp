@@ -12,11 +12,11 @@ namespace PlannerCLI::typeB {
 	ArrayYear::~ArrayYear()
 	{
 	}
-	ArrayMonth& ArrayYear::GetMonth(int position)
+	ArrayMonth*& ArrayYear::GetMonth(int position)
 	{
 		return m_month[position];
 	}
-	void ArrayYear::SetMonth(ArrayMonth month, int position)
+	void ArrayYear::SetMonth(ArrayMonth* month, int position)
 	{
 		m_month[position] = month;
 	}

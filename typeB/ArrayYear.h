@@ -9,12 +9,12 @@ namespace PlannerCLI::typeB {
         ArrayYear(int year);
         ~ArrayYear() override;
 
-        ArrayMonth& GetMonth(int position);
+        ArrayMonth*& GetMonth(int position);
 
-        void SetMonth(ArrayMonth month, int position);
+        void SetMonth(ArrayMonth* month, int position);
 
     private:
-        ArrayMonth m_month[12];
+        ArrayMonth* m_month[12];
     };
 
 

@@ -12,4 +12,9 @@ namespace PlannerCLI::typeB {
 	{
 
 	}
+	void ArrayMonth::UpdateDay(ArrayDay day)
+	{
+		int position = day.GetValue() - 1;
+		m_day[position] = day;
+	}
 }

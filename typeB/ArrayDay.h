@@ -4,6 +4,7 @@
 #include "../Day.h"
 #include "../Event.h"
 #include "../NullEvent.h"
+#include <vector>
 
 namespace PlannerCLI::typeB {
     class ArrayDay : public Day
@@ -18,8 +19,12 @@ namespace PlannerCLI::typeB {
 
         void AddEvent(Event event);
 
+        std::vector<Event>& GetAllEvents() {
+            return m_event;
+        }
+
         Event& GetEvent(int position) {
-            return m_event[position];
+            return m_event.at(position);
         }
 
         void UpdateEvent(Event event);
@@ -28,7 +33,7 @@ namespace PlannerCLI::typeB {
        
 
     protected:
-        Event m_event[10];
+        std::vector<Event> m_event;
         int m_nEventSize = 0;
     };
 
