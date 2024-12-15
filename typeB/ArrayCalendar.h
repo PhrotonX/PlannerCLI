@@ -4,6 +4,7 @@
 #include "ArrayYear.h"
 #include "../Date.h"
 #include "../DayOfTheWeek.h"
+#include "../Settings.h"
 #include <iostream>
 #include <ctime>
 
@@ -28,7 +29,7 @@ namespace PlannerCLI::typeB {
 
         void Init();
 
-        void Save() override;
+        void Save() override{}
 
         /**
             \details Fill up data.

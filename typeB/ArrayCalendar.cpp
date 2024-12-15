@@ -71,9 +71,9 @@ namespace PlannerCLI::typeB {
         //Get current time
         time(&unixCurrentTime);
 
-        std::cout << ctime(&unixTimeBegin) << " from " << unixTimeBegin << std::endl;
-        std::cout << ctime(&unixCurrentTime) << " from " << unixCurrentTime << std::endl;
-        std::cout << ctime(&unixTimeEnd) << " from " << unixTimeEnd << std::endl;
+        //std::cout << ctime_s(&unixTimeBegin) << " from " << unixTimeBegin << std::endl;
+        //std::cout << ctime_s(&unixCurrentTime) << " from " << unixCurrentTime << std::endl;
+        //std::cout << ctime_s(&unixTimeEnd) << " from " << unixTimeEnd << std::endl;
 
 
         //Min
@@ -81,21 +81,21 @@ namespace PlannerCLI::typeB {
         gmtime_s(&olderTime, &unixTimeBegin);
         minYear += olderTime.tm_year;
         weekday = olderTime.tm_wday;
-        std::cout << "Min: " << minYear << " year " << olderTime.tm_year + 1900 << std::endl;
+        if (Settings::DebugMode) std::cout << "Min: " << minYear << " year " << olderTime.tm_year + 1900 << std::endl;
 
         //Current
         tm currentTime;
         localtime_s(&currentTime, &unixCurrentTime);
         currentYear += currentTime.tm_year;
-        std::cout << "Current: " << currentYear << " year " << currentTime.tm_year + 1900 << std::endl;
-        std::cout << currentTime.tm_year + 1900 << " " << currentTime.tm_mon + 1 << " "
+        if (Settings::DebugMode) std::cout << "Current: " << currentYear << " year " << currentTime.tm_year + 1900 << std::endl;
+        if (Settings::DebugMode) std::cout << currentTime.tm_year + 1900 << " " << currentTime.tm_mon + 1 << " "
         << currentTime.tm_yday + 1 << std::endl;
 
         //Max
         tm newerTime;
         gmtime_s(&newerTime, &unixTimeEnd);
         maxYear += newerTime.tm_year;
-        std::cout << "Max: " << maxYear << " year " << newerTime.tm_year + 1900 << std::endl;
+        if (Settings::DebugMode) std::cout << "Max: " << maxYear << " year " << newerTime.tm_year + 1900 << std::endl;
 
 
         //Get the difference between the minimum year and maximum year.
@@ -109,8 +109,10 @@ namespace PlannerCLI::typeB {
         if(currentYear <= maxYear){
             for(int i = minYear; i <= maxYear; i++){
 
-                std::cout << i  - minYear << std::endl;
                 m_year[i - minYear] = new ArrayYear(i);
+
+                if (Settings::DebugMode)
+                    std::cout << "Year: " << i - minYear << " i: " << i << " minYear: " << minYear << " ArrayYear: " << m_year[i - minYear]->GetValue() << std::endl;
 
                 //Set months into Year objects.
                 for(int j = 0; j < 12; j++){
@@ -140,21 +142,21 @@ namespace PlannerCLI::typeB {
             }*/
             
                 //@TODO: Add message for unsupported years (year 2106 and beyond).
-            }
+        }
 
-            for(int i = minYear; i <= maxYear; i++){
-                for(int j = 0; j < 12; j++){
-                    ArrayMonth* month = m_year[i - minYear]->GetMonth(j);
-                    int monthSize = Month::CalculateMonthLength(month->CalculateMonthLength(), m_year[i - 1]->IsLeapYear());
-                    month->SetMonthLength(monthSize);
-                    for(int k = 0; k < monthSize; k++){
-                        std::cout << m_year[i - minYear]->GetValue() << ", " << month->GetMonthName() << " " << month->GetDay(k).GetValue() << std::endl;
-                    }
+        for(int i = minYear; i <= maxYear; i++){
+            for(int j = 0; j < 12; j++){
+                ArrayMonth* month = m_year[i - minYear]->GetMonth(j);
+                int monthSize = Month::CalculateMonthLength(month->GetValueN(), m_year[i - minYear]->IsLeapYear());
+                month->SetMonthLength(monthSize);
+                for(int k = 0; k < monthSize; k++){
+                    if (Settings::DebugMode) std::cout << m_year[i - minYear]->GetValue() << ", " << month->GetMonthName() << " " << month->GetDay(k).GetValue() << std::endl;
                 }
-                if(m_year[i - minYear]->IsLeapYear()) std::cout << " (leap year)";
-
-                std::cout << "\n";
             }
+            if (Settings::DebugMode) if(m_year[i - minYear]->IsLeapYear()) std::cout << " (leap year)";
+
+            if (Settings::DebugMode) std::cout << "\n";
+        }
     }
 
 }

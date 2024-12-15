@@ -2,27 +2,31 @@
 #define APP_H
 
 #include <stdio.h>
+#include "typeB/ArrayCalendar.h"
 #include "CalendarController.h"
+#include "SettingsController.h"
+#include "Settings.h"
 
-#define APP_SHOW_CALENDAR 1
-#define APP_SAVE_INFORMATION 2
-#define APP_SETTINGS 3
-#define APP_HELP 4
-#define APP_EXIT 5
-
+using namespace PlannerCLI::typeB;
 namespace PlannerCLI{
     class App
     {
         public:
+            inline static const int APP_SHOW_CALENDAR = 1;
+            inline static const int APP_SAVE_INFORMATION = 2;
+            inline static const int APP_SETTINGS = 3;
+            inline static const int APP_HELP = 4;
+            inline static const int APP_EXIT = 5;
+
             App();
             virtual ~App();
 
             void Run();
-            void Close();
 
         private:
-
+            ArrayCalendar* m_arrayCalendar;
             CalendarController* m_calendarController;
+            SettingsController* m_settingsController;
     };
 }
 

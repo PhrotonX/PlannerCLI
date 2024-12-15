@@ -43,6 +43,11 @@ namespace PlannerCLI {
 			std::cout << " ";
 		}
 		std::cout << std::endl;
+
+		for (int i = 0; i < BUTTON_COUNT; i++) {
+			if (m_button[i] != nullptr) delete m_button[i];
+			m_button[i] = nullptr;
+		}
 	}
 
 	void SearchEventView::OnDisplayDateAndTime(Date date, Time startTime, Time endTime, Time previousTime)

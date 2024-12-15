@@ -19,12 +19,8 @@ namespace PlannerCLI::typeB {
 
         void AddEvent(Event event);
 
-        std::vector<Event>& GetAllEvents() {
-            return m_event;
-        }
-
         Event& GetEvent(int position) {
-            return m_event.at(position);
+            return m_event[position];
         }
 
         void UpdateEvent(Event event);
@@ -33,7 +29,7 @@ namespace PlannerCLI::typeB {
        
 
     protected:
-        std::vector<Event> m_event;
+        Event m_event[10];
         int m_nEventSize = 0;
     };
 
