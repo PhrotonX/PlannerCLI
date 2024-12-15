@@ -32,7 +32,7 @@ namespace PlannerCLI{
 
             virtual void OnDisplayTitle();
             virtual void OnDisplayDaysOfTheWeek();
-
+            virtual void OnDisplayCalendarDays();
             virtual void OnDisplayBottomBorder();
         private:
             //Used for normal Zeller's Congruence Algorithm-based Calendar.
