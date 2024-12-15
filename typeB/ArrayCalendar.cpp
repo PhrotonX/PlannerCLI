@@ -3,6 +3,7 @@
 namespace PlannerCLI::typeB {
 	ArrayCalendar::ArrayCalendar()
 	{
+        Seed();
 	}
 
 	ArrayCalendar::~ArrayCalendar()
@@ -11,13 +12,11 @@ namespace PlannerCLI::typeB {
 
 	void ArrayCalendar::Init()
 	{
-        Seed();
-
         
-        m_navigatedDate = Date::GetCurrentDate();
-
 
         /*
+        m_navigatedDate = Date::GetCurrentDate();
+
         m_year = std::move(currentDate->GetYear());
         m_month = std::move(currentDate->GetMonth());
         
