@@ -5,6 +5,7 @@ namespace PlannerCLI::typeB {
     class ArrayYear : public Year
     {
     public:
+        inline static const int BASE_YEAR = 1900;
         ArrayYear();
         ArrayYear(int year);
         ~ArrayYear() override;
