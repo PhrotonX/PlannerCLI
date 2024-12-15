@@ -157,6 +157,10 @@
     <ClInclude Include="NullEvent.h" />
     <ClInclude Include="SearchEventView.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="typeB\ArrayCalendar.h" />
+    <ClInclude Include="typeB\ArrayDay.h" />
+    <ClInclude Include="typeB\ArrayMonth.h" />
+    <ClInclude Include="typeB\ArrayYear.h" />
     <ClInclude Include="View.h" />
     <ClInclude Include="Year.h" />
   </ItemGroup>
@@ -189,6 +193,10 @@
     <ClCompile Include="NullEvent.cpp" />
     <ClCompile Include="SearchEventView.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="typeB\ArrayCalendar.cpp" />
+    <ClCompile Include="typeB\ArrayDay.cpp" />
+    <ClCompile Include="typeB\ArrayMonth.cpp" />
+    <ClCompile Include="typeB\ArrayYear.cpp" />
     <ClCompile Include="View.cpp" />
     <ClCompile Include="Year.cpp" />
   </ItemGroup>
