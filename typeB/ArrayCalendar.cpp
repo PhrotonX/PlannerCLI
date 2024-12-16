@@ -234,4 +234,26 @@ namespace PlannerCLI::typeB {
         }
     }
 
+    void ArrayCalendar::Sort(Date date)
+    {
+        std::vector<Event> event = GetEventList(date);
+
+        if (event.size() > 1) {
+            for (size_t i = 0; i < event.size() - 1; i++) {
+                for (size_t j = i; j < event.size() - 1; j++) {
+                    Time lowerTime = event.at(j).GetStartTime();
+                    Time upperTime = event.at(j + 1).GetStartTime();
+                    if (lowerTime.GetHours() > upperTime.GetHours()) {
+                        std::swap(event.at(j), event.at(j + 1));
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < event.size(); i++) {
+            event.at(i).SetPosition(i);
+        }
+
+    }
+
 }

@@ -70,7 +70,14 @@ namespace PlannerCLI::typeB {
 		}
 		*/
 
-		m_event.erase(m_event.begin() + position);
+		if (m_event.size() == 1) {
+			//Avoid a crash when there is only 1 remaining element in a vector.
+			m_event.clear();
+		}
+		else {
+			m_event.erase(m_event.begin() + position);
+		}
+		
 	}
 
 

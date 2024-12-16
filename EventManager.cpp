@@ -53,7 +53,14 @@ namespace PlannerCLI {
 	{
 		std::string id = date.GetString();
 
-		m_event[id].erase(m_event[id].begin() + position);
+		if (m_event[id].size() == 1) {
+			//Avoid a crash when there is only 1 remaining element in a vector.
+			m_event[id].clear();
+		}
+		else {
+			m_event[id].erase(m_event[id].begin() + position);
+		}
+		
 	}
 
 	std::vector<Event> EventManager::SearchEvent(const std::string& query)
@@ -112,6 +119,10 @@ namespace PlannerCLI {
 				/*if (!swapped)
 					break;*/
 			}
+		}
+
+		for (int i = 0; i < m_event[id].size(); i++) {
+			m_event[id].at(i).SetPosition(i);
 		}
 		
 	}

@@ -43,6 +43,8 @@ namespace PlannerCLI::typeB {
         */
         void Seed();
 
+        void Sort(Date date);
+
     private:
         //Handle 137 years. From 1970-2106.
         ArrayYear* m_year[137];
