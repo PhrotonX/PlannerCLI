@@ -69,14 +69,21 @@ namespace PlannerCLI::typeB {
 			std::cout << "Failed deleting " << position + 1 << "th event" << std::endl;
 		}
 		*/
+		
+		if (m_event.size() > 1) {
+			size_t ctr = 0;
+			for (auto& event : m_event) {
+				if (event.GetPosition() == position) {
+					ctr = event.GetPosition();
+				}
+			}
 
-		if (m_event.size() == 1) {
-			//Avoid a crash when there is only 1 remaining element in a vector.
-			m_event.clear();
+			m_event.erase(m_event.begin() + ctr);
 		}
 		else {
-			m_event.erase(m_event.begin() + position);
+			m_event.clear();
 		}
+
 		
 	}
 

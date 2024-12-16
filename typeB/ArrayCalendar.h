@@ -43,7 +43,7 @@ namespace PlannerCLI::typeB {
         */
         void Seed();
 
-        void Sort(Date date);
+        void Sort(Date date) override;
 
     private:
         //Handle 137 years. From 1970-2106.

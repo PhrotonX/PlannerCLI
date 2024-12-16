@@ -27,7 +27,7 @@ namespace PlannerCLI {
 		virtual void UpdateEvent(Event event);
 
 		void Save() override {}
-		void Sort(Date date);
+		virtual void Sort(Date date);
 
 	private:
 		//@NOTE: Very problematic!
