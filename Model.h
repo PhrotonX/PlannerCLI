@@ -2,6 +2,7 @@
 #define MODEL_H
 
 #include <fstream>
+#include <string>
 
 namespace PlannerCLI{
     /**
@@ -10,6 +11,7 @@ namespace PlannerCLI{
     class Model
     {
         public:
+            inline static const std::string FILE_BREAK_LINE = "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
             Model();
             virtual ~Model();
 
