@@ -18,38 +18,38 @@ namespace PlannerCLI::typeB {
 
     void ArrayCalendar::AddEvent(Event event, Date date) {
         //Date date = event.GetDate();
-        int year = date.GetYear().GetValue() - ArrayYear::BASE_YEAR;
+        int year = date.GetYear().GetValue() - ArrayYear::MIN_YEAR_UNIX;
         int month = date.GetMonth().GetValueN();
         int day = date.GetDay().GetValue();
 
-        m_year[year - ArrayYear::BASE_YEAR]->GetMonth(month - 1)->GetDay(day - 1).AddEvent(event);
+        m_year[year - ArrayYear::MIN_YEAR_UNIX]->GetMonth(month - 1)->GetDay(day - 1).AddEvent(event);
     }
 
     Event& ArrayCalendar::GetEvent(Date date, size_t position)
     {
-        int year = date.GetYear().GetValue() - ArrayYear::BASE_YEAR;
+        int year = date.GetYear().GetValue() - ArrayYear::MIN_YEAR_UNIX;
         int month = date.GetMonth().GetValueN();
         int day = date.GetDay().GetValue();
 
-        return m_year[year - ArrayYear::BASE_YEAR]->GetMonth(month - 1)->GetDay(day - 1).GetEvent(position);
+        return m_year[year - ArrayYear::MIN_YEAR_UNIX]->GetMonth(month - 1)->GetDay(day - 1).GetEvent(position);
     }
 
     std::vector<Event>& ArrayCalendar::GetEventList(Date date)
     {
-        int year = date.GetYear().GetValue() - ArrayYear::BASE_YEAR;
+        int year = date.GetYear().GetValue() - ArrayYear::MIN_YEAR_UNIX;
         int month = date.GetMonth().GetValueN();
         int day = date.GetDay().GetValue();
 
-        return m_year[year - ArrayYear::BASE_YEAR]->GetMonth(month - 1)->GetDay(day - 1).GetEventList();
+        return m_year[year - ArrayYear::MIN_YEAR_UNIX]->GetMonth(month - 1)->GetDay(day - 1).GetEventList();
     }
 
     void ArrayCalendar::RemoveEvent(Date date, size_t position)
     {
-        int year = date.GetYear().GetValue() - ArrayYear::BASE_YEAR;
+        int year = date.GetYear().GetValue() - ArrayYear::MIN_YEAR_UNIX;
         int month = date.GetMonth().GetValueN();
         int day = date.GetDay().GetValue();
 
-        m_year[year - ArrayYear::BASE_YEAR]->GetMonth(month - 1)->GetDay(day - 1).DeleteEvent(position);
+        m_year[year - ArrayYear::MIN_YEAR_UNIX]->GetMonth(month - 1)->GetDay(day - 1).DeleteEvent(position);
     }
 
     std::vector<Event> ArrayCalendar::SearchEvent(const std::string& query)
@@ -82,11 +82,11 @@ namespace PlannerCLI::typeB {
 
     void ArrayCalendar::UpdateEvent(Event event, Date date, size_t position)
     {
-        int year = date.GetYear().GetValue() - ArrayYear::BASE_YEAR;
+        int year = date.GetYear().GetValue() - ArrayYear::MIN_YEAR_UNIX;
         int month = date.GetMonth().GetValueN();
         int day = date.GetDay().GetValue();
 
-        m_year[year - ArrayYear::BASE_YEAR]->GetMonth(month - 1)->GetDay(day - 1).UpdateEvent(event);
+        m_year[year - ArrayYear::MIN_YEAR_UNIX]->GetMonth(month - 1)->GetDay(day - 1).UpdateEvent(event);
     }
 
 	void ArrayCalendar::Init()
@@ -175,16 +175,16 @@ namespace PlannerCLI::typeB {
         if(currentYear <= maxYear){
             for(int i = minYear; i <= maxYear; i++){
 
-                m_year[i - minYear] = new ArrayYear(i);
+                m_year[i - ArrayYear::MIN_YEAR_UNIX] = new ArrayYear(i);
 
                 if (Settings::DebugMode)
-                    std::cout << "Year: " << i - minYear << " i: " << i << " minYear: " << minYear << " ArrayYear: " << m_year[i - minYear]->GetValue() << std::endl;
+                    std::cout << "Year: " << i - ArrayYear::MIN_YEAR_UNIX << " i: " << i << " minYear: " << minYear << " ArrayYear: " << m_year[i - ArrayYear::MIN_YEAR_UNIX]->GetValue() << std::endl;
 
                 //Set months into Year objects.
                 for(int j = 0; j < 12; j++){
                     ArrayMonth* month = new ArrayMonth(j + 1);
                     if(Settings::DebugMode) std::cout << "Month: " << month->GetValueN() << " " << month->GetMonthName() << std::endl;
-                    int monthSize = Month::CalculateMonthLength(month->GetValueN(), m_year[i - minYear]->IsLeapYear());
+                    int monthSize = Month::CalculateMonthLength(month->GetValueN(), m_year[i - ArrayYear::MIN_YEAR_UNIX]->IsLeapYear());
                     month->SetMonthLength(monthSize);
                     for(int k = 0; k < monthSize; k++){
                         ArrayDay day= ArrayDay(k + 1);
@@ -197,7 +197,7 @@ namespace PlannerCLI::typeB {
                         month->UpdateDay(day);
                     }
 
-                    m_year[i - minYear]->SetMonth(std::move(month), j);
+                    m_year[i - ArrayYear::MIN_YEAR_UNIX]->SetMonth(std::move(month), j);
                 }
 
             }
@@ -205,7 +205,7 @@ namespace PlannerCLI::typeB {
             //Reallocate the dynamic array
             /*m_year = (Year**)realloc(m_year, 9999 * sizeof(int));
             for(int i = minYear; i <= 9999; i++){
-                m_year[i - minYear] = new Year(i);
+                m_year[i - ArrayYear::MIN_YEAR_UNIX] = new Year(i);
             }*/
             
                 //@TODO: Add message for unsupported years (year 2106 and beyond).
@@ -214,15 +214,15 @@ namespace PlannerCLI::typeB {
         if (Settings::DebugMode) {
             for (int i = minYear; i <= maxYear; i++) {
                 for (int j = 0; j < 12; j++) {
-                    ArrayMonth* month = m_year[i - minYear]->GetMonth(j);
+                    ArrayMonth* month = m_year[i - ArrayYear::MIN_YEAR_UNIX]->GetMonth(j);
                     std::cout << "Month: " << j << std::endl;
-                    int monthSize = Month::CalculateMonthLength(month->GetValueN(), m_year[i - minYear]->IsLeapYear());
+                    int monthSize = Month::CalculateMonthLength(month->GetValueN(), m_year[i - ArrayYear::MIN_YEAR_UNIX]->IsLeapYear());
                     month->SetMonthLength(monthSize);
                     for (int k = 0; k < monthSize; k++) {
-                        std::cout << m_year[i - minYear]->GetValue() << ", " << month->GetMonthName() << " " << month->GetDay(k).GetValue() << " " << month->GetDay(k).GetDayOfTheWeek().GetName() << std::endl;
+                        std::cout << m_year[i - ArrayYear::MIN_YEAR_UNIX]->GetValue() << ", " << month->GetMonthName() << " " << month->GetDay(k).GetValue() << " " << month->GetDay(k).GetDayOfTheWeek().GetName() << std::endl;
                     }
                 }
-                if (m_year[i - minYear]->IsLeapYear()) std::cout << " (leap year)";
+                if (m_year[i - ArrayYear::MIN_YEAR_UNIX]->IsLeapYear()) std::cout << " (leap year)";
 
                 std::cout << "\n";
             }

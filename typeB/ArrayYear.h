@@ -6,6 +6,8 @@ namespace PlannerCLI::typeB {
     {
     public:
         inline static const int BASE_YEAR = 1900;
+        inline static const int MIN_YEAR_UNIX = 1970;
+        inline static const int MAX_YEAR_UNIX = 2106;
         ArrayYear();
         ArrayYear(int year);
         ~ArrayYear() override;
