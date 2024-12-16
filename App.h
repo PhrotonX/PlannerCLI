@@ -14,11 +14,12 @@ namespace PlannerCLI{
     class App
     {
         public:
-            inline static const int APP_SHOW_CALENDAR = 1;
-            inline static const int APP_SAVE_INFORMATION = 2;
-            inline static const int APP_SETTINGS = 3;
-            inline static const int APP_HELP = 4;
-            inline static const int APP_EXIT = 5;
+            inline static const char APP_SHOW_CALENDAR = '1';
+            inline static const char APP_SAVE_INFORMATION = '2';
+            inline static const char APP_LOAD_INFORMATION = '3';
+            inline static const char APP_SETTINGS = '4';
+            inline static const char APP_HELP = '5';
+            inline static const char APP_EXIT = '6';
 
             App();
             virtual ~App();
