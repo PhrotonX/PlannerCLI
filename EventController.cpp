@@ -3,7 +3,12 @@
 namespace PlannerCLI {
 	EventController::EventController() {
 		m_eventView = nullptr;
-		m_eventManager = new EventManager();
+
+		if (!Settings::ArrayCalendar)
+			m_eventManager = new EventManager();
+		else
+			m_eventManager = new ArrayCalendar();
+
 		m_addEventController = new AddEventController();
 		m_bIsSearching = false;
 	}
