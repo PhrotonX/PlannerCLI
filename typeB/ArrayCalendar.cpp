@@ -99,12 +99,33 @@ namespace PlannerCLI::typeB {
         Seed();
 	}
 
-    void ArrayCalendar::Load()
-    {
+    void ArrayCalendar::Load(){
+        std::ifstream file;
+        file.open(FILE_ARRAY_CALENDAR, std::ios::in);
+        size_t objectSize = 0;
+        file.read((char*)&objectSize, sizeof(size_t));
+        file.read((char*)&m_year, sizeof(m_year));
+        file.close();
     }
 
-    void ArrayCalendar::Save()
-    {
+    void ArrayCalendar::Save(){
+        std::ofstream file;
+        file.open(FILE_ARRAY_CALENDAR, std::ios::out | std::ios::binary | std::ios::trunc);
+        /*for (auto& year : m_year) {
+            if (year == nullptr) continue;
+            for (int month = 0; month < ArrayMonth::MONTHS; month++) {
+                int monthLength = year->GetMonth(month)->GetMonthSize();
+                for (int day = 0; day < monthLength; day++) {
+                    for (auto& eventItem : year->GetMonth(month)->GetDay(day).GetEventList()) {
+                        file.write(eventItem.GetTitle(), sizeof())
+                    }
+                }
+            }
+        }*/
+        file.write((char*)sizeof(m_year), sizeof(size_t));
+        file.write((char*)&m_year, sizeof(m_year));
+
+        file.close();
     }
 
     void ArrayCalendar::Seed() {

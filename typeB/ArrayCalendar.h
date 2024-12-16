@@ -47,6 +47,8 @@ namespace PlannerCLI::typeB {
 
         void Sort(Date date) override;
 
+    protected:
+        inline static const std::string FILE_ARRAY_CALENDAR = "array_calendar.bin";
     private:
         //Handle 137 years. From 1970-2106.
         ArrayYear* m_year[137];
