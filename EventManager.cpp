@@ -79,13 +79,16 @@ namespace PlannerCLI {
 		return results;
 	}
 
-	void EventManager::UpdateEvent(Event event, Date date, size_t position)
+	void EventManager::UpdateEvent(Event event)
 	{
+		Date date = event.GetDate();
+		size_t position = event.GetPosition();
+
 		std::string id = date.GetString();
 
 		//m_event[id].at(position) = event;
 		for (auto& eventItem : m_event[id]) {
-			if (eventItem.GetID() == position)
+			if (eventItem.GetPosition() == position)
 				eventItem = event;
 		}
 	}

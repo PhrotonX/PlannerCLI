@@ -22,6 +22,8 @@ namespace PlannerCLI::typeB {
         int month = date.GetMonth().GetValueN() - 1;
         int day = date.GetDay().GetValue() - 1;
 
+        event.SetDate(date);
+
         m_year[year]->GetMonth(month)->GetDay(day).AddEvent(event);
     }
 
@@ -80,8 +82,10 @@ namespace PlannerCLI::typeB {
         return results;
     }
 
-    void ArrayCalendar::UpdateEvent(Event event, Date date, size_t position)
+    void ArrayCalendar::UpdateEvent(Event event)
     {
+        Date date = event.GetDate();
+
         int year = date.GetYear().GetValue() - ArrayYear::MIN_YEAR_UNIX;
         int month = date.GetMonth().GetValueN() - 1;
         int day = date.GetDay().GetValue() - 1;

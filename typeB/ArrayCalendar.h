@@ -31,7 +31,7 @@ namespace PlannerCLI::typeB {
         std::vector<Event>& GetEventList(Date date) override;
         void RemoveEvent(Date date, size_t position) override;
         std::vector<Event> SearchEvent(const std::string& query) override;
-        void UpdateEvent(Event event, Date date, size_t position) override;
+        void UpdateEvent(Event event) override;
 
         void Init();
 
