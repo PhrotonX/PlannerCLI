@@ -11,6 +11,12 @@ namespace PlannerCLI::typeB {
 
 	ArrayYear::~ArrayYear()
 	{
+		for (int month = 0; month < ArrayMonth::MONTHS; month++) {
+			if (m_month[month] != nullptr) {
+				delete m_month[month];
+				m_month[month] = nullptr;
+			}
+		}
 	}
 	ArrayMonth*& ArrayYear::GetMonth(int position)
 	{

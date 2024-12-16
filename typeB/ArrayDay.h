@@ -23,13 +23,17 @@ namespace PlannerCLI::typeB {
             return m_event[position];
         }
 
+        std::vector<Event>& GetEventList() {
+            return m_event;
+        }
+
         void UpdateEvent(Event event);
 
-        void DeleteEvent(Event event);
+        void DeleteEvent(size_t position);
        
 
     protected:
-        Event m_event[10];
+        std::vector<Event> m_event;
         int m_nEventSize = 0;
     };
 

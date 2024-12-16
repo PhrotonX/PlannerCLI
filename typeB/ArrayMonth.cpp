@@ -10,7 +10,11 @@ namespace PlannerCLI::typeB {
 
 	ArrayMonth::ArrayMonth(int month) : Month::Month(month)
 	{
-
+		
+	}
+	ArrayMonth::~ArrayMonth()
+	{
+		
 	}
 	void ArrayMonth::UpdateDay(ArrayDay day)
 	{

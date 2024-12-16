@@ -3,7 +3,12 @@
 namespace PlannerCLI {
 	EventController::EventController() {
 		m_eventView = nullptr;
-		m_eventManager = new EventManager();
+
+		if (!Settings::ArrayCalendar)
+			m_eventManager = new EventManager();
+		else
+			m_eventManager = new ArrayCalendar();
+
 		m_addEventController = new AddEventController();
 		m_bIsSearching = false;
 	}
@@ -149,8 +154,9 @@ namespace PlannerCLI {
 	{
 		Event event = m_event.at(position);
 		Date date = event.GetDate();
+
 		m_addEventController->HandleInput(event, date, [&]() {
-			m_eventManager->UpdateEvent(event, date, event.GetPosition());
+			m_eventManager->UpdateEvent(event);
 			m_eventManager->Sort(date);
 			if(m_bIsSearching)
 				m_event = m_eventManager->SearchEvent(m_strSearchQuery);
