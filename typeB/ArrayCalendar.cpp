@@ -61,10 +61,11 @@ namespace PlannerCLI::typeB {
         int count = 0;
 
         for (auto& year : m_year) {
-            for (int month = 1; month <= ArrayMonth::MAX_MONTH_LENGTH; month++) {
-                int monthLength = year->GetMonth(month - 1)->GetMonthSize();
-                for (int day = 1; day <= monthLength; day++) {
-                    for (auto& eventItem : year->GetMonth(month - 1)->GetDay(day - 1).GetEventList()) {
+            if (year == nullptr) continue;
+            for (int month = 0; month < ArrayMonth::MONTHS; month++) {
+                int monthLength = year->GetMonth(month)->GetMonthSize();
+                for (int day = 0; day < monthLength; day++) {
+                    for (auto& eventItem : year->GetMonth(month)->GetDay(day).GetEventList()) {
                         if (eventItem.GetTitle().find(query) != std::string::npos) {
                             results.push_back(eventItem);
 
@@ -189,7 +190,7 @@ namespace PlannerCLI::typeB {
                     ArrayMonth* month = new ArrayMonth(j + 1);
                     if(Settings::DebugMode) std::cout << "Month: " << month->GetValueN() << " " << month->GetMonthName() << std::endl;
                     int monthSize = Month::CalculateMonthLength(month->GetValueN(), m_year[i - ArrayYear::MIN_YEAR_UNIX]->IsLeapYear());
-                    month->SetMonthLength(monthSize);
+                    month->SetMonthSize(monthSize);
                     for(int k = 0; k < monthSize; k++){
                         ArrayDay day= ArrayDay(k + 1);
                         DayOfTheWeek dayOfTheWeek;
@@ -221,7 +222,7 @@ namespace PlannerCLI::typeB {
                     ArrayMonth* month = m_year[i - ArrayYear::MIN_YEAR_UNIX]->GetMonth(j);
                     std::cout << "Month: " << j << std::endl;
                     int monthSize = Month::CalculateMonthLength(month->GetValueN(), m_year[i - ArrayYear::MIN_YEAR_UNIX]->IsLeapYear());
-                    month->SetMonthLength(monthSize);
+                    month->SetMonthSize(monthSize);
                     for (int k = 0; k < monthSize; k++) {
                         std::cout << m_year[i - ArrayYear::MIN_YEAR_UNIX]->GetValue() << ", " << month->GetMonthName() << " " << month->GetDay(k).GetValue() << " " << month->GetDay(k).GetDayOfTheWeek().GetName() << std::endl;
                     }
