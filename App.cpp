@@ -6,6 +6,7 @@ namespace PlannerCLI{
     App::App()
     {
         //ctor 
+        m_calendarController = new CalendarController();
         m_settingsController = new SettingsController();
     }
 
@@ -21,7 +22,7 @@ namespace PlannerCLI{
     }
 
     void App::Run(){
-        int choice = 0;
+        char choice = 0;
         do{
             //Replace with either Mouse click or Arrow keys
             std::cout << "ษอออออออออออออออออออออออออออป" << std::endl;
@@ -33,25 +34,29 @@ namespace PlannerCLI{
             std::cout << "บ   ======================  บ" << std::endl;
             std::cout << "บ   1. Show Calendar        บ" << std::endl;
             std::cout << "บ   2. Save Information     บ" << std::endl;
-            std::cout << "บ   3. Settings             บ" << std::endl;
-            std::cout << "บ   4. Help                 บ" << std::endl;
-            std::cout << "บ   5. Exit                 บ" << std::endl;
+            std::cout << "บ   3. Load Information     บ" << std::endl;
+            std::cout << "บ   4. Settings             บ" << std::endl;
+            std::cout << "บ   5. Help                 บ" << std::endl;
+            std::cout << "บ   6. Exit                 บ" << std::endl;
             std::cout << "บ                           บ" << std::endl;
             std::cout << "ศอออออออออออออออออออออออออออผ" << std::endl;
-            std::cout << "Choice: ";
+            std::cout << "Press keys 1-6 to navigate: ";
 
-            std::cin >> choice;
-            std::cin.ignore();
-
-            switch(choice){
+            switch(_getch()){
             case APP_SHOW_CALENDAR:
-                m_calendarController = new CalendarController();
-                m_calendarController->Index();
-                m_calendarController->HandleInput();
                 
+                m_calendarController->Index();
+                
+                break;
+            case APP_SAVE_INFORMATION:
+                
+                break;
+            case APP_LOAD_INFORMATION:
                 break;
             case APP_SETTINGS:
                 m_settingsController->Index();
+                break;
+            case APP_HELP:
                 break;
             case APP_EXIT:
                 //@TODO: Add exit message here.
