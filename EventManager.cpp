@@ -29,7 +29,7 @@ namespace PlannerCLI {
 	{
 		std::string id = date.GetString();
 
-		if (m_event.count(id) != 0) {
+		if (m_event.count(id) != 0) { //Checks if a key in the map exists.
 			return m_event[id].at(position);
 		}
 		else {
@@ -66,10 +66,10 @@ namespace PlannerCLI {
 			for (auto& eventItem : mapItem.second) {
 				if (eventItem.GetTitle().find(query) != std::string::npos) {
 					results.push_back(eventItem);
+
+					count++;
 				}
 			}
-
-			count++;
 		}
 
 		if (count <= 0) {
