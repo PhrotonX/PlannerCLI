@@ -16,15 +16,15 @@ namespace PlannerCLI {
 		EventManager();
 		~EventManager() override{}
 
-		void AddEvent(Event event, Date date);
-		Event& GetEvent(Date date, size_t position);
-		std::vector<Event>& GetEventList(Date date);
+		virtual void AddEvent(Event event, Date date);
+		virtual Event& GetEvent(Date date, size_t position);
+		virtual std::vector<Event>& GetEventList(Date date);
 		std::map<std::string, std::vector<Event>>& GetAllEvents() {
 			return m_event;
 		}
-		void RemoveEvent(Date date, size_t position);
-		std::vector<Event> SearchEvent(const std::string& query);
-		void UpdateEvent(Event event, Date date, size_t position);
+		virtual void RemoveEvent(Date date, size_t position);
+		virtual std::vector<Event> SearchEvent(const std::string& query);
+		virtual void UpdateEvent(Event event, Date date, size_t position);
 
 		void Save() override {}
 		void Sort(Date date);
@@ -33,6 +33,7 @@ namespace PlannerCLI {
 		//@NOTE: Very problematic!
 		std::map<std::string, std::vector<Event>> m_event;
 		
+	protected:
 		NullEvent m_nullEvent;
 		std::vector<Event> m_nullEvents;
 	};
