@@ -6,6 +6,7 @@
 #include "../Date.h"
 #include "../DayOfTheWeek.h"
 #include "../Settings.h"
+#include <sstream>
 #include <iostream>
 #include <ctime>
 #include <map>

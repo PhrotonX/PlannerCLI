@@ -102,28 +102,71 @@ namespace PlannerCLI::typeB {
     void ArrayCalendar::Load(){
         std::ifstream file;
         file.open(FILE_ARRAY_CALENDAR, std::ios::in);
-        size_t objectSize = 0;
-        file.read((char*)&objectSize, sizeof(size_t));
-        file.read((char*)&m_year, sizeof(m_year));
+
+        if (file.is_open()) {
+            Event eventItem;
+            do {
+                Event event;
+
+                std::string eventDate, title, description, location, startTime, endTime;
+                std::string position; //size_t
+                std::string id; //long
+                std::getline(file, eventDate);
+                std::getline(file, position);
+                std::getline(file, id);
+                std::getline(file, title);
+                std::getline(file, description);
+                std::getline(file, location);
+                std::getline(file, startTime);
+                std::getline(file, endTime);
+
+                Date date = Date(eventDate);
+                event.SetDate(date);
+
+                std::stringstream positionStream(position);
+                size_t nPosition;
+                positionStream >> nPosition;
+                event.SetPosition(nPosition);
+                
+                event.SetID(std::stol(id));
+                
+                event.SetTitle(title);
+                event.SetDescription(description);
+                event.SetLocation(location);
+                event.SetStartTime(Time(startTime));
+                event.SetEndTime(Time(endTime));
+                    
+            } while (!file.fail());
+        }
+
         file.close();
     }
 
     void ArrayCalendar::Save(){
         std::ofstream file;
         file.open(FILE_ARRAY_CALENDAR, std::ios::out | std::ios::binary | std::ios::trunc);
-        /*for (auto& year : m_year) {
-            if (year == nullptr) continue;
-            for (int month = 0; month < ArrayMonth::MONTHS; month++) {
-                int monthLength = year->GetMonth(month)->GetMonthSize();
-                for (int day = 0; day < monthLength; day++) {
-                    for (auto& eventItem : year->GetMonth(month)->GetDay(day).GetEventList()) {
-                        file.write(eventItem.GetTitle(), sizeof())
+        if (file.is_open()) {
+            for (auto& year : m_year) {
+                if (year == nullptr) continue;
+                for (int month = 0; month < ArrayMonth::MONTHS; month++) {
+                    int monthLength = year->GetMonth(month)->GetMonthSize();
+                    for (int day = 0; day < monthLength; day++) {
+                        for (auto& eventItem : year->GetMonth(month)->GetDay(day).GetEventList()) {
+                            file << eventItem.GetDate().GetString() << std::endl;
+                            file << eventItem.GetPosition() << std::endl;
+                            file << eventItem.GetID() << std::endl;
+                            file << eventItem.GetTitle() << std::endl;
+                            file << eventItem.GetDescription() << std::endl;
+                            file << eventItem.GetLocation() << std::endl;
+                            file << eventItem.GetStartTime().GetString() << std::endl;
+                            file << eventItem.GetEndTime().GetString() << std::endl;
+                            file << FILE_BREAK_LINE << std::endl;
+                        }
                     }
                 }
             }
-        }*/
-        file.write((char*)sizeof(m_year), sizeof(size_t));
-        file.write((char*)&m_year, sizeof(m_year));
+        }
+        
 
         file.close();
     }
