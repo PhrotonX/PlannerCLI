@@ -52,8 +52,20 @@ namespace PlannerCLI {
 	void EventManager::RemoveEvent(Date date, size_t position)
 	{
 		std::string id = date.GetString();
-
-		m_event[id].erase(m_event[id].begin() + position);
+		
+		if (m_event[id].size() > 1) {
+			size_t ctr = 0;
+			for (auto& event : m_event[id]) {
+				if (event.GetPosition() == position) {
+					ctr = event.GetPosition();
+				}
+			}
+			m_event[id].erase(m_event[id].begin() + ctr);
+		}
+		else {
+			//Avoid a crash when there is only 1 remaining element in a vector.
+			m_event[id].clear();
+		}
 	}
 
 	std::vector<Event> EventManager::SearchEvent(const std::string& query)
@@ -79,21 +91,22 @@ namespace PlannerCLI {
 		return results;
 	}
 
-	void EventManager::UpdateEvent(Event event, Date date, size_t position)
+	void EventManager::UpdateEvent(Event event)
 	{
+		Date date = event.GetDate();
+		size_t position = event.GetPosition();
+
 		std::string id = date.GetString();
 
 		//m_event[id].at(position) = event;
 		for (auto& eventItem : m_event[id]) {
-			if (eventItem.GetID() == position)
+			if (eventItem.GetPosition() == position)
 				eventItem = event;
 		}
 	}
 	void EventManager::Sort(Date date)
 	{
 		std::string id = date.GetString();
-
-		//bool swapped = false;
 
 		if (m_event[id].size() > 1) {
 			for (size_t i = 0; i < m_event[id].size() - 1; i++) {
@@ -102,13 +115,13 @@ namespace PlannerCLI {
 					Time upperTime = m_event[id].at(j + 1).GetStartTime();
 					if (lowerTime.GetHours() > upperTime.GetHours()) {
 						 std::swap(m_event[id].at(j), m_event[id].at(j + 1));
-						 //swapped = true;
 					}
 				}
-
-				/*if (!swapped)
-					break;*/
 			}
+		}
+
+		for (int i = 0; i < m_event[id].size(); i++) {
+			m_event[id].at(i).SetPosition(i);
 		}
 		
 	}

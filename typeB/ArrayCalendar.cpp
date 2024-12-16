@@ -22,6 +22,8 @@ namespace PlannerCLI::typeB {
         int month = date.GetMonth().GetValueN() - 1;
         int day = date.GetDay().GetValue() - 1;
 
+        event.SetDate(date);
+
         m_year[year]->GetMonth(month)->GetDay(day).AddEvent(event);
     }
 
@@ -59,10 +61,11 @@ namespace PlannerCLI::typeB {
         int count = 0;
 
         for (auto& year : m_year) {
-            for (int month = 1; month <= ArrayMonth::MAX_MONTH_LENGTH; month++) {
-                int monthLength = year->GetMonth(month - 1)->GetMonthSize();
-                for (int day = 1; day <= monthLength; day++) {
-                    for (auto& eventItem : year->GetMonth(month - 1)->GetDay(day - 1).GetEventList()) {
+            if (year == nullptr) continue;
+            for (int month = 0; month < ArrayMonth::MONTHS; month++) {
+                int monthLength = year->GetMonth(month)->GetMonthSize();
+                for (int day = 0; day < monthLength; day++) {
+                    for (auto& eventItem : year->GetMonth(month)->GetDay(day).GetEventList()) {
                         if (eventItem.GetTitle().find(query) != std::string::npos) {
                             results.push_back(eventItem);
 
@@ -80,8 +83,10 @@ namespace PlannerCLI::typeB {
         return results;
     }
 
-    void ArrayCalendar::UpdateEvent(Event event, Date date, size_t position)
+    void ArrayCalendar::UpdateEvent(Event event)
     {
+        Date date = event.GetDate();
+
         int year = date.GetYear().GetValue() - ArrayYear::MIN_YEAR_UNIX;
         int month = date.GetMonth().GetValueN() - 1;
         int day = date.GetDay().GetValue() - 1;
@@ -92,29 +97,6 @@ namespace PlannerCLI::typeB {
 	void ArrayCalendar::Init()
 	{
         Seed();
-
-        /*
-        m_navigatedDate = Date::GetCurrentDate();
-
-        m_year = std::move(currentDate->GetYear());
-        m_month = std::move(currentDate->GetMonth());
-        
-        Date* firstDayOfTheMonth = new Date(currentYear->GetValue(), currentMonth->GetValueN(), 1);
-        int firstDayOfTheMonth_dayOfTheWeek = firstDayOfTheMonth->CalculateDayOfTheWeek();
-
-        Month* month = new Month(currentMonth->GetValueN() - 1);
-        month->Populate(firstDayOfTheMonth_dayOfTheWeek, firstDayOfTheMonth->GetYear()->IsLeapYear());
-
-        int monthSize = month->GetMonthSize();
-        std::cout << "Month Size: " << monthSize << std::endl;
-        for (int i = 0; i < monthSize; i++) {
-            std::cout << month->GetMonthName() << " "
-                << month->GetDay(i)->GetValue() << ", "
-                << currentYear->GetValue() << " "
-                << month->GetDay(i)->GetDayOfTheWeekName() << std::endl;
-        }
-
-        return m_date;*/
 	}
 
     void ArrayCalendar::Seed() {
@@ -124,8 +106,8 @@ namespace PlannerCLI::typeB {
 
         int weekday = 0;
 
-        //unsigned int oldInt = 0; //Represents the first date of UNIX epoch.
-        //unsigned int newInt = -1; //Represents the last date of UNIX epoch.
+        //unsigned int oldInt = 0; //Represents the first date of UNIX epoch which is January 1, 1970.
+        //unsigned int newInt = -1; //Represents the last date of UNIX epoch which is February 7, 2106.
 
         unsigned int oldInt = 1577836800; //2020
         unsigned int newInt = 1893455999; //2029
@@ -136,11 +118,6 @@ namespace PlannerCLI::typeB {
 
         //Get current time
         time(&unixCurrentTime);
-
-        //std::cout << ctime_s(&unixTimeBegin) << " from " << unixTimeBegin << std::endl;
-        //std::cout << ctime_s(&unixCurrentTime) << " from " << unixCurrentTime << std::endl;
-        //std::cout << ctime_s(&unixTimeEnd) << " from " << unixTimeEnd << std::endl;
-
 
         //Min
         tm olderTime;
@@ -163,13 +140,8 @@ namespace PlannerCLI::typeB {
         maxYear += newerTime.tm_year;
         if (Settings::DebugMode) std::cout << "Max: " << maxYear << " year " << newerTime.tm_year + 1900 << std::endl;
 
-
         //Get the difference between the minimum year and maximum year.
         int length = (maxYear - minYear) + 1;
-
-        //Allocate a dynamic array (pointer to an array of pointers to a year object) with the size of the difference between
-        //the minimum year and the maximum year.
-        //m_year = (Year**)calloc(length, sizeof(Year**));
 
         //Set current time data into Year objects.
         if(currentYear <= maxYear){
@@ -185,7 +157,7 @@ namespace PlannerCLI::typeB {
                     ArrayMonth* month = new ArrayMonth(j + 1);
                     if(Settings::DebugMode) std::cout << "Month: " << month->GetValueN() << " " << month->GetMonthName() << std::endl;
                     int monthSize = Month::CalculateMonthLength(month->GetValueN(), m_year[i - ArrayYear::MIN_YEAR_UNIX]->IsLeapYear());
-                    month->SetMonthLength(monthSize);
+                    month->SetMonthSize(monthSize);
                     for(int k = 0; k < monthSize; k++){
                         ArrayDay day= ArrayDay(k + 1);
                         DayOfTheWeek dayOfTheWeek;
@@ -201,14 +173,6 @@ namespace PlannerCLI::typeB {
                 }
 
             }
-        }else{
-            //Reallocate the dynamic array
-            /*m_year = (Year**)realloc(m_year, 9999 * sizeof(int));
-            for(int i = minYear; i <= 9999; i++){
-                m_year[i - ArrayYear::MIN_YEAR_UNIX] = new Year(i);
-            }*/
-            
-                //@TODO: Add message for unsupported years (year 2106 and beyond).
         }
 
         if (Settings::DebugMode) {
@@ -217,7 +181,7 @@ namespace PlannerCLI::typeB {
                     ArrayMonth* month = m_year[i - ArrayYear::MIN_YEAR_UNIX]->GetMonth(j);
                     std::cout << "Month: " << j << std::endl;
                     int monthSize = Month::CalculateMonthLength(month->GetValueN(), m_year[i - ArrayYear::MIN_YEAR_UNIX]->IsLeapYear());
-                    month->SetMonthLength(monthSize);
+                    month->SetMonthSize(monthSize);
                     for (int k = 0; k < monthSize; k++) {
                         std::cout << m_year[i - ArrayYear::MIN_YEAR_UNIX]->GetValue() << ", " << month->GetMonthName() << " " << month->GetDay(k).GetValue() << " " << month->GetDay(k).GetDayOfTheWeek().GetName() << std::endl;
                     }
@@ -227,6 +191,28 @@ namespace PlannerCLI::typeB {
                 std::cout << "\n";
             }
         }
+    }
+
+    void ArrayCalendar::Sort(Date date)
+    {
+        std::vector<Event> event = GetEventList(date);
+
+        if (event.size() > 1) {
+            for (size_t i = 0; i < event.size() - 1; i++) {
+                for (size_t j = i; j < event.size() - 1; j++) {
+                    Time lowerTime = event.at(j).GetStartTime();
+                    Time upperTime = event.at(j + 1).GetStartTime();
+                    if (lowerTime.GetHours() > upperTime.GetHours()) {
+                        std::swap(event.at(j), event.at(j + 1));
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < event.size(); i++) {
+            event.at(i).SetPosition(i);
+        }
+
     }
 
 }

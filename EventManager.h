@@ -24,10 +24,10 @@ namespace PlannerCLI {
 		}
 		virtual void RemoveEvent(Date date, size_t position);
 		virtual std::vector<Event> SearchEvent(const std::string& query);
-		virtual void UpdateEvent(Event event, Date date, size_t position);
+		virtual void UpdateEvent(Event event);
 
 		void Save() override {}
-		void Sort(Date date);
+		virtual void Sort(Date date);
 
 	private:
 		//@NOTE: Very problematic!

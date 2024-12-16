@@ -108,6 +108,10 @@ namespace PlannerCLI{
 
             void SetMonth(int month);
 
+            void SetMonthSize(const int& monthSize) {
+                m_nMonthSize = monthSize;
+            }
+
         private:
             eMonth m_month;
 
