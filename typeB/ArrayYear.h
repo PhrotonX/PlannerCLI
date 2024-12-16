@@ -10,6 +10,9 @@ namespace PlannerCLI::typeB {
         ArrayYear(int year);
         ~ArrayYear() override;
 
+        /**
+            \param position The zero-based index position value.
+        */
         ArrayMonth*& GetMonth(int position);
 
         void SetMonth(ArrayMonth* month, int position);

@@ -8,6 +8,8 @@
 #include "../Settings.h"
 #include <iostream>
 #include <ctime>
+#include <map>
+#include <vector>
 
 namespace PlannerCLI::typeB {
     /**
@@ -15,30 +17,29 @@ namespace PlannerCLI::typeB {
         This class uses a type B variant or array variant of Year, Month, and Day. As the name implies,
         it uses 2D array to represent a calendar.
     */
-	class ArrayCalendar : private EventManager
+	class ArrayCalendar : public EventManager
 	{
     public:
-        //inline static const int MAX_YEAR = 2106;
-        //inline static const int MIN_YEAR = 1970;
+        inline static const int MAX_YEAR = 2106;
+        inline static const int MIN_YEAR = 1970;
 
         ArrayCalendar();
-        virtual ~ArrayCalendar();
+        ~ArrayCalendar() override;
 
-        void AddEvent(Event event) {
-            Date date = event.GetDate();
-            int year = date.GetYear().GetValue() - ArrayYear::BASE_YEAR;
-            int month = date.GetMonth().GetValueN();
-        }
+        void AddEvent(Event event, Date date) override;
+        Event& GetEvent(Date date, size_t position) override;
+        std::vector<Event>& GetEventList(Date date) override;
+        void RemoveEvent(Date date, size_t position) override;
+        std::vector<Event> SearchEvent(const std::string& query) override;
+        void UpdateEvent(Event event, Date date, size_t position) override;
 
         void Init();
 
         void Save() override{}
 
-        
-
         /**
-            \details Fill up data.
-            \deprecated
+            \details Fill up data, ranging from 2020-2029 for 30+ MB of RAM.
+            \remarks The loaded values can be changed into 1970-2106, but it uses 370MB+ of RAM.
         */
         void Seed();
 

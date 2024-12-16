@@ -12,13 +12,13 @@ namespace PlannerCLI::typeB {
 
 		ArrayMonth();
 		ArrayMonth(int month);
-		~ArrayMonth() override {}
+		~ArrayMonth() override;
 
 		/**
 			\brief Returns a reference to a day object.
 			\param day The zero-based index value.
 		*/
-		Day& GetDay(int day) {
+		ArrayDay& GetDay(int day) {
 			return m_day[day];
 		}
 

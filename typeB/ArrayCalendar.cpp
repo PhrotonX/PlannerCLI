@@ -3,16 +3,95 @@
 namespace PlannerCLI::typeB {
 	ArrayCalendar::ArrayCalendar()
 	{
-        Seed();
+        Init();
 	}
 
 	ArrayCalendar::~ArrayCalendar()
 	{
+        for (int year = 0; year < 137; year++) {
+            if (m_year[year] != nullptr) {
+                delete m_year[year];
+                m_year[year] = nullptr;
+            }
+        }
 	}
+
+    void ArrayCalendar::AddEvent(Event event, Date date) {
+        //Date date = event.GetDate();
+        int year = date.GetYear().GetValue() - ArrayYear::BASE_YEAR;
+        int month = date.GetMonth().GetValueN();
+        int day = date.GetDay().GetValue();
+
+        m_year[year - ArrayYear::BASE_YEAR]->GetMonth(month - 1)->GetDay(day - 1).AddEvent(event);
+    }
+
+    Event& ArrayCalendar::GetEvent(Date date, size_t position)
+    {
+        int year = date.GetYear().GetValue() - ArrayYear::BASE_YEAR;
+        int month = date.GetMonth().GetValueN();
+        int day = date.GetDay().GetValue();
+
+        return m_year[year - ArrayYear::BASE_YEAR]->GetMonth(month - 1)->GetDay(day - 1).GetEvent(position);
+    }
+
+    std::vector<Event>& ArrayCalendar::GetEventList(Date date)
+    {
+        int year = date.GetYear().GetValue() - ArrayYear::BASE_YEAR;
+        int month = date.GetMonth().GetValueN();
+        int day = date.GetDay().GetValue();
+
+        return m_year[year - ArrayYear::BASE_YEAR]->GetMonth(month - 1)->GetDay(day - 1).GetEventList();
+    }
+
+    void ArrayCalendar::RemoveEvent(Date date, size_t position)
+    {
+        int year = date.GetYear().GetValue() - ArrayYear::BASE_YEAR;
+        int month = date.GetMonth().GetValueN();
+        int day = date.GetDay().GetValue();
+
+        m_year[year - ArrayYear::BASE_YEAR]->GetMonth(month - 1)->GetDay(day - 1).DeleteEvent(position);
+    }
+
+    std::vector<Event> ArrayCalendar::SearchEvent(const std::string& query)
+    {
+        std::vector<Event> results;
+
+        int count = 0;
+
+        for (auto& year : m_year) {
+            for (int month = 1; month <= ArrayMonth::MAX_MONTH_LENGTH; month++) {
+                int monthLength = year->GetMonth(month - 1)->GetMonthSize();
+                for (int day = 1; day <= monthLength; day++) {
+                    for (auto& eventItem : year->GetMonth(month - 1)->GetDay(day - 1).GetEventList()) {
+                        if (eventItem.GetTitle().find(query) != std::string::npos) {
+                            results.push_back(eventItem);
+
+                            count++;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (count <= 0) {
+            results.push_back(m_nullEvent);
+        }
+
+        return results;
+    }
+
+    void ArrayCalendar::UpdateEvent(Event event, Date date, size_t position)
+    {
+        int year = date.GetYear().GetValue() - ArrayYear::BASE_YEAR;
+        int month = date.GetMonth().GetValueN();
+        int day = date.GetDay().GetValue();
+
+        m_year[year - ArrayYear::BASE_YEAR]->GetMonth(month - 1)->GetDay(day - 1).UpdateEvent(event);
+    }
 
 	void ArrayCalendar::Init()
 	{
-        
+        Seed();
 
         /*
         m_navigatedDate = Date::GetCurrentDate();
