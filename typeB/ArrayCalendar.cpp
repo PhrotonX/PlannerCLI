@@ -97,29 +97,6 @@ namespace PlannerCLI::typeB {
 	void ArrayCalendar::Init()
 	{
         Seed();
-
-        /*
-        m_navigatedDate = Date::GetCurrentDate();
-
-        m_year = std::move(currentDate->GetYear());
-        m_month = std::move(currentDate->GetMonth());
-        
-        Date* firstDayOfTheMonth = new Date(currentYear->GetValue(), currentMonth->GetValueN(), 1);
-        int firstDayOfTheMonth_dayOfTheWeek = firstDayOfTheMonth->CalculateDayOfTheWeek();
-
-        Month* month = new Month(currentMonth->GetValueN() - 1);
-        month->Populate(firstDayOfTheMonth_dayOfTheWeek, firstDayOfTheMonth->GetYear()->IsLeapYear());
-
-        int monthSize = month->GetMonthSize();
-        std::cout << "Month Size: " << monthSize << std::endl;
-        for (int i = 0; i < monthSize; i++) {
-            std::cout << month->GetMonthName() << " "
-                << month->GetDay(i)->GetValue() << ", "
-                << currentYear->GetValue() << " "
-                << month->GetDay(i)->GetDayOfTheWeekName() << std::endl;
-        }
-
-        return m_date;*/
 	}
 
     void ArrayCalendar::Seed() {
@@ -129,8 +106,8 @@ namespace PlannerCLI::typeB {
 
         int weekday = 0;
 
-        //unsigned int oldInt = 0; //Represents the first date of UNIX epoch.
-        //unsigned int newInt = -1; //Represents the last date of UNIX epoch.
+        //unsigned int oldInt = 0; //Represents the first date of UNIX epoch which is January 1, 1970.
+        //unsigned int newInt = -1; //Represents the last date of UNIX epoch which is February 7, 2106.
 
         unsigned int oldInt = 1577836800; //2020
         unsigned int newInt = 1893455999; //2029
@@ -141,11 +118,6 @@ namespace PlannerCLI::typeB {
 
         //Get current time
         time(&unixCurrentTime);
-
-        //std::cout << ctime_s(&unixTimeBegin) << " from " << unixTimeBegin << std::endl;
-        //std::cout << ctime_s(&unixCurrentTime) << " from " << unixCurrentTime << std::endl;
-        //std::cout << ctime_s(&unixTimeEnd) << " from " << unixTimeEnd << std::endl;
-
 
         //Min
         tm olderTime;
@@ -168,13 +140,8 @@ namespace PlannerCLI::typeB {
         maxYear += newerTime.tm_year;
         if (Settings::DebugMode) std::cout << "Max: " << maxYear << " year " << newerTime.tm_year + 1900 << std::endl;
 
-
         //Get the difference between the minimum year and maximum year.
         int length = (maxYear - minYear) + 1;
-
-        //Allocate a dynamic array (pointer to an array of pointers to a year object) with the size of the difference between
-        //the minimum year and the maximum year.
-        //m_year = (Year**)calloc(length, sizeof(Year**));
 
         //Set current time data into Year objects.
         if(currentYear <= maxYear){
@@ -206,14 +173,6 @@ namespace PlannerCLI::typeB {
                 }
 
             }
-        }else{
-            //Reallocate the dynamic array
-            /*m_year = (Year**)realloc(m_year, 9999 * sizeof(int));
-            for(int i = minYear; i <= 9999; i++){
-                m_year[i - ArrayYear::MIN_YEAR_UNIX] = new Year(i);
-            }*/
-            
-                //@TODO: Add message for unsupported years (year 2106 and beyond).
         }
 
         if (Settings::DebugMode) {
