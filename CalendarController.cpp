@@ -84,11 +84,11 @@ namespace PlannerCLI{
     }
 
     void CalendarController::Load() {
-
+        m_eventController->Load();
     }
     
     void CalendarController::Store(){
-
+        m_eventController->Store();
     }
 
 }

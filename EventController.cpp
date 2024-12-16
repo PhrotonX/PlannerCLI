@@ -150,12 +150,12 @@ namespace PlannerCLI {
 		m_bIsSearching = false;
 	}
 
-	void EventController::Load()
-	{
+	void EventController::Load(){
+		m_eventManager->Load();
 	}
 
-	void EventController::Store()
-	{
+	void EventController::Store(){
+		m_eventManager->Save();
 	}
 
 	void EventController::Update(size_t position)

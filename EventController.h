@@ -33,6 +33,9 @@ namespace PlannerCLI {
         void Index();
         void Update(size_t position);
         void Delete(size_t position);
+        
+        EventManager* m_eventManager;
+        EventView* m_eventView;
 
     private:
         AddEventController* m_addEventController;
@@ -43,8 +46,7 @@ namespace PlannerCLI {
 
         std::vector<Event> m_event;
 
-        EventManager* m_eventManager;
-        EventView* m_eventView;
+        
 
         int m_nNavigation;
         int m_nEventNavigation;
