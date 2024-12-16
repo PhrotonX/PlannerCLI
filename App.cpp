@@ -22,7 +22,8 @@ namespace PlannerCLI{
     }
 
     void App::Run(){
-        char choice = 0;
+        bool run = true;
+        char choice = '0';
         do{
             //Replace with either Mouse click or Arrow keys
             std::cout << "ษอออออออออออออออออออออออออออป" << std::endl;
@@ -59,13 +60,14 @@ namespace PlannerCLI{
             case APP_HELP:
                 break;
             case APP_EXIT:
-                //@TODO: Add exit message here.
+                std::cout << "Exiting..." << std::endl;
+                run = false;
                 break;
             default:
                 break;
             }
 
             CLEAR_SCREEN;
-        }while(choice != APP_EXIT);
+        }while(run);
     }
 }
