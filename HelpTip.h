@@ -12,14 +12,14 @@ private:
 
 public:
  
-    HelpTip() : id(0), message("") {}
-    HelpTip(int id, const std::string& message) : id(id), message(message) {}
+    HelpTip();
+    HelpTip(int id, const std::string& message) ;
 
-    int getId() const { return id; }
-    std::string getMessage() const { return message; }
+    int getId() const ;
+    std::string getMessage() const ;
 
-    void setId(int newid) { id = newid; }
-    void setMessage(const std::string& newmessage) { message = newmessage; }
+    void setId(int newid);
+    void setMessage(const std::string& newmessage);
 
 
 }; 
