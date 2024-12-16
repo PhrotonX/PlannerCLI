@@ -19,37 +19,37 @@ namespace PlannerCLI::typeB {
     void ArrayCalendar::AddEvent(Event event, Date date) {
         //Date date = event.GetDate();
         int year = date.GetYear().GetValue() - ArrayYear::MIN_YEAR_UNIX;
-        int month = date.GetMonth().GetValueN();
-        int day = date.GetDay().GetValue();
+        int month = date.GetMonth().GetValueN() - 1;
+        int day = date.GetDay().GetValue() - 1;
 
-        m_year[year - ArrayYear::MIN_YEAR_UNIX]->GetMonth(month - 1)->GetDay(day - 1).AddEvent(event);
+        m_year[year]->GetMonth(month)->GetDay(day).AddEvent(event);
     }
 
     Event& ArrayCalendar::GetEvent(Date date, size_t position)
     {
         int year = date.GetYear().GetValue() - ArrayYear::MIN_YEAR_UNIX;
-        int month = date.GetMonth().GetValueN();
-        int day = date.GetDay().GetValue();
+        int month = date.GetMonth().GetValueN() - 1;
+        int day = date.GetDay().GetValue() - 1;
 
-        return m_year[year - ArrayYear::MIN_YEAR_UNIX]->GetMonth(month - 1)->GetDay(day - 1).GetEvent(position);
+        return m_year[year]->GetMonth(month)->GetDay(day).GetEvent(position);
     }
 
     std::vector<Event>& ArrayCalendar::GetEventList(Date date)
     {
         int year = date.GetYear().GetValue() - ArrayYear::MIN_YEAR_UNIX;
-        int month = date.GetMonth().GetValueN();
-        int day = date.GetDay().GetValue();
+        int month = date.GetMonth().GetValueN() - 1;
+        int day = date.GetDay().GetValue() - 1;
 
-        return m_year[year - ArrayYear::MIN_YEAR_UNIX]->GetMonth(month - 1)->GetDay(day - 1).GetEventList();
+        return m_year[year]->GetMonth(month)->GetDay(day).GetEventList();
     }
 
     void ArrayCalendar::RemoveEvent(Date date, size_t position)
     {
         int year = date.GetYear().GetValue() - ArrayYear::MIN_YEAR_UNIX;
-        int month = date.GetMonth().GetValueN();
-        int day = date.GetDay().GetValue();
+        int month = date.GetMonth().GetValueN() - 1;
+        int day = date.GetDay().GetValue() - 1;
 
-        m_year[year - ArrayYear::MIN_YEAR_UNIX]->GetMonth(month - 1)->GetDay(day - 1).DeleteEvent(position);
+        m_year[year]->GetMonth(month)->GetDay(day).DeleteEvent(position);
     }
 
     std::vector<Event> ArrayCalendar::SearchEvent(const std::string& query)
@@ -83,10 +83,10 @@ namespace PlannerCLI::typeB {
     void ArrayCalendar::UpdateEvent(Event event, Date date, size_t position)
     {
         int year = date.GetYear().GetValue() - ArrayYear::MIN_YEAR_UNIX;
-        int month = date.GetMonth().GetValueN();
-        int day = date.GetDay().GetValue();
+        int month = date.GetMonth().GetValueN() - 1;
+        int day = date.GetDay().GetValue() - 1;
 
-        m_year[year - ArrayYear::MIN_YEAR_UNIX]->GetMonth(month - 1)->GetDay(day - 1).UpdateEvent(event);
+        m_year[year]->GetMonth(month)->GetDay(day).UpdateEvent(event);
     }
 
 	void ArrayCalendar::Init()
