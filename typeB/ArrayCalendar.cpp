@@ -99,6 +99,14 @@ namespace PlannerCLI::typeB {
         Seed();
 	}
 
+    void ArrayCalendar::Load()
+    {
+    }
+
+    void ArrayCalendar::Save()
+    {
+    }
+
     void ArrayCalendar::Seed() {
         //Add 1900 years to each of these variable since tm_year of tm structure
         //uses year 1900 as a base year.

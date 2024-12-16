@@ -35,7 +35,9 @@ namespace PlannerCLI::typeB {
 
         void Init();
 
-        void Save() override{}
+        void Load() override;
+
+        void Save() override;
 
         /**
             \details Fill up data, ranging from 2020-2029 for 30+ MB of RAM.

@@ -53,6 +53,8 @@ namespace PlannerCLI{
                 
                 break;
             case APP_LOAD_INFORMATION:
+                std::cout << "Loading..." << std::endl;
+                
                 break;
             case APP_SETTINGS:
                 m_settingsController->Index();

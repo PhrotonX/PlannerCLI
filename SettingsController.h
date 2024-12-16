@@ -15,6 +15,9 @@ namespace PlannerCLI {
 		void Index() override;
 		void HandleInput() override;
 
+		void Load() override;
+		void Store() override;
+
 	private:
 		SettingsView* m_pSettingsView;
 	};

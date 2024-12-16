@@ -25,6 +25,8 @@ namespace PlannerCLI {
         void Index(Date date);
         void Search();
         
+        void Load() override;
+        void Store() override;
 
     protected:
         void Create(Date date);

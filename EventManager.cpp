@@ -104,6 +104,13 @@ namespace PlannerCLI {
 				eventItem = event;
 		}
 	}
+	void EventManager::Load()
+	{
+		
+	}
+	void EventManager::Save()
+	{
+	}
 	void EventManager::Sort(Date date)
 	{
 		std::string id = date.GetString();

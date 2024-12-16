@@ -12,7 +12,12 @@ namespace PlannerCLI{
             virtual ~Model();
 
             /**
-                \details Save model data.
+                \brief Load information from a file.
+            */
+            virtual void Load() = 0;
+
+            /**
+                \details Save information into a file.
             */
             virtual void Save() = 0;
         private:

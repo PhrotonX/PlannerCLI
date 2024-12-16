@@ -26,7 +26,8 @@ namespace PlannerCLI {
 		virtual std::vector<Event> SearchEvent(const std::string& query);
 		virtual void UpdateEvent(Event event);
 
-		void Save() override {}
+		void Load() override;
+		void Save() override;
 		virtual void Sort(Date date);
 
 	private:
