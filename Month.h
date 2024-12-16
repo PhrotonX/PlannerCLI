@@ -10,6 +10,9 @@ namespace PlannerCLI{
     class Month
     {
         public:
+
+            inline static const int MONTHS = 12;
+        
             enum eMonth{
                 January,
                 February,
@@ -104,6 +107,10 @@ namespace PlannerCLI{
             }
 
             void SetMonth(int month);
+
+            void SetMonthSize(const int& monthSize) {
+                m_nMonthSize = monthSize;
+            }
 
         private:
             eMonth m_month;

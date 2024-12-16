@@ -38,7 +38,7 @@ namespace PlannerCLI{
 
             void Save() override;
 
-        private:
+        protected:
             Date m_navigatedDate;
 
             int m_nNavigatedYear;

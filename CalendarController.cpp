@@ -80,7 +80,7 @@ namespace PlannerCLI{
         m_calendar->OnNavigateInit();
         m_calendarView->Display();
 
-        //m_calendar->Debug();
+        if(Settings::DebugMode) m_calendar->Debug();
     }
 
     /*

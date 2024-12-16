@@ -5,6 +5,7 @@
 #include "Calendar.h"
 #include "Date.h"
 #include "EventController.h"
+#include "Settings.h"
 
 namespace PlannerCLI{
     class CalendarController : public Controller

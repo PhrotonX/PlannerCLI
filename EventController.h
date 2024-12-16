@@ -4,10 +4,14 @@
 #include "Event.h"
 #include "EventView.h"
 #include "EventManager.h"
+#include "typeB/ArrayCalendar.h"
 #include "AddEventController.h"
 #include "SearchEventView.h"
 #include "Date.h"
+#include "Settings.h"
 #include <functional>
+
+using namespace PlannerCLI::typeB;
 
 namespace PlannerCLI {
     class EventController : public Controller

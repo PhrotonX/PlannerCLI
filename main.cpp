@@ -5,9 +5,11 @@ using namespace std;
 
 int main()
 {
-    PlannerCLI::App app;
-    app.Run();
-    app.Close();
+    PlannerCLI::App* app = new PlannerCLI::App();
+    app->Run();
+
+    delete app;
+    app = nullptr;
 
     return 0;
 }

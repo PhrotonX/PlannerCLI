@@ -105,6 +105,27 @@
     <ClInclude Include="InputStringView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="typeB\ArrayDay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="typeB\ArrayYear.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="typeB\ArrayCalendar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="typeB\ArrayMonth.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingsController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingsView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CalendarController.cpp">
@@ -195,6 +216,27 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InputStringView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="typeB\ArrayDay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="typeB\ArrayYear.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="typeB\ArrayCalendar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="typeB\ArrayMonth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
