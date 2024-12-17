@@ -14,7 +14,7 @@ namespace PlannerCLI {
 
 	Time::Time(const std::string strValue)
 	{
-		std::string strHour = strValue.substr(0, 1);
+		std::string strHour = strValue.substr(0, 2);
 		std::string strMinute = strValue.substr(3, 4);
 
 		SetHours(std::stoi(strHour));

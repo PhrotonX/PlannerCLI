@@ -104,14 +104,17 @@ namespace PlannerCLI::typeB {
         file.open(FILE_ARRAY_CALENDAR, std::ios::in);
 
         if (file.is_open()) {
-            Event eventItem;
-            do {
+            while(!file.eof()) {
                 Event event;
 
                 std::string eventDate, title, description, location, startTime, endTime;
                 std::string position; //size_t
                 std::string id; //long
+                std::string line;
                 std::getline(file, eventDate);
+
+                if (eventDate == "") break;
+
                 std::getline(file, position);
                 std::getline(file, id);
                 std::getline(file, title);
@@ -119,6 +122,7 @@ namespace PlannerCLI::typeB {
                 std::getline(file, location);
                 std::getline(file, startTime);
                 std::getline(file, endTime);
+                std::getline(file, line);
 
                 Date date = Date(eventDate);
                 event.SetDate(date);
@@ -135,8 +139,13 @@ namespace PlannerCLI::typeB {
                 event.SetLocation(location);
                 event.SetStartTime(Time(startTime));
                 event.SetEndTime(Time(endTime));
-                    
-            } while (!file.fail());
+
+                int year = date.GetYear().GetValue() - ArrayYear::MIN_YEAR_UNIX;
+                int month = date.GetMonth().GetValueN() - 1;
+                int day = date.GetDay().GetValue() - 1;
+
+                m_year[year]->GetMonth(month)->GetDay(day).AddEvent(event);
+            }
         }
 
         file.close();

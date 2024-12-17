@@ -11,7 +11,7 @@ namespace PlannerCLI{
     class Model
     {
         public:
-            inline static const std::string FILE_BREAK_LINE = "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+            inline static const std::string FILE_BREAK_LINE = "========================";
             Model();
             virtual ~Model();
 
