@@ -18,7 +18,7 @@ namespace PlannerCLI {
         bool Show();
 
     protected:
-        void DisplayHelpInfo() override{}
+        void DisplayHelpInfo() override;
 
     private:
         void Display() {}

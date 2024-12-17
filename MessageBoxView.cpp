@@ -28,13 +28,21 @@ namespace PlannerCLI {
 
 			DrawBottomBorder();
 
+			DisplayHelpInfo();
+
 			switch (_getch()) {
-			default:
+			case _KEY_ENTER:
+			case _KEY_ESC:
 				run = false;
 				return true;
 			}
 		} while (run);
 		
+	}
+	void MessageBoxView::DisplayHelpInfo()
+	{
+		DrawSingleLine();
+		std::cout << "Esc - Back\t\tEnter - OK" << std::endl;
 	}
 }
 
