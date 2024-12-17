@@ -22,10 +22,9 @@ namespace PlannerCLI {
 
 			DrawConnectingBorder();
 
-			int navValue = 0;
-			Button okButton = Button(&navValue, 0);
-
-			okButton.SetText("[  OK  ]");
+			SetColor(ANSI_BACKGROUND_COLOR_BLUE, ANSI_TEXT_COLOR_BRIGHT_WHITE);
+			DrawText("[  OK  ]");
+			SetColorDefaults();
 
 			DrawBottomBorder();
 
