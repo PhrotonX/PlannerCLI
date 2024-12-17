@@ -7,6 +7,7 @@ namespace PlannerCLI{
     {
         //ctor
         m_settingsController = new SettingsController();
+        m_toDoController = new ToDoController();
     }
 
     App::~App()
@@ -18,11 +19,13 @@ namespace PlannerCLI{
         if(m_calendarControllerTypeA != nullptr) delete m_calendarControllerTypeA;
         if(m_calendarControllerTypeB != nullptr) delete m_calendarControllerTypeB;
         if(m_settingsController != nullptr) delete m_settingsController;
+        if(m_toDoController != nullptr) delete m_toDoController;
 
         m_arrayCalendar = nullptr;
         m_calendarControllerTypeA = nullptr;
         m_calendarControllerTypeB = nullptr;
         m_settingsController = nullptr;
+        m_toDoController = nullptr;
     }
 
     void App::Run(){
@@ -49,25 +52,31 @@ namespace PlannerCLI{
             std::cout << "บ   Choose an option:       บ" << std::endl;
             std::cout << "บ   ======================  บ" << std::endl;
             std::cout << "บ   1. Show Calendar        บ" << std::endl;
-            std::cout << "บ   2. Load Information     บ" << std::endl;
-            std::cout << "บ   3. Save Information     บ" << std::endl;
-            std::cout << "บ   4. Settings             บ" << std::endl;
-            std::cout << "บ   5. Help                 บ" << std::endl;
-            std::cout << "บ   6. Exit                 บ" << std::endl;
+            std::cout << "บ   2. Show To Do List      บ" << std::endl;
+            std::cout << "บ   3. Load Information     บ" << std::endl;
+            std::cout << "บ   4. Save Information     บ" << std::endl;
+            std::cout << "บ   5. Settings             บ" << std::endl;
+            std::cout << "บ   6. Help                 บ" << std::endl;
+            std::cout << "บ   7. Exit                 บ" << std::endl;
             std::cout << "บ                           บ" << std::endl;
             std::cout << "ศอออออออออออออออออออออออออออผ" << std::endl;
-            std::cout << "Press keys 1-6 to navigate: ";
+            std::cout << "Press keys 1-7 to navigate: ";
 
             switch(_getch()){
             case APP_SHOW_CALENDAR:
                 m_calendarController->Index();
                 break;
+            case APP_SHOW_TODOLIST:
+                m_toDoController->Index();
+                break;
             case APP_LOAD_INFORMATION:
                 std::cout << "Loading..." << std::endl;
                 m_calendarController->Load();
+                m_toDoController->Load();
                 break;
             case APP_SAVE_INFORMATION:
                 m_calendarController->Store();
+                m_toDoController->Store();
                 break;
             case APP_SETTINGS:
                 m_settingsController->Index();
