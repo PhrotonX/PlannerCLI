@@ -1,0 +1,93 @@
+#include <iostream>
+#include "ToDoList.h"
+
+namespace PlannerCLI {
+
+class ToDoListController {
+public:
+    void HandleInput() {
+        bool run = true;
+
+        while (run) {
+            std::cout << "\nTo-Do List Menu: \n";
+            std::cout << "1. Add Task\n";
+            std::cout << "2. View Task\n";
+            std::cout << "3. Update Task\n";
+            std::cout << "4. Display All Tasks\n";
+            std::cout << "5. Remove Task\n";
+            std::cout << "6. Exit\n";
+            std::cout << "Enter your choice: ";
+
+            int choice;
+            std::cin >> choice;
+            std::cin.ignore();
+
+            switch (choice) {
+                case 1:
+                    AddTask();
+                    break;
+                case 2:
+                    ViewTask();
+                    break;
+                case 3:
+                    UpdateTask();
+                    break;
+                case 4:
+                    DisplayAllTasks();
+                    break;
+                case 5:
+                    RemoveTask();
+                    break;
+                case 6:
+                    run = false;
+                    break;
+                default:
+                    std::cout << "Invalid. Please try again.";
+            }
+        }
+    }
+
+private:
+    ToDoList m_todoList;
+
+    void AddTask() {
+        std::string description;
+        int priority;
+
+        std::cout << "Enter task description: ";
+        std::getline(std::cin, description);
+
+        std::cout << "Enter task priority: ";
+        std::cin >> priority;
+        std::cin.ignore(); 
+
+        ToDo newTask(description, priority);
+        m_todoList.AddToDo(newTask);
+        std::cout << "Task added successfully.\n";
+    }
+
+    void ViewTask() {
+        ToDo task = m_todoList.ViewToDo();
+        std::cout << "Task: " << task.GetDescription() << " | Priority: " << task.GetPriority() << std::endl;
+    }
+
+    void UpdateTask() {
+        std::string newDescription;
+        std::cout << "Enter new description for the first task: ";
+        std::getline(std::cin, newDescription);
+
+        m_todoList.UpdateToDoDescription(newDescription);
+        std::cout << "Task updated successfully.\n";
+    }
+
+    void DisplayAllTasks() {
+        m_todoList.DisplayToDoList();
+    }
+
+    void RemoveTask() {
+        m_todoList.RemoveToDo();
+        std::cout << "First task removed.\n";
+    }
+};
+
+} 
