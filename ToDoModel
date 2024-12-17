@@ -1,0 +1,49 @@
+#include <queue>
+#include "ToDo.h"
+
+namespace PlannerCLI {
+
+class ToDoList {
+public:
+    
+    void AddToDo(ToDo todo) {
+        m_todoQueue.push(todo);
+    }
+
+    
+    void RemoveToDo() {
+        if (!m_todoQueue.empty()) {
+            m_todoQueue.pop();
+        }
+    }
+
+    
+    ToDo ViewToDo() {
+        if (!m_todoQueue.empty()) {
+            return m_todoQueue.front();
+        }
+        return ToDo("No task", 0); 
+    }
+
+    
+    void UpdateToDoDescription(std::string newDescription) {
+        if (!m_todoQueue.empty()) {
+            m_todoQueue.front().SetDescription(newDescription);
+        }
+    }
+
+    
+    void DisplayToDoList() {
+        std::queue<ToDo> tempQueue = m_todoQueue;
+        while (!tempQueue.empty()) {
+            ToDo task = tempQueue.front();
+            std::cout << "Task: " << task.GetDescription() << " | Priority: " << task.GetPriority() << std::endl;
+            tempQueue.pop();
+        }
+    }
+
+private:
+    std::queue<ToDo> m_todoQueue;
+};
+
+}
