@@ -1,82 +1,26 @@
 #include <iostream>
-#include <queue>
+#include <stack>
 #include <string>
 
 using namespace std;
 
-// Define the Help Entity using a struct
-struct HelpEntity {
-    int id;              // Unique ID for the help entity
-    string title;       // Title of the help article
-    string content;     // Detailed description or instructions
-    string category;    // Category of help (e.g., "Account", "Security")
-};
-
-// HelpManager class manages the help content and its flow
-class HelpManager {
-private:
-    HelpEntity helpContents[5];    // Array to store help content (5 entries)
-    queue<int> helpQueue;          // Queue to manage help content display order
-
-public:
-    // Constructor to initialize help content
-    HelpManager() {
-        // Initialize the help content
-        helpContents[0] = {1, "How to reset your password", "To reset your password, go to Settings > Account > Forgot Password.", "Account"};
-        helpContents[1] = {2, "Setting up Two-Factor Authentication", "Go to Security settings and enable Two-Factor Authentication.", "Security"};
-        helpContents[2] = {3, "Troubleshooting Network Issues", "Check your internet connection, restart your router, and ensure you're connected to a network.", "Troubleshooting"};
-        helpContents[3] = {4, "Creating a New Account", "Click on 'Sign Up', enter your details, and follow the on-screen instructions.", "Account"};
-        helpContents[4] = {5, "How to update your app", "Go to the app store, search for the app, and click 'Update' if available.", "App Management"};
-
-        // Enqueue all help items initially
-        for (int i = 0; i < 5; i++) {
-            helpQueue.push(i);  // Add index of each help content to the queue
-        }
-    }
-
-    // Method to display a help content by fetching it from the queue
-    void displayHelp() {
-        if (!helpQueue.empty()) {
-            int index = helpQueue.front();
-            helpQueue.pop();  // Remove the item from the queue
-            
-            // Display the help content
-            cout << "Help ID: " << helpContents[index].id << endl;
-            cout << "Title: " << helpContents[index].title << endl;
-            cout << "Content: " << helpContents[index].content << endl;
-            cout << "Category: " << helpContents[index].category << endl << endl;
-        } else {
-            cout << "No more help content available." << endl;
-        }
-    }
-
-    // Method to display all help content initially
-    void displayAllHelp() {
-        cout << "Displaying all Help Content: \n";
-        for (int i = 0; i < 5; i++) {
-            cout << "Help ID: " << helpContents[i].id << endl;
-            cout << "Title: " << helpContents[i].title << endl;
-            cout << "Content: " << helpContents[i].content << endl;
-            cout << "Category: " << helpContents[i].category << endl << endl;
-        }
-    }
-};
-
 int main() {
-    // Create an instance of HelpManager
-    HelpManager helpManager;
+    // Create a stack to store FAQs
+    stack<string> faqStack;
 
-    // Display all help content initially
-    helpManager.displayAllHelp();
+    // Push FAQs into the stack
+    faqStack.push("How to delete an event?");
+    faqStack.push("How to edit an event?");
+    faqStack.push("How to add an event?");
+    faqStack.push("How to view all upcoming events?");
+    faqStack.push("How to share an event with others?");
 
-    // Display help content one by one from the queue
-    cout << "Displaying Help Content from the Queue:\n";
-    helpManager.displayHelp();  // Display help ID 1
-    helpManager.displayHelp();  // Display help ID 2
-    helpManager.displayHelp();  // Display help ID 3
-    helpManager.displayHelp();  // Display help ID 4
-    helpManager.displayHelp();  // Display help ID 5
-    helpManager.displayHelp();  // No more content
+    // Display the FAQs in Last In, First Out (LIFO) order
+    cout << "Frequently Asked Questions (FAQs):" << endl;
+    while (!faqStack.empty()) {
+        cout << "- " << faqStack.top() << endl;  // Display the question
+        faqStack.pop();                         // Remove the question
+    }
 
     return 0;
 }
