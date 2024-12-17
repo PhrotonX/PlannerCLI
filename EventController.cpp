@@ -133,6 +133,14 @@ namespace PlannerCLI {
 		m_eventView = nullptr;
 	}
 
+	void EventController::IndexWidget(Date date) {
+		m_event = m_eventManager->GetEventList(date);
+		m_date = date;
+
+		EventView eventView;
+		eventView.DisplayWidget(m_event, date);
+	}
+
 	void EventController::Search() {
 		m_bIsSearching = true;
 

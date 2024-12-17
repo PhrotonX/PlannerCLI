@@ -25,8 +25,6 @@ namespace PlannerCLI{
         OnDisplayCalendarDays();
 
         OnDisplayBottomBorder();
-
-        DisplayHelpInfo();
     }
 
     void CalendarView::DisplayHelpInfo()

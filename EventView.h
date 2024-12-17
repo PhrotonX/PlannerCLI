@@ -26,6 +26,8 @@ namespace PlannerCLI {
 		*/
 		void Display(const std::vector<Event>& event, Date date, int* navigation, int* eventNavigation);
 
+		void DisplayWidget(const std::vector<Event>& event, Date date);
+
 		int GetNoOfEvents() const {
 			return m_nNoOfEvents;
 		}

@@ -23,6 +23,7 @@ namespace PlannerCLI {
         void HandleInput() override;
         
         void Index(Date date);
+        void IndexWidget(Date date);
         void Search();
         
         void Load() override;

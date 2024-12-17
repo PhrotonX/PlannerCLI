@@ -27,6 +27,8 @@ namespace PlannerCLI{
 
         do{
             m_calendarView->Display();
+            m_eventController->IndexWidget(*m_calendar->GetNavigatedDate());
+            m_calendarView->DisplayHelp();
 
             Date date;
 
@@ -68,8 +70,6 @@ namespace PlannerCLI{
                 }
                 break;
             }
-
-            
 
             //m_calendar->Debug();
 
