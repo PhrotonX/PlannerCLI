@@ -4,6 +4,7 @@
 #include "Model.h"
 #include "ToDo.h"
 #include <queue>
+#include <fstream>
 
 namespace PlannerCLI {
 
@@ -13,25 +14,63 @@ namespace PlannerCLI {
             m_todoQueue.push(todo);
         }
 
-        void RemoveToDo();
+        void RemoveToDo() {
+        if (!m_todoQueue.empty()) {
+            m_todoQueue.pop();
+            }
+        }
 
-        ToDo ViewToDo();
+        ToDo ViewToDo() {
+        if (!m_todoQueue.empty()) {
+            return m_todoQueue.front();
+            }
+        return ToDo();
+        }
 
         std::queue<ToDo> GetToDoList() {
             return m_todoQueue;
         }
 
-        void UpdateToDoDescription(std::string newDescription);
+        void UpdateToDoDescription(std::string newDescription){
+            if (!m_todoQueue.empty()) {
+            ToDo updated = m_todoQueue.front();
+            updated.SetDescription(newDescription);
+            m_todoQueue.pop();
+            m_todoQueue.push(updated);
+            }
+        }
 
-        /**
-            \brief Load information from a file.
-        */
-        void Load() override;
+        void Load(){
+            std::ifstream file("todo.txt");
+            std::string description;
+            int priority;
 
-        /**
-            \details Save information into a file.
-        */
-        void Save() override;
+            m_todoQueue = {}; 
+
+            while (file.good()) {
+                getline(file, description, ';');
+                file >> priority;
+                file.ignore();
+
+                if (!description.empty()) {
+                    m_todoQueue.push(ToDo(description, priority));
+                }
+            }
+            file.close();
+        }
+
+        void Save(){
+            std::ofstream file("todo.txt");
+            std::queue<ToDo> tempQueue = m_todoQueue;
+
+            while (!tempQueue.empty()) {
+                ToDo task = tempQueue.front();
+                file << task.GetDescription() << ";" << task.GetPriority() << "\n";
+                tempQueue.pop();
+            }
+        file.close();
+        }
+
     private:
         std::queue<ToDo> m_todoQueue;
     };
