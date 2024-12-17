@@ -1,50 +1,46 @@
 #include <iostream>
-#include <queue>
+#include <stack>
 #include <string>
 
 using namespace std;
 
 // Define the Help Entity using a struct
 struct HelpEntity {
-    int id;              // Unique ID for the help entity
     string title;       // Title of the help article
     string content;     // Detailed description or instructions
-    string category;    // Category of help (e.g., "Account", "Security")
 };
 
 // HelpManager class manages the help content and its flow
 class HelpManager {
 private:
     HelpEntity helpContents[5];    // Array to store help content (5 entries)
-    queue<int> helpQueue;          // Queue to manage help content display order
+    stack<int> helpStack;          // Stack to manage help content display order
 
 public:
     // Constructor to initialize help content
     HelpManager() {
         // Initialize the help content
-        helpContents[0] = {1, "How to reset your password", "To reset your password, go to Settings > Account > Forgot Password.", "Account"};
-        helpContents[1] = {2, "Setting up Two-Factor Authentication", "Go to Security settings and enable Two-Factor Authentication.", "Security"};
-        helpContents[2] = {3, "Troubleshooting Network Issues", "Check your internet connection, restart your router, and ensure you're connected to a network.", "Troubleshooting"};
-        helpContents[3] = {4, "Creating a New Account", "Click on 'Sign Up', enter your details, and follow the on-screen instructions.", "Account"};
-        helpContents[4] = {5, "How to update your app", "Go to the app store, search for the app, and click 'Update' if available.", "App Management"};
+        helpContents[0] = {"How to add an event", "To add an event, click on 'Add Event', enter the title, description, date, and time."};  // Adding an event
+        helpContents[1] = {"How to update an event", "To update an event, select the event from the calendar, edit the details, and save the changes."};  // Updating an event
+        helpContents[2] = {"How to view events", "To view your events, go to the Calendar section and scroll through the days, weeks, or months."};  // Viewing events
+        helpContents[3] = {"How to delete an event", "To delete an event, select the event from the calendar and click on the 'Delete' button."};  // Deleting an event
+        helpContents[4] = {"How to categorize events", "To categorize an event, select a category when creating or editing an event. Categories include Work, Personal, etc."};  // Categorizing events
 
-        // Enqueue all help items initially
+        // Push all help items initially onto the stack
         for (int i = 0; i < 5; i++) {
-            helpQueue.push(i);  // Add index of each help content to the queue
+            helpStack.push(i);  // Add index of each help content to the stack
         }
     }
 
-    // Method to display a help content by fetching it from the queue
+    // Method to display a help content by fetching it from the stack
     void displayHelp() {
-        if (!helpQueue.empty()) {
-            int index = helpQueue.front();
-            helpQueue.pop();  // Remove the item from the queue
-            
-            // Display the help content
-            cout << "Help ID: " << helpContents[index].id << endl;
+        if (!helpStack.empty()) {
+            int index = helpStack.top();
+            helpStack.pop();  // Remove the item from the stack
+
+            // Display the help content without Help ID and Category
             cout << "Title: " << helpContents[index].title << endl;
-            cout << "Content: " << helpContents[index].content << endl;
-            cout << "Category: " << helpContents[index].category << endl << endl;
+            cout << "Content: " << helpContents[index].content << endl << endl;
         } else {
             cout << "No more help content available." << endl;
         }
@@ -54,10 +50,8 @@ public:
     void displayAllHelp() {
         cout << "Displaying all Help Content: \n";
         for (int i = 0; i < 5; i++) {
-            cout << "Help ID: " << helpContents[i].id << endl;
             cout << "Title: " << helpContents[i].title << endl;
-            cout << "Content: " << helpContents[i].content << endl;
-            cout << "Category: " << helpContents[i].category << endl << endl;
+            cout << "Content: " << helpContents[i].content << endl << endl;
         }
     }
 };
@@ -69,13 +63,13 @@ int main() {
     // Display all help content initially
     helpManager.displayAllHelp();
 
-    // Display help content one by one from the queue
-    cout << "Displaying Help Content from the Queue:\n";
-    helpManager.displayHelp();  // Display help ID 1
-    helpManager.displayHelp();  // Display help ID 2
-    helpManager.displayHelp();  // Display help ID 3
-    helpManager.displayHelp();  // Display help ID 4
-    helpManager.displayHelp();  // Display help ID 5
+    // Display help content one by one from the stack
+    cout << "Displaying Help Content from the Stack:\n";
+    helpManager.displayHelp();  // Display the last pushed help content
+    helpManager.displayHelp();  // Display the second-to-last pushed content
+    helpManager.displayHelp();  // Display the third-to-last pushed content
+    helpManager.displayHelp();  // Display the fourth-to-last pushed content
+    helpManager.displayHelp();  // Display the first pushed content
     helpManager.displayHelp();  // No more content
 
     return 0;
