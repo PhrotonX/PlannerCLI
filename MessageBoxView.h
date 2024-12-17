@@ -10,7 +10,7 @@ namespace PlannerCLI {
     {
     public:
         MessageBoxView(const std::string& title, const std::string& description);
-        ~MessageBoxView() override;
+        ~MessageBoxView() override {}
 
         bool Show();
 
@@ -18,6 +18,7 @@ namespace PlannerCLI {
         void DisplayHelpInfo() override{}
 
     private:
+        void Display() {}
         std::string m_strDescription;
 
     };
