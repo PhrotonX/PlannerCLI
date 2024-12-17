@@ -5,23 +5,24 @@
 
 namespace PlannerCLI {
 
-class HelpTip {
-private:
-    int id;                      
-    std::string message;        
+    class HelpTip {
+    private:
+        int m_nId;                      
+        std::string m_strMessage;        
 
-public:
+    public:
  
-    HelpTip();
-    HelpTip(int id, const std::string& message) ;
+        HelpTip();
+        HelpTip(int id, const std::string& message) ;
+        ~HelpTip() {}
 
-    int getId() const ;
-    std::string getMessage() const ;
+        int GetId() const ;
+        std::string GetMessage() const ;
 
-    void setId(int newid);
-    void setMessage(const std::string& newmessage);
+        void SetId(int newid);
+        void SetMessage(const std::string& newmessage);
 
 
-}; 
+    }; 
 }
 #endif // HELPTIP_H

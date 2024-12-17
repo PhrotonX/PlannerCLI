@@ -148,6 +148,7 @@
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="EventView.h" />
     <ClInclude Include="FORMAT.h" />
+    <ClInclude Include="HelpTip.h" />
     <ClInclude Include="IDialog.h" />
     <ClInclude Include="InputStringView.h" />
     <ClInclude Include="List.h" />
@@ -186,6 +187,7 @@
     <ClCompile Include="EventController.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="EventView.cpp" />
+    <ClCompile Include="HelpTip.cpp" />
     <ClCompile Include="IDialog.cpp" />
     <ClCompile Include="InputStringView.cpp" />
     <ClCompile Include="List.cpp" />

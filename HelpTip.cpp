@@ -1,35 +1,32 @@
 #include "HelpTip.h"
 
 namespace PlannerCLI {
+    HelpTip::HelpTip() {
+       m_nId = 0;
+       m_strMessage = "";
+    }
 
 
-HelpTip::HelpTip() {
-    id=0;
-   message="";
-}
+    HelpTip::HelpTip(int inputid, const std::string& inputmessage){
+         m_nId=inputid;
+        m_strMessage=inputmessage;
+    }
+
+    int HelpTip::GetId() const {
+        return m_nId;
+    }
+
+    std::string HelpTip::GetMessage() const {
+        return m_strMessage;
+    }
+
+    void HelpTip::SetId(int newid) {
+        m_nId = newid;
+    }
 
 
-HelpTip::HelpTip(int inputid, const std::string& inputmessage){
-     id=inputid;
-    message=inputmessage;
-}
-
-int HelpTip::getId() const {
-    return id;
-}
-
-std::string HelpTip::getMessage() const {
-    return message;
-}
-
-void HelpTip::setId(int newid) {
-    id = newid;
-}
-
-
-void HelpTip::setMessage(const std::string& newmessage) {
-   message = newmessage;
-}
-
+    void HelpTip::SetMessage(const std::string& newmessage) {
+       m_strMessage = newmessage;
+    }
 } 
 
