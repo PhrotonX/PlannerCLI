@@ -8,6 +8,7 @@
 #include "Calendar.h"
 #include "SettingsController.h"
 #include "Settings.h"
+#include "ToDoController.h"
 
 using namespace PlannerCLI::typeB;
 namespace PlannerCLI{
@@ -15,11 +16,12 @@ namespace PlannerCLI{
     {
         public:
             inline static const char APP_SHOW_CALENDAR = '1';
-            inline static const char APP_LOAD_INFORMATION = '2';
-            inline static const char APP_SAVE_INFORMATION = '3';
-            inline static const char APP_SETTINGS = '4';
-            inline static const char APP_HELP = '5';
-            inline static const char APP_EXIT = '6';
+            inline static const char APP_SHOW_TODOLIST = '2';
+            inline static const char APP_LOAD_INFORMATION = '3';
+            inline static const char APP_SAVE_INFORMATION = '4';
+            inline static const char APP_SETTINGS = '5';
+            inline static const char APP_HELP = '6';
+            inline static const char APP_EXIT = '7';
 
             App();
             virtual ~App();
@@ -31,7 +33,8 @@ namespace PlannerCLI{
             CalendarController* m_calendarController;
             CalendarController* m_calendarControllerTypeA = nullptr;
             CalendarController* m_calendarControllerTypeB = nullptr;
-            SettingsController* m_settingsController;
+            ToDoController m_toDoController;
+            SettingsController m_settingsController;
     };
 }
 

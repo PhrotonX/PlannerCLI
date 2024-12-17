@@ -26,10 +26,35 @@ namespace PlannerCLI {
 
     void ToDoList::Load()
     {
+        std::ifstream file("todo.txt");
+        std::string description;
+        int priority;
+
+        m_todoQueue = {};
+
+        while (file.good()) {
+            getline(file, description, ';');
+            file >> priority;
+            file.ignore();
+
+            if (!description.empty()) {
+                m_todoQueue.push(ToDo(description, priority));
+            }
+        }
+        file.close();
     }
 
     void ToDoList::Save()
     {
+        std::ofstream file("todo.txt");
+        std::queue<ToDo> tempQueue = m_todoQueue;
+
+        while (!tempQueue.empty()) {
+            ToDo task = tempQueue.front();
+            file << task.GetDescription() << ";" << task.GetPriority() << "\n";
+            tempQueue.pop();
+        }
+        file.close();
     }
 }
 

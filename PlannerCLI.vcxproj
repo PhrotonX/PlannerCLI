@@ -164,7 +164,9 @@
     <ClInclude Include="SettingsView.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="ToDo.h" />
+    <ClInclude Include="ToDoController.h" />
     <ClInclude Include="ToDoList.h" />
+    <ClInclude Include="ToDoView.h" />
     <ClInclude Include="typeB\ArrayCalendar.h" />
     <ClInclude Include="typeB\ArrayDay.h" />
     <ClInclude Include="typeB\ArrayMonth.h" />
@@ -207,7 +209,9 @@
     <ClCompile Include="SettingsController.cpp" />
     <ClCompile Include="SettingsView.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="ToDoController.cpp" />
     <ClCompile Include="ToDoList.cpp" />
+    <ClCompile Include="ToDoView.cpp" />
     <ClCompile Include="typeB\ArrayCalendar.cpp" />
     <ClCompile Include="typeB\ArrayDay.cpp" />
     <ClCompile Include="typeB\ArrayMonth.cpp" />
