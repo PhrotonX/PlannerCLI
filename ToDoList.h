@@ -7,41 +7,34 @@
 
 namespace PlannerCLI {
 
-class ToDoList : public Model {
-public:
-    void AddToDo(ToDo todo) {
-        m_todoQueue.push(todo);
-    }
-
-    void RemoveToDo() {
-        if (!m_todoQueue.empty()) {
-            m_todoQueue.pop();
+    class ToDoList : public Model {
+    public:
+        void AddToDo(ToDo todo) {
+            m_todoQueue.push(todo);
         }
-    }
 
-    ToDo ViewToDo() {
-        if (!m_todoQueue.empty()) {
-            return m_todoQueue.front();
+        void RemoveToDo();
+
+        ToDo ViewToDo();
+
+        std::queue<ToDo> GetToDoList() {
+            return m_todoQueue;
         }
-        return ToDo();
-    }
 
-    std::queue<ToDo> GetToDoList() {
-        return m_todoQueue;
-    }
+        void UpdateToDoDescription(std::string newDescription);
 
-    void UpdateToDoDescription(std::string newDescription) {
-        if (!m_todoQueue.empty()) {
-            ToDo updated = m_todoQueue.front();
-            updated.SetDescription(newDescription);
-            m_todoQueue.pop();
-            m_todoQueue.push(updated);
-        }
-    }
+        /**
+            \brief Load information from a file.
+        */
+        void Load() override;
 
-private:
-    std::queue<ToDo> m_todoQueue;
-};
+        /**
+            \details Save information into a file.
+        */
+        void Save() override;
+    private:
+        std::queue<ToDo> m_todoQueue;
+    };
 
 }
 
