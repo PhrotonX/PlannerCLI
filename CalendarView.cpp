@@ -25,8 +25,6 @@ namespace PlannerCLI{
         OnDisplayCalendarDays();
 
         OnDisplayBottomBorder();
-
-        DisplayHelpInfo();
     }
 
     void CalendarView::DisplayHelpInfo()
@@ -161,12 +159,12 @@ namespace PlannerCLI{
         //Display the bottom border of calendar days.
         std::cout << ANSI_BACKGROUND_BRIGHT_COLOR_WHITE;
         std::cout << ANSI_TEXT_COLOR_BLACK;
-        std::cout << "È";
+        std::cout << "Ì";
         for (int i = 1; i <= (CALENDAR_WIDTH - PADDING_RIGHT); i++) {
             int dayOfTheWeekNo = i % ITEM_WIDTH;
             if ((dayOfTheWeekNo == 0)) {
                 if (i == (CALENDAR_WIDTH - PADDING_RIGHT))
-                    std::cout << "¼" << ANSI_COLOR_RESET << std::endl;
+                    std::cout << "¹" << ANSI_COLOR_RESET << std::endl;
                 else
                     std::cout << "Ê";
             }

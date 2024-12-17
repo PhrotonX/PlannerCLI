@@ -2,6 +2,7 @@
 #define EVENTCONTROLLER_H
 #include "Controller.h"
 #include "Event.h"
+#include "EventGlanceView.h"
 #include "EventView.h"
 #include "EventManager.h"
 #include "typeB/ArrayCalendar.h"
@@ -23,6 +24,7 @@ namespace PlannerCLI {
         void HandleInput() override;
         
         void Index(Date date);
+        void IndexWidget(Date date);
         void Search();
         
         void Load() override;

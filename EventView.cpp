@@ -100,6 +100,7 @@ namespace PlannerCLI {
             DrawText(BULLET + " " + title);
             SetColorDefaults();
         }
+        
         else {
             DrawText(BULLET + " " + title);
         }

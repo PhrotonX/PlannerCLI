@@ -22,10 +22,14 @@ namespace PlannerCLI{
 
             void Display();
 
-            void Display(int year, int month, int day);
+            //void Display(int year, int month, int day);
 
             void SetNavigatedDate(Date* navigatedDate) {
                 m_pnDate = navigatedDate;
+            }
+
+            void DisplayHelp() {
+                DisplayHelpInfo();
             }
         protected:
             void DisplayHelpInfo() override;
