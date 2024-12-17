@@ -35,4 +35,73 @@ namespace PlannerCLI {
 
 		return strValue;
 	}
+
+	bool Time::operator>(const Time& other){
+		if (this->GetHours() > other.GetHours()) {
+			return true;
+		}else if (this->GetHours() == other.GetHours()) {
+			if (this->GetMinutes() > other.GetMinutes()) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	bool Time::operator>=(const Time& other)
+	{
+		if (this->GetHours() >= other.GetHours()) {
+			if (this->GetMinutes() >= other.GetMinutes()) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	bool Time::operator==(const Time& other)
+	{
+		if (this->GetHours() == other.GetHours()) {
+			if (this->GetMinutes() == other.GetMinutes()) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	bool Time::operator!=(const Time& other)
+	{
+		if (this->GetHours() != other.GetHours()) {
+			return true;
+		}else if (this->GetMinutes() != other.GetMinutes()) {
+			return true;
+		}
+
+		return false;
+	}
+
+	bool Time::operator<(const Time& other)
+	{
+		if (this->GetHours() < other.GetHours()) {
+			return true;
+		}
+		else if (this->GetHours() == other.GetHours()) {
+			if (this->GetMinutes() < other.GetMinutes()) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+	bool Time::operator<=(const Time& other)
+	{
+		if (this->GetHours() <= other.GetHours()) {
+			if (this->GetMinutes() <= other.GetMinutes()) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 }
