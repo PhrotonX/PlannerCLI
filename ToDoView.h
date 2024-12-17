@@ -9,6 +9,17 @@ namespace PlannerCLI {
 
 class ToDoView {
 public:
+    void Display() {
+        std::cout << "\nTo-Do List Menu:\n";
+        std::cout << "1. Add Task\n";
+        std::cout << "2. View Task\n";
+        std::cout << "3. Update Task\n";
+        std::cout << "4. Display All Tasks\n";
+        std::cout << "5. Remove Task\n";
+        std::cout << "6. Exit\n";
+        std::cout << "Enter your choice: ";
+    }
+    
     ToDo ShowCreateScreen() {
         std::string description;
         int priority;
