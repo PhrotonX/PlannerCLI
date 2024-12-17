@@ -3,6 +3,8 @@
 namespace PlannerCLI {
 	void ToDoController::HandleInput()
 	{
+        CLEAR_SCREEN;
+
         bool run = true;
         while (run) {
             m_view.Display();

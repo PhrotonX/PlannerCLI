@@ -211,6 +211,7 @@
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="ToDoController.cpp" />
     <ClCompile Include="ToDoList.cpp" />
+    <ClCompile Include="ToDoView.cpp" />
     <ClCompile Include="typeB\ArrayCalendar.cpp" />
     <ClCompile Include="typeB\ArrayDay.cpp" />
     <ClCompile Include="typeB\ArrayMonth.cpp" />

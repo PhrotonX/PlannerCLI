@@ -6,8 +6,6 @@ namespace PlannerCLI{
     App::App()
     {
         //ctor
-        m_settingsController = new SettingsController();
-        m_toDoController = new ToDoController();
     }
 
     App::~App()
@@ -18,14 +16,10 @@ namespace PlannerCLI{
         if(m_arrayCalendar != nullptr) delete m_arrayCalendar;
         if(m_calendarControllerTypeA != nullptr) delete m_calendarControllerTypeA;
         if(m_calendarControllerTypeB != nullptr) delete m_calendarControllerTypeB;
-        if(m_settingsController != nullptr) delete m_settingsController;
-        if(m_toDoController != nullptr) delete m_toDoController;
 
         m_arrayCalendar = nullptr;
         m_calendarControllerTypeA = nullptr;
         m_calendarControllerTypeB = nullptr;
-        m_settingsController = nullptr;
-        m_toDoController = nullptr;
     }
 
     void App::Run(){
@@ -67,19 +61,19 @@ namespace PlannerCLI{
                 m_calendarController->Index();
                 break;
             case APP_SHOW_TODOLIST:
-                m_toDoController->Index();
+                m_toDoController.Index();
                 break;
             case APP_LOAD_INFORMATION:
                 std::cout << "Loading..." << std::endl;
                 m_calendarController->Load();
-                m_toDoController->Load();
+                m_toDoController.Load();
                 break;
             case APP_SAVE_INFORMATION:
                 m_calendarController->Store();
-                m_toDoController->Store();
+                m_toDoController.Store();
                 break;
             case APP_SETTINGS:
-                m_settingsController->Index();
+                m_settingsController.Index();
                 break;
             case APP_HELP:
                 break;

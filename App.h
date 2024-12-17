@@ -33,8 +33,8 @@ namespace PlannerCLI{
             CalendarController* m_calendarController;
             CalendarController* m_calendarControllerTypeA = nullptr;
             CalendarController* m_calendarControllerTypeB = nullptr;
-            ToDoController* m_toDoController = nullptr;
-            SettingsController* m_settingsController;
+            ToDoController m_toDoController;
+            SettingsController m_settingsController;
     };
 }
 
