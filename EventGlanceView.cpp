@@ -17,6 +17,7 @@ namespace PlannerCLI {
         for (auto& eventItem : m_event) {
             if (i == 3) {
                 DrawText("Press ENTER to show more events");
+                break;
             }
             if (!eventItem.IsNull()) {
                 OnDisplayDateAndTime(eventItem.GetDate(), eventItem.GetStartTime(), eventItem.GetEndTime(), prevTime);
