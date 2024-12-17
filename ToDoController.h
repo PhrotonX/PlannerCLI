@@ -19,14 +19,7 @@ public:
     void HandleInput() override {
         bool run = true;
         while (run) {
-            std::cout << "\nTo-Do List Menu:\n";
-            std::cout << "1. Add Task\n";
-            std::cout << "2. View Task\n";
-            std::cout << "3. Update Task\n";
-            std::cout << "4. Display All Tasks\n";
-            std::cout << "5. Remove Task\n";
-            std::cout << "6. Exit\n";
-            std::cout << "Enter your choice: ";
+            m_view.Display();
 
             int choice;
             std::cin >> choice;
@@ -56,8 +49,13 @@ public:
         }
     }
 
-    void Load() override {}
-    void Store() override {}
+    void Load() override {
+        m_todoList.Load();
+    }
+
+    void Store() override {
+        m_todoList.Save();
+    }
 
 private:
     ToDoList m_todoList;
