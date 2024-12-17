@@ -106,10 +106,37 @@ namespace PlannerCLI {
 	}
 	void EventManager::Load()
 	{
-		
+		std::ifstream file;
+		file.open(FILE_CALENDAR, std::ios::in);
+
+		if (file.is_open()) {
+			while (!file.eof()) {
+				Event event = OnLoadEvent(file);
+
+				if (!event.IsNull()) {
+					std::string date = event.GetDate().GetString();
+
+					m_event[date].push_back(event);
+				}
+
+			}
+		}
+
+		file.close();
 	}
 	void EventManager::Save()
 	{
+		std::ofstream file;
+		file.open(FILE_CALENDAR, std::ios::out | std::ios::trunc);
+		if (file.is_open()) {
+			for (auto& mapItem: m_event) {
+				for (auto& event : mapItem.second) {
+					OnSaveEvent(file, event);
+				}
+			}
+		}
+
+		file.close();
 	}
 	Event EventManager::OnLoadEvent(std::ifstream& file)
 	{

@@ -1,8 +1,8 @@
 #ifndef ARRAYCALENDAR_H
 #define ARRAYCALENDAR_H
 
-#include "../EventManager.h"
 #include "ArrayYear.h"
+#include "../EventManager.h"
 #include "../Date.h"
 #include "../DayOfTheWeek.h"
 #include "../Settings.h"
@@ -48,7 +48,7 @@ namespace PlannerCLI::typeB {
         void Sort(Date date) override;
 
     protected:
-        inline static const std::string FILE_CALENDAR = "calendar.txt";
+        
     private:
         //Handle 137 years. From 1970-2106.
         ArrayYear* m_year[137];

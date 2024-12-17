@@ -40,6 +40,8 @@ namespace PlannerCLI {
 		std::map<std::string, std::vector<Event>> m_event;
 		
 	protected:
+		inline static const std::string FILE_CALENDAR = "calendar.txt";
+
 		NullEvent m_nullEvent;
 		std::vector<Event> m_nullEvents;
 	};
