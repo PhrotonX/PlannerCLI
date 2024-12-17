@@ -12,7 +12,7 @@ public:
     ToDoController() {}
     ~ToDoController() override {}
 
-    void Init() {
+    void Index() override {
         HandleInput();
     }
 

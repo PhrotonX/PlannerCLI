@@ -14,62 +14,19 @@ namespace PlannerCLI {
             m_todoQueue.push(todo);
         }
 
-        void RemoveToDo() {
-        if (!m_todoQueue.empty()) {
-            m_todoQueue.pop();
-            }
-        }
+        void RemoveToDo();
 
-        ToDo ViewToDo() {
-        if (!m_todoQueue.empty()) {
-            return m_todoQueue.front();
-            }
-        return ToDo();
-        }
+        ToDo ViewToDo();
 
         std::queue<ToDo> GetToDoList() {
             return m_todoQueue;
         }
 
-        void UpdateToDoDescription(std::string newDescription){
-            if (!m_todoQueue.empty()) {
-            ToDo updated = m_todoQueue.front();
-            updated.SetDescription(newDescription);
-            m_todoQueue.pop();
-            m_todoQueue.push(updated);
-            }
-        }
+        void UpdateToDoDescription(std::string newDescription);
 
-        void Load(){
-            std::ifstream file("todo.txt");
-            std::string description;
-            int priority;
+        void Load();
 
-            m_todoQueue = {}; 
-
-            while (file.good()) {
-                getline(file, description, ';');
-                file >> priority;
-                file.ignore();
-
-                if (!description.empty()) {
-                    m_todoQueue.push(ToDo(description, priority));
-                }
-            }
-            file.close();
-        }
-
-        void Save(){
-            std::ofstream file("todo.txt");
-            std::queue<ToDo> tempQueue = m_todoQueue;
-
-            while (!tempQueue.empty()) {
-                ToDo task = tempQueue.front();
-                file << task.GetDescription() << ";" << task.GetPriority() << "\n";
-                tempQueue.pop();
-            }
-        file.close();
-        }
+        void Save();
 
     private:
         std::queue<ToDo> m_todoQueue;
