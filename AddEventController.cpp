@@ -46,9 +46,17 @@ namespace PlannerCLI {
 				case AddEventView::END_TIME_FIELD:
 					event.SetEndTime(m_addEventView->EditEndTime(event.GetEndTime()));
 					break;
+				case AddEventView::COLOR_FIELD:
+					ColorOptions();
+					break;
 				case AddEventView::SAVE_BUTTON:
-					saveFunction();
+					if (Validate(event)) {
+						saveFunction();
+						goto close;
+					}
+					break;
 				case AddEventView::CANCEL_BUTTON:
+					close:
 					run = false;
 					break;
 				default:
@@ -77,16 +85,34 @@ namespace PlannerCLI {
 		} while (run);
 	}
 
-	void AddEventController::Index()
+	void AddEventController::ColorOptions()
 	{
+		MessageBoxView messageBox = MessageBoxView("Alert", "Color option is coming soon!");
+		messageBox.Show();
 	}
 
-	void AddEventController::Load()
+	bool AddEventController::Validate(Event& event)
 	{
-	}
+		Time startTime = event.GetStartTime();
+		Time endTime = event.GetEndTime();
 
-	void AddEventController::Store()
-	{
+		if (event.GetTitle() == "") {
+			MessageBoxView messageBox = MessageBoxView("Error", "Title cannot be null!");
+			messageBox.Show();
+			return false;
+		}
+		else if (startTime > endTime) {
+			MessageBoxView messageBox = MessageBoxView("Error", "Start time cannot be greater than end time!");
+			messageBox.Show();
+			return false;
+		}
+		else if (endTime < startTime) {
+			MessageBoxView messageBox = MessageBoxView("Error", "End time cannot be less than start time!");
+			messageBox.Show();
+			return false;
+		}
+		
+		return true;
 	}
 
 }

@@ -8,6 +8,7 @@
 #include "typeB/ArrayCalendar.h"
 #include "AddEventController.h"
 #include "SearchEventView.h"
+#include "MessageBoxView.h"
 #include "Date.h"
 #include "Settings.h"
 #include <functional>
@@ -35,6 +36,10 @@ namespace PlannerCLI {
         void Index();
         void Update(size_t position);
         void Delete(size_t position);
+
+        void ShowAddFailedMessage();
+        void ShowDeleteFailedMessage();
+        void ShowEditFailedMessage();
         
         EventManager* m_eventManager;
         EventView* m_eventView;

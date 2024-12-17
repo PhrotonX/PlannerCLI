@@ -153,6 +153,7 @@
     <ClInclude Include="IDialog.h" />
     <ClInclude Include="InputStringView.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="MessageBoxView.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Month.h" />
     <ClInclude Include="Nullable.h" />
@@ -196,6 +197,7 @@
     <ClCompile Include="InputStringView.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MessageBoxView.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Month.cpp" />
     <ClCompile Include="Nullable.cpp" />

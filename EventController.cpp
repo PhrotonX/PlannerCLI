@@ -37,24 +37,44 @@ namespace PlannerCLI {
 			case 'D':
 			case 'd':
 				if (m_event.size() > 0) {
-					if (!m_event.at(0).IsNull())
+					if (!m_event.at(0).IsNull()) {
 						Delete(m_nEventNavigation);
-						m_nEventNavigation--;
+					}
+					else {
+						ShowDeleteFailedMessage();
+					}
+						
+					m_nEventNavigation--;
 
-						if (m_nEventNavigation < 0)
-							m_nEventNavigation = 0;
+					if (m_nEventNavigation < 0)
+						m_nEventNavigation = 0;
+				}
+				else {
+					ShowDeleteFailedMessage();
 				}
 				break;
 			case KEY_ENTER:
 				switch (m_nNavigation) {
 				case EventView::ADD_BUTTON:
-					if(!m_bIsSearching)
+					if (!m_bIsSearching) {
 						Create(m_date);
+					}
+					else {
+						ShowAddFailedMessage();
+					}
+						
 					break;
 				case EventView::EVENT_LIST:
 					if (m_event.size() > 0){
-						if(!m_event.at(0).IsNull())
+						if (!m_event.at(0).IsNull()) {
 							Update(m_nEventNavigation);
+						}
+						else {
+							ShowEditFailedMessage();
+						}		
+					}
+					else {
+						ShowEditFailedMessage();
 					}
 					break;
 				case EventView::BACK_BUTTON:
@@ -191,5 +211,20 @@ namespace PlannerCLI {
 			m_event = m_eventManager->SearchEvent(m_strSearchQuery);
 		else
 			m_event = m_eventManager->GetEventList(date);
+	}
+	void EventController::ShowAddFailedMessage()
+	{
+		MessageBoxView messageBox = MessageBoxView("Error", "Cannot add event from search list!");
+		messageBox.Show();
+	}
+	void EventController::ShowDeleteFailedMessage()
+	{
+		MessageBoxView messageBox = MessageBoxView("Error", "Cannot delete from an empty list!");
+		messageBox.Show();
+	}
+	void EventController::ShowEditFailedMessage()
+	{
+		MessageBoxView messageBox = MessageBoxView("Error", "Cannot edit from an empty list!");
+		messageBox.Show();
 	}
 }

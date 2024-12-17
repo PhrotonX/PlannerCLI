@@ -4,6 +4,19 @@ namespace PlannerCLI {
 	void AddEventView::Create(Event& newEvent, Date date, int* navigation) {
 		CLEAR_SCREEN;
 
+		DrawTopBorder();
+		
+		if (newEvent.GetTitle() == "") {
+			DrawText("Create Event");
+		}
+		else {
+			DrawText("Edit Event");
+		}
+
+		DrawBottomBorder();
+		
+
+
 		for (int i = 0; i < FIELD_SIZE; i++) {
 			m_button[i] = new Button(navigation, i);
 		}

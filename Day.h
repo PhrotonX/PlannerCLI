@@ -34,6 +34,9 @@ namespace PlannerCLI{
                 \param day The 1-based day value.
             */
             void SetValue(int day){
+                if (day < 1) {
+                    day = 1;
+                }
                 m_nDay = day;
             }
 

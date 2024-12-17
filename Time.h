@@ -30,6 +30,13 @@ namespace PlannerCLI {
 
 		static std::string AddLeadingZero(int value);
 
+		bool operator>(const Time& other);
+		bool operator>=(const Time& other);
+		bool operator<(const Time& other);
+		bool operator<=(const Time& other);
+		bool operator==(const Time& other);
+		bool operator!=(const Time& other);
+
 	private:
 		int m_nHours;
 		int m_nMinutes;
