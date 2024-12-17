@@ -7,17 +7,23 @@ namespace PlannerCLI {
 	class Settings : public Model
 	{
 	public:
+		inline static bool DebugMode = false;
+		inline static bool ArrayCalendar = false;
+
 		Settings() {}
 		~Settings() override {}
-
-		void Save() override {}
 
 		static void ToggleDebugMode();
 
 		static void ToggleArrayCalendar();
 
-		inline static bool DebugMode = false;
-		inline static bool ArrayCalendar = false;
+		void Load() override;
+
+		void Save() override;
+
+		
+
+		
 	};
 }
 

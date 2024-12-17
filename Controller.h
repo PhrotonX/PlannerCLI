@@ -41,10 +41,14 @@ namespace PlannerCLI{
             virtual void Index() = 0;
 
             /**
-                \brief Store general information from the View into the Model.
-
+                \brief Invokes Model::Load().
             */
-            //virtual void Store() = 0;
+            virtual void Load() = 0;
+
+            /**
+                \brief Invokes Model::Save();
+            */
+           virtual void Store() = 0;
             //virtual void Update() = 0;
             //virtual void Delete() = 0;
     };

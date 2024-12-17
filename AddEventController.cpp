@@ -81,4 +81,12 @@ namespace PlannerCLI {
 	{
 	}
 
+	void AddEventController::Load()
+	{
+	}
+
+	void AddEventController::Store()
+	{
+	}
+
 }

@@ -99,6 +99,51 @@ namespace PlannerCLI::typeB {
         Seed();
 	}
 
+    void ArrayCalendar::Load(){
+        std::ifstream file;
+        file.open(FILE_CALENDAR, std::ios::in);
+
+        if (file.is_open()) {
+            while(!file.eof()) {
+                Event event = OnLoadEvent(file);
+
+                if (!event.IsNull()) {
+                    Date date = event.GetDate();
+
+                    int year = date.GetYear().GetValue() - ArrayYear::MIN_YEAR_UNIX;
+                    int month = date.GetMonth().GetValueN() - 1;
+                    int day = date.GetDay().GetValue() - 1;
+
+                    m_year[year]->GetMonth(month)->GetDay(day).AddEvent(event);
+                }
+                
+            }
+        }
+
+        file.close();
+    }
+
+    void ArrayCalendar::Save(){
+        std::ofstream file;
+        file.open(FILE_CALENDAR, std::ios::out | std::ios::trunc);
+        if (file.is_open()) {
+            for (auto& year : m_year) {
+                if (year == nullptr) continue;
+                for (int month = 0; month < ArrayMonth::MONTHS; month++) {
+                    int monthLength = year->GetMonth(month)->GetMonthSize();
+                    for (int day = 0; day < monthLength; day++) {
+                        for (auto& eventItem : year->GetMonth(month)->GetDay(day).GetEventList()) {
+                            OnSaveEvent(file, eventItem);
+                        }
+                    }
+                }
+            }
+        }
+        
+
+        file.close();
+    }
+
     void ArrayCalendar::Seed() {
         //Add 1900 years to each of these variable since tm_year of tm structure
         //uses year 1900 as a base year.

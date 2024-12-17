@@ -36,6 +36,8 @@ namespace PlannerCLI{
                 return &m_navigatedDate;
             }
 
+            void Load() override;
+
             void Save() override;
 
         protected:

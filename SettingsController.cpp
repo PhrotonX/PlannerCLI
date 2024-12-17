@@ -93,4 +93,10 @@ namespace PlannerCLI {
 			}
 		} while (run);
 	}
+	void SettingsController::Load()
+	{
+	}
+	void SettingsController::Store()
+	{
+	}
 }

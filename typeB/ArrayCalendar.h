@@ -1,8 +1,8 @@
 #ifndef ARRAYCALENDAR_H
 #define ARRAYCALENDAR_H
 
-#include "../EventManager.h"
 #include "ArrayYear.h"
+#include "../EventManager.h"
 #include "../Date.h"
 #include "../DayOfTheWeek.h"
 #include "../Settings.h"
@@ -35,7 +35,9 @@ namespace PlannerCLI::typeB {
 
         void Init();
 
-        void Save() override{}
+        void Load() override;
+
+        void Save() override;
 
         /**
             \details Fill up data, ranging from 2020-2029 for 30+ MB of RAM.
@@ -45,6 +47,8 @@ namespace PlannerCLI::typeB {
 
         void Sort(Date date) override;
 
+    protected:
+        
     private:
         //Handle 137 years. From 1970-2106.
         ArrayYear* m_year[137];

@@ -83,6 +83,10 @@ namespace PlannerCLI {
 			m_strDescription = value;
 		}
 
+		void SetID(const int& value) {
+			m_nId = value;
+		}
+
 		void SetLocation(const std::string& value) {
 			m_strLocation = value;
 		}

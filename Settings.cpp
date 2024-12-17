@@ -11,5 +11,12 @@ namespace PlannerCLI {
 		ArrayCalendar = !ArrayCalendar;
 	}
 
+	void Settings::Load()
+	{
+	}
+
+	void Settings::Save()
+	{
+	}
 
 }

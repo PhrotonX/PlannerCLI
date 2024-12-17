@@ -98,6 +98,10 @@ namespace PlannerCLI{
         m_navigatedDate.SetDate(m_nNavigatedYear, m_nNavigatedMonth, m_nNavigatedDay);
     }
 
+    void Calendar::Load()
+    {
+    }
+
     void Calendar::Save(){
 
     }

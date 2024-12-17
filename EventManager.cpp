@@ -104,6 +104,94 @@ namespace PlannerCLI {
 				eventItem = event;
 		}
 	}
+	void EventManager::Load()
+	{
+		std::ifstream file;
+		file.open(FILE_CALENDAR, std::ios::in);
+
+		if (file.is_open()) {
+			while (!file.eof()) {
+				Event event = OnLoadEvent(file);
+
+				if (!event.IsNull()) {
+					std::string date = event.GetDate().GetString();
+
+					m_event[date].push_back(event);
+				}
+
+			}
+		}
+
+		file.close();
+	}
+	void EventManager::Save()
+	{
+		std::ofstream file;
+		file.open(FILE_CALENDAR, std::ios::out | std::ios::trunc);
+		if (file.is_open()) {
+			for (auto& mapItem: m_event) {
+				for (auto& event : mapItem.second) {
+					OnSaveEvent(file, event);
+				}
+			}
+		}
+
+		file.close();
+	}
+	Event EventManager::OnLoadEvent(std::ifstream& file)
+	{
+		Event event;
+
+		std::string eventDate, title, description, location, startTime, endTime;
+		std::string position; //size_t
+		std::string id; //long
+		std::string line;
+		std::getline(file, eventDate);
+
+		//Return a NullEvent if end of file has been reached. The end of file for saved events is
+		//always a null Date string.
+		if (eventDate == "") return NullEvent();
+
+		std::getline(file, position);
+		std::getline(file, id);
+		std::getline(file, title);
+		std::getline(file, description);
+		std::getline(file, location);
+		std::getline(file, startTime);
+		std::getline(file, endTime);
+		std::getline(file, line);
+
+		Date date = Date(eventDate);
+		event.SetDate(date);
+
+		std::stringstream positionStream(position);
+		size_t nPosition;
+		positionStream >> nPosition;
+		event.SetPosition(nPosition);
+
+		event.SetID(std::stol(id));
+
+		event.SetTitle(title);
+		event.SetDescription(description);
+		event.SetLocation(location);
+		event.SetStartTime(Time(startTime));
+		event.SetEndTime(Time(endTime));
+
+		return event;
+	}
+	void EventManager::OnSaveEvent(std::ofstream& file, Event event)
+	{
+		file << event.GetDate().GetString() << std::endl;
+		file << event.GetPosition() << std::endl;
+		file << event.GetID() << std::endl;
+		file << event.GetTitle() << std::endl;
+		file << event.GetDescription() << std::endl;
+		file << event.GetLocation() << std::endl;
+		file << event.GetStartTime().GetString() << std::endl;
+		file << event.GetEndTime().GetString() << std::endl;
+		file << FILE_BREAK_LINE << std::endl;
+	}
+
 	void EventManager::Sort(Date date)
 	{
 		std::string id = date.GetString();

@@ -83,17 +83,12 @@ namespace PlannerCLI{
         if(Settings::DebugMode) m_calendar->Debug();
     }
 
-    /*
+    void CalendarController::Load() {
+        m_eventController->Load();
+    }
+    
     void CalendarController::Store(){
-
+        m_eventController->Store();
     }
-
-    void CalendarController::Update(){
-
-    }
-
-    void CalendarController::Delete(){
-
-    }*/
 
 }
