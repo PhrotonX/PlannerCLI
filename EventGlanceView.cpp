@@ -40,7 +40,6 @@ namespace PlannerCLI {
 
     void EventGlanceView::OnDisplayTitle()
     {
-        DrawConnectingBorder();
         DrawText(m_date.GetFormattedString());
         DrawConnectingBorder();
     }
