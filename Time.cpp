@@ -12,6 +12,15 @@ namespace PlannerCLI {
 		m_nMinutes = minutes;
 	}
 
+	Time::Time(const std::string strValue)
+	{
+		std::string strHour = strValue.substr(0, 2);
+		std::string strMinute = strValue.substr(3, 4);
+
+		SetHours(std::stoi(strHour));
+		SetMinutes(std::stoi(strMinute));
+	}
+
 	std::string Time::GetString() const {
 		return AddLeadingZero(m_nHours) + ":" + AddLeadingZero(m_nMinutes);
 	}

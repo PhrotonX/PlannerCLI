@@ -44,7 +44,34 @@ namespace PlannerCLI {
     }
 
     std::string DayOfTheWeek::GetName() const {
-        switch (m_dayOfTheWeek) {
+        return GetName(m_dayOfTheWeek);
+    }
+
+    std::string DayOfTheWeek::GetName(int value)
+    {
+        switch (value) {
+        case 0:
+            return "Sunday";
+        case 1:
+            return "Monday";
+        case 2:
+            return "Tuesday";
+        case 3:
+            return "Wednesday";
+        case 4:
+            return "Thursday";
+        case 5:
+            return "Friday";
+        case 6:
+            return "Saturday";
+        default:
+            break;
+        }
+    }
+
+    std::string DayOfTheWeek::GetName(eDayOfTheWeek value)
+    {
+        switch (value) {
         case DayOfTheWeek::Sunday:
             return "Sunday";
         case DayOfTheWeek::Monday:
@@ -64,7 +91,7 @@ namespace PlannerCLI {
         }
     }
 
-    void DayOfTheWeek::SetValue(int dayOfTheWeek) {
+    void DayOfTheWeek::SetValue(const int& dayOfTheWeek) {
         switch (dayOfTheWeek) {
         case 0:
             m_dayOfTheWeek = Sunday;

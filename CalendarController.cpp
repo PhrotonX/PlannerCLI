@@ -24,13 +24,13 @@ namespace PlannerCLI{
 
     void CalendarController::HandleInput(){
         bool isRunning = true;
-        char choice;
+
         do{
-            choice = _getch();
+            m_calendarView->Display();
 
             Date date;
 
-            switch(choice){
+            switch(_getch()){
             case 'A':
             case 'a':
                 m_calendar->OnNavigatePrevMonth(); 
@@ -69,7 +69,7 @@ namespace PlannerCLI{
                 break;
             }
 
-            m_calendarView->Display();
+            
 
             //m_calendar->Debug();
 
@@ -78,22 +78,17 @@ namespace PlannerCLI{
 
     void CalendarController::Index(){
         m_calendar->OnNavigateInit();
-        m_calendarView->Display();
+        HandleInput();
 
-        //m_calendar->Debug();
+        if(Settings::DebugMode) m_calendar->Debug();
     }
 
-    /*
+    void CalendarController::Load() {
+        m_eventController->Load();
+    }
+    
     void CalendarController::Store(){
-
+        m_eventController->Store();
     }
-
-    void CalendarController::Update(){
-
-    }
-
-    void CalendarController::Delete(){
-
-    }*/
 
 }

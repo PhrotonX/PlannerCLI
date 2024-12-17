@@ -8,6 +8,7 @@ namespace PlannerCLI {
 	public:
 		Time();
 		Time(const int& hours, const int& minutes);
+		Time(const std::string strValue);
 
 		int GetHours() const {
 			return m_nHours;

@@ -8,6 +8,7 @@
 #include "NullEvent.h"
 #include <vector>
 #include <map>
+#include <sstream>
 
 namespace PlannerCLI {
 	class EventManager : public Model
@@ -16,23 +17,31 @@ namespace PlannerCLI {
 		EventManager();
 		~EventManager() override{}
 
-		void AddEvent(Event event, Date date);
-		Event& GetEvent(Date date, size_t position);
-		std::vector<Event>& GetEventList(Date date);
+		virtual void AddEvent(Event event, Date date);
+		virtual Event& GetEvent(Date date, size_t position);
+		virtual std::vector<Event>& GetEventList(Date date);
 		std::map<std::string, std::vector<Event>>& GetAllEvents() {
 			return m_event;
 		}
-		void RemoveEvent(Date date, size_t position);
-		std::vector<Event> SearchEvent(const std::string& query);
-		void UpdateEvent(Event event, Date date, size_t position);
+		virtual void RemoveEvent(Date date, size_t position);
+		virtual std::vector<Event> SearchEvent(const std::string& query);
+		virtual void UpdateEvent(Event event);
 
-		void Save() override {}
-		void Sort(Date date);
+		void Load() override;
+		void Save() override;
+
+		Event OnLoadEvent(std::ifstream& file);
+		void OnSaveEvent(std::ofstream& file, Event event);
+
+		virtual void Sort(Date date);
 
 	private:
 		//@NOTE: Very problematic!
 		std::map<std::string, std::vector<Event>> m_event;
 		
+	protected:
+		inline static const std::string FILE_CALENDAR = "calendar.txt";
+
 		NullEvent m_nullEvent;
 		std::vector<Event> m_nullEvents;
 	};

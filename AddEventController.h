@@ -17,6 +17,9 @@ namespace PlannerCLI {
 		void HandleInput() override;
 		void HandleInput(Event& event, Date date, std::function<void()> saveFunction);
 		void Index() override;
+
+		void Load() override;
+		void Store() override;
 	private:
 
 		AddEventView* m_addEventView;

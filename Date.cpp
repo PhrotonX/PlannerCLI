@@ -13,7 +13,7 @@ namespace PlannerCLI{
 
         int zStrLength = strLength - 1;
         std::string strDay = dateString.substr(zStrLength - 1, strLength);
-        std::string strMonth = dateString.substr(zStrLength - 3, strLength - 2);
+        std::string strMonth = dateString.substr(zStrLength - 3, strLength - 6);
         std::string strYear = dateString.substr(0, strLength - 4);
 
         SetDate(std::stoi(strYear), std::stoi(strMonth), std::stoi(strDay));

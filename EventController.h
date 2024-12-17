@@ -4,10 +4,14 @@
 #include "Event.h"
 #include "EventView.h"
 #include "EventManager.h"
+#include "typeB/ArrayCalendar.h"
 #include "AddEventController.h"
 #include "SearchEventView.h"
 #include "Date.h"
+#include "Settings.h"
 #include <functional>
+
+using namespace PlannerCLI::typeB;
 
 namespace PlannerCLI {
     class EventController : public Controller
@@ -21,12 +25,17 @@ namespace PlannerCLI {
         void Index(Date date);
         void Search();
         
+        void Load() override;
+        void Store() override;
 
     protected:
         void Create(Date date);
         void Index();
         void Update(size_t position);
         void Delete(size_t position);
+        
+        EventManager* m_eventManager;
+        EventView* m_eventView;
 
     private:
         AddEventController* m_addEventController;
@@ -37,8 +46,7 @@ namespace PlannerCLI {
 
         std::vector<Event> m_event;
 
-        EventManager* m_eventManager;
-        EventView* m_eventView;
+        
 
         int m_nNavigation;
         int m_nEventNavigation;

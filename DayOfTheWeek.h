@@ -33,7 +33,7 @@ namespace PlannerCLI{
             \brief Set the day of the week.
             \param dayOfTheWeek Set 0 for Sunday and 6 for Saturday.
         */
-        void SetValue(int dayOfTheWeek);
+        void SetValue(const int& dayOfTheWeek);
 
         /**
             \brief Sets the day of the week based on Zeller's Congruence Algorithm
@@ -52,6 +52,16 @@ namespace PlannerCLI{
         int GetValueN() const;
 
         std::string GetName() const;
+
+        /**
+            \param value 0 for Sunday, 6 for Saturday, and -1 if not available.
+        */
+        static std::string GetName(int value);
+
+        /**
+            \param value 0 for Sunday, 6 for Saturday, and -1 if not available.
+        */
+        static std::string GetName(eDayOfTheWeek value);
 
     private:
         eDayOfTheWeek m_dayOfTheWeek;

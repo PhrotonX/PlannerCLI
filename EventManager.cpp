@@ -29,7 +29,7 @@ namespace PlannerCLI {
 	{
 		std::string id = date.GetString();
 
-		if (m_event.count(id) != 0) {
+		if (m_event.count(id) != 0) { //Checks if a key in the map exists.
 			return m_event[id].at(position);
 		}
 		else {
@@ -52,8 +52,20 @@ namespace PlannerCLI {
 	void EventManager::RemoveEvent(Date date, size_t position)
 	{
 		std::string id = date.GetString();
-
-		m_event[id].erase(m_event[id].begin() + position);
+		
+		if (m_event[id].size() > 1) {
+			size_t ctr = 0;
+			for (auto& event : m_event[id]) {
+				if (event.GetPosition() == position) {
+					ctr = event.GetPosition();
+				}
+			}
+			m_event[id].erase(m_event[id].begin() + ctr);
+		}
+		else {
+			//Avoid a crash when there is only 1 remaining element in a vector.
+			m_event[id].clear();
+		}
 	}
 
 	std::vector<Event> EventManager::SearchEvent(const std::string& query)
@@ -66,10 +78,10 @@ namespace PlannerCLI {
 			for (auto& eventItem : mapItem.second) {
 				if (eventItem.GetTitle().find(query) != std::string::npos) {
 					results.push_back(eventItem);
+
+					count++;
 				}
 			}
-
-			count++;
 		}
 
 		if (count <= 0) {
@@ -79,21 +91,110 @@ namespace PlannerCLI {
 		return results;
 	}
 
-	void EventManager::UpdateEvent(Event event, Date date, size_t position)
+	void EventManager::UpdateEvent(Event event)
 	{
+		Date date = event.GetDate();
+		size_t position = event.GetPosition();
+
 		std::string id = date.GetString();
 
 		//m_event[id].at(position) = event;
 		for (auto& eventItem : m_event[id]) {
-			if (eventItem.GetID() == position)
+			if (eventItem.GetPosition() == position)
 				eventItem = event;
 		}
 	}
+	void EventManager::Load()
+	{
+		std::ifstream file;
+		file.open(FILE_CALENDAR, std::ios::in);
+
+		if (file.is_open()) {
+			while (!file.eof()) {
+				Event event = OnLoadEvent(file);
+
+				if (!event.IsNull()) {
+					std::string date = event.GetDate().GetString();
+
+					m_event[date].push_back(event);
+				}
+
+			}
+		}
+
+		file.close();
+	}
+	void EventManager::Save()
+	{
+		std::ofstream file;
+		file.open(FILE_CALENDAR, std::ios::out | std::ios::trunc);
+		if (file.is_open()) {
+			for (auto& mapItem: m_event) {
+				for (auto& event : mapItem.second) {
+					OnSaveEvent(file, event);
+				}
+			}
+		}
+
+		file.close();
+	}
+	Event EventManager::OnLoadEvent(std::ifstream& file)
+	{
+		Event event;
+
+		std::string eventDate, title, description, location, startTime, endTime;
+		std::string position; //size_t
+		std::string id; //long
+		std::string line;
+		std::getline(file, eventDate);
+
+		//Return a NullEvent if end of file has been reached. The end of file for saved events is
+		//always a null Date string.
+		if (eventDate == "") return NullEvent();
+
+		std::getline(file, position);
+		std::getline(file, id);
+		std::getline(file, title);
+		std::getline(file, description);
+		std::getline(file, location);
+		std::getline(file, startTime);
+		std::getline(file, endTime);
+		std::getline(file, line);
+
+		Date date = Date(eventDate);
+		event.SetDate(date);
+
+		std::stringstream positionStream(position);
+		size_t nPosition;
+		positionStream >> nPosition;
+		event.SetPosition(nPosition);
+
+		event.SetID(std::stol(id));
+
+		event.SetTitle(title);
+		event.SetDescription(description);
+		event.SetLocation(location);
+		event.SetStartTime(Time(startTime));
+		event.SetEndTime(Time(endTime));
+
+		return event;
+	}
+	void EventManager::OnSaveEvent(std::ofstream& file, Event event)
+	{
+		file << event.GetDate().GetString() << std::endl;
+		file << event.GetPosition() << std::endl;
+		file << event.GetID() << std::endl;
+		file << event.GetTitle() << std::endl;
+		file << event.GetDescription() << std::endl;
+		file << event.GetLocation() << std::endl;
+		file << event.GetStartTime().GetString() << std::endl;
+		file << event.GetEndTime().GetString() << std::endl;
+		file << FILE_BREAK_LINE << std::endl;
+	}
+
 	void EventManager::Sort(Date date)
 	{
 		std::string id = date.GetString();
-
-		//bool swapped = false;
 
 		if (m_event[id].size() > 1) {
 			for (size_t i = 0; i < m_event[id].size() - 1; i++) {
@@ -102,13 +203,13 @@ namespace PlannerCLI {
 					Time upperTime = m_event[id].at(j + 1).GetStartTime();
 					if (lowerTime.GetHours() > upperTime.GetHours()) {
 						 std::swap(m_event[id].at(j), m_event[id].at(j + 1));
-						 //swapped = true;
 					}
 				}
-
-				/*if (!swapped)
-					break;*/
 			}
+		}
+
+		for (int i = 0; i < m_event[id].size(); i++) {
+			m_event[id].at(i).SetPosition(i);
 		}
 		
 	}
