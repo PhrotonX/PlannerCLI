@@ -86,6 +86,10 @@ namespace PlannerCLI{
             if (m_nNavigatedYear > 2029) {
                 m_nNavigatedYear = 2029;
                 m_nNavigatedMonth = 12;
+
+                MessageBoxView messageBox = MessageBoxView("ArrayCalendar Error",
+                    "Does not support years more than 2029!");
+                messageBox.Show();
             }
         }
 
@@ -106,6 +110,10 @@ namespace PlannerCLI{
             if (m_nNavigatedYear < 2020) {
                 m_nNavigatedYear = 2020;
                 m_nNavigatedMonth = 1;
+
+                MessageBoxView messageBox = MessageBoxView("ArrayCalendar Error",
+                    "Does not support years less than 2020!");
+                messageBox.Show();
             }
         }
 

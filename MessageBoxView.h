@@ -6,6 +6,9 @@
 #include <string>
 
 namespace PlannerCLI {
+    /**
+        \remarks Does not need to strictly follow MVC architecture.
+    */
     class MessageBoxView : public View, public IDialog<bool>
     {
     public:

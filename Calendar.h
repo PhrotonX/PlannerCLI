@@ -6,6 +6,7 @@
 #include "Day.h"
 #include "Date.h"
 #include "Settings.h"
+#include "MessageBoxView.h"
 #include <iostream>
 
 namespace PlannerCLI{
