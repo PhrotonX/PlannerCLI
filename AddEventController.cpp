@@ -97,19 +97,17 @@ namespace PlannerCLI {
 		Time endTime = event.GetEndTime();
 
 		if (event.GetTitle() == "") {
-			MessageBoxView messageBox = MessageBoxView("Error", "Title cannot be null");
+			MessageBoxView messageBox = MessageBoxView("Error", "Title cannot be null!");
 			messageBox.Show();
 			return false;
 		}
 		else if (startTime > endTime) {
-			MessageBoxView messageBox = MessageBoxView("Error", "Start time " +
-				startTime.GetString() + " cannot be greater than end time " + endTime.GetString());
+			MessageBoxView messageBox = MessageBoxView("Error", "Start time cannot be greater than end time!");
 			messageBox.Show();
 			return false;
 		}
 		else if (endTime < startTime) {
-			MessageBoxView messageBox = MessageBoxView("Error", "End time " +
-				endTime.GetString() + " cannot be less than start time " + startTime.GetString());
+			MessageBoxView messageBox = MessageBoxView("Error", "End time cannot be less than start time!");
 			messageBox.Show();
 			return false;
 		}
