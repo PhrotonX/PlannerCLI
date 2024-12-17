@@ -82,6 +82,13 @@ namespace PlannerCLI{
             m_nNavigatedYear++;
         }
 
+        if (Settings::ArrayCalendar) {
+            if (m_nNavigatedYear > 2029) {
+                m_nNavigatedYear = 2029;
+                m_nNavigatedMonth = 12;
+            }
+        }
+
         m_navigatedDate.SetDate(m_nNavigatedYear, m_nNavigatedMonth, m_nNavigatedDay);
     }
 
@@ -93,6 +100,13 @@ namespace PlannerCLI{
         if (m_nNavigatedMonth < 1) {
             m_nNavigatedMonth = 12;
             m_nNavigatedYear--;
+        }
+
+        if (Settings::ArrayCalendar) {
+            if (m_nNavigatedYear < 2020) {
+                m_nNavigatedYear = 2020;
+                m_nNavigatedMonth = 1;
+            }
         }
 
         m_navigatedDate.SetDate(m_nNavigatedYear, m_nNavigatedMonth, m_nNavigatedDay);

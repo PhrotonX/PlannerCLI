@@ -5,6 +5,7 @@
 #include "Month.h"
 #include "Day.h"
 #include "Date.h"
+#include "Settings.h"
 #include <iostream>
 
 namespace PlannerCLI{
