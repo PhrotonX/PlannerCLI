@@ -49,8 +49,13 @@ public:
         }
     }
 
-    void Load() override {}
-    void Store() override {}
+    void Load() override {
+        m_todoList.Load();
+    }
+
+    void Store() override {
+        m_todoList.Save();
+    }
 
 private:
     ToDoList m_todoList;
