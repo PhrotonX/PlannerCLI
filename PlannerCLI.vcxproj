@@ -145,6 +145,7 @@
     <ClInclude Include="EditTimeView.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventController.h" />
+    <ClInclude Include="EventGlanceView.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="EventView.h" />
     <ClInclude Include="FORMAT.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="EditTimeView.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventController.cpp" />
+    <ClCompile Include="EventGlanceView.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="EventView.cpp" />
     <ClCompile Include="HelpTip.cpp" />

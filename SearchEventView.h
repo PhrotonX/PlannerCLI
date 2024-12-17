@@ -11,7 +11,7 @@ namespace PlannerCLI {
 		SearchEventView(){}
 		~SearchEventView() override{}
 
-		void Display(const std::vector<Event>& event, Date date, int* navigation, int* eventNavigation);
+		void Display(const std::vector<Event>& event, Date date, int* navigation, int* eventNavigation) override;
 		void DisplayHelpInfo() override;
 		void SetQuery(const std::string& query) {
 			m_strQuery = query;

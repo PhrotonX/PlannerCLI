@@ -40,41 +40,6 @@ namespace PlannerCLI {
         DisplayHelpInfo();
 	}
 
-    void EventView::DisplayWidget(const std::vector<Event>& event, Date date)
-    {
-        m_event = event;
-        m_date = date;
-        if (m_pnEventNavigation != nullptr) *m_pnEventNavigation = -1;
-        if (m_pnNavigation != nullptr) *m_pnNavigation = -1;
-
-        OnDisplayTitle();
-
-        Time prevTime;
-
-        m_nNoOfEvents = m_event.size();
-
-        int i = 0;
-        for (auto& eventItem : m_event) {
-            if (i == 3) break;
-            if (!eventItem.IsNull()) {
-                OnDisplayDateAndTime(eventItem.GetDate(), eventItem.GetStartTime(), eventItem.GetEndTime(), prevTime);
-
-                OnDisplayEvent(eventItem, i);
-
-                prevTime = eventItem.GetStartTime();
-            }
-            else {
-                DrawText("No events to display");
-            }
-
-            i++;
-        }
-
-        OnHandleEmptyEvents();
-
-        DrawBottomBorder();
-    }
-
     void EventView::DisplayHelpInfo() {
         SetColorDefaults();
         DrawSingleLine();
@@ -130,12 +95,10 @@ namespace PlannerCLI {
             title = title.substr(0, (CONTENT_WIDTH - INDENT_WIDTH) - 7) + "...";
         }
 
-        if (m_pnEventNavigation != nullptr && m_pnNavigation != nullptr) {
-            if (*m_pnEventNavigation == position && *m_pnNavigation == EVENT_LIST) {
-                SetColor(ANSI_BACKGROUND_COLOR_BLUE, ANSI_TEXT_COLOR_BRIGHT_WHITE);
-                DrawText(BULLET + " " + title);
-                SetColorDefaults();
-            }
+        if (*m_pnEventNavigation == position && *m_pnNavigation == EVENT_LIST) {
+            SetColor(ANSI_BACKGROUND_COLOR_BLUE, ANSI_TEXT_COLOR_BRIGHT_WHITE);
+            DrawText(BULLET + " " + title);
+            SetColorDefaults();
         }
         
         else {

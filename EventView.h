@@ -24,9 +24,7 @@ namespace PlannerCLI {
 		/**
 			\details Display all events from a specific date.
 		*/
-		void Display(const std::vector<Event>& event, Date date, int* navigation, int* eventNavigation);
-
-		void DisplayWidget(const std::vector<Event>& event, Date date);
+		virtual void Display(const std::vector<Event>& event, Date date, int* navigation, int* eventNavigation);
 
 		int GetNoOfEvents() const {
 			return m_nNoOfEvents;
@@ -45,7 +43,6 @@ namespace PlannerCLI {
 		int* m_pnNavigation;
 		int* m_pnEventNavigation;
 		Button* m_button[BUTTON_COUNT];
-	private:
 		
 		Date m_date;
 

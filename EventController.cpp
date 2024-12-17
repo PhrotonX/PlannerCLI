@@ -137,8 +137,8 @@ namespace PlannerCLI {
 		m_event = m_eventManager->GetEventList(date);
 		m_date = date;
 
-		EventView eventView;
-		eventView.DisplayWidget(m_event, date);
+		EventGlanceView eventView;
+		eventView.Display(m_event, date, nullptr, nullptr);
 	}
 
 	void EventController::Search() {
