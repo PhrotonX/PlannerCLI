@@ -8,6 +8,7 @@
 #include "NullEvent.h"
 #include <vector>
 #include <map>
+#include <sstream>
 
 namespace PlannerCLI {
 	class EventManager : public Model
@@ -28,6 +29,10 @@ namespace PlannerCLI {
 
 		void Load() override;
 		void Save() override;
+
+		Event OnLoadEvent(std::ifstream& file);
+		void OnSaveEvent(std::ofstream& file, Event event);
+
 		virtual void Sort(Date date);
 
 	private:
