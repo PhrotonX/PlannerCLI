@@ -101,50 +101,22 @@ namespace PlannerCLI::typeB {
 
     void ArrayCalendar::Load(){
         std::ifstream file;
-        file.open(FILE_ARRAY_CALENDAR, std::ios::in);
+        file.open(FILE_CALENDAR, std::ios::in);
 
         if (file.is_open()) {
             while(!file.eof()) {
-                Event event;
+                Event event = OnLoadEvent(file);
 
-                std::string eventDate, title, description, location, startTime, endTime;
-                std::string position; //size_t
-                std::string id; //long
-                std::string line;
-                std::getline(file, eventDate);
+                if (!event.IsNull()) {
+                    Date date = event.GetDate();
 
-                if (eventDate == "") break;
+                    int year = date.GetYear().GetValue() - ArrayYear::MIN_YEAR_UNIX;
+                    int month = date.GetMonth().GetValueN() - 1;
+                    int day = date.GetDay().GetValue() - 1;
 
-                std::getline(file, position);
-                std::getline(file, id);
-                std::getline(file, title);
-                std::getline(file, description);
-                std::getline(file, location);
-                std::getline(file, startTime);
-                std::getline(file, endTime);
-                std::getline(file, line);
-
-                Date date = Date(eventDate);
-                event.SetDate(date);
-
-                std::stringstream positionStream(position);
-                size_t nPosition;
-                positionStream >> nPosition;
-                event.SetPosition(nPosition);
+                    m_year[year]->GetMonth(month)->GetDay(day).AddEvent(event);
+                }
                 
-                event.SetID(std::stol(id));
-                
-                event.SetTitle(title);
-                event.SetDescription(description);
-                event.SetLocation(location);
-                event.SetStartTime(Time(startTime));
-                event.SetEndTime(Time(endTime));
-
-                int year = date.GetYear().GetValue() - ArrayYear::MIN_YEAR_UNIX;
-                int month = date.GetMonth().GetValueN() - 1;
-                int day = date.GetDay().GetValue() - 1;
-
-                m_year[year]->GetMonth(month)->GetDay(day).AddEvent(event);
             }
         }
 
@@ -153,7 +125,7 @@ namespace PlannerCLI::typeB {
 
     void ArrayCalendar::Save(){
         std::ofstream file;
-        file.open(FILE_ARRAY_CALENDAR, std::ios::out | std::ios::binary | std::ios::trunc);
+        file.open(FILE_CALENDAR, std::ios::out | std::ios::trunc);
         if (file.is_open()) {
             for (auto& year : m_year) {
                 if (year == nullptr) continue;
@@ -161,15 +133,7 @@ namespace PlannerCLI::typeB {
                     int monthLength = year->GetMonth(month)->GetMonthSize();
                     for (int day = 0; day < monthLength; day++) {
                         for (auto& eventItem : year->GetMonth(month)->GetDay(day).GetEventList()) {
-                            file << eventItem.GetDate().GetString() << std::endl;
-                            file << eventItem.GetPosition() << std::endl;
-                            file << eventItem.GetID() << std::endl;
-                            file << eventItem.GetTitle() << std::endl;
-                            file << eventItem.GetDescription() << std::endl;
-                            file << eventItem.GetLocation() << std::endl;
-                            file << eventItem.GetStartTime().GetString() << std::endl;
-                            file << eventItem.GetEndTime().GetString() << std::endl;
-                            file << FILE_BREAK_LINE << std::endl;
+                            OnSaveEvent(file, eventItem);
                         }
                     }
                 }
